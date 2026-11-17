@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="خودرو ایتالیا">
+<meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>خودرو ایتالیا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Khodro Italy — sample web app (v1)
+   Apple-style (iOS) design: large titles, grouped cards,
+   blur bars, sheets, segmented controls, light + dark.
+   ========================================================= */
+:root{
+  --tint:#E5383B; --tint2:#C9184A; --green:#30A46C; --orange:#F59E0B; --blue:#0A84FF; --purple:#8E5CF7;
+  --bg:#F2F2F7; --card:#FFFFFF; --card2:#F7F7FA; --label:#0B0B0F; --label2:rgba(60,60,67,.62); --label3:rgba(60,60,67,.32);
+  --sep:rgba(60,60,67,.14); --fill:rgba(118,118,128,.12); --bar:rgba(249,249,251,.78);
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);
+  --page:#E9E6E1;
+}
+[data-theme=dark]{
+  --bg:#000; --card:#1C1C1E; --card2:#2C2C2E; --label:#F5F5F7; --label2:rgba(235,235,245,.62); --label3:rgba(235,235,245,.3);
+  --sep:rgba(84,84,88,.6); --fill:rgba(118,118,128,.24); --bar:rgba(22,22,24,.78); --shadow:none; --page:#111113;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:"Vazirmatn",-apple-system,"SF Pro Text",system-ui,sans-serif;background:var(--page);color:var(--label);
+  transition:background .4s;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+input,select{font:inherit;color:inherit}
+
+/* ---------- presentation page ---------- */
+.stage{min-height:100vh;display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:center;justify-content:center;
+  padding:40px 56px;max-width:1280px;margin:auto}
+.side h1{font-size:34px;font-weight:900;letter-spacing:-.02em;line-height:1.15}
+.side h1 span{background:linear-gradient(90deg,#1F9D55,#9CA3AF 50%,#E5383B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.side p.lead{color:var(--label2);margin:10px 0 24px;font-size:15px;line-height:1.8}
+.steps{display:flex;flex-direction:column;gap:4px}
+.steps button{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;text-align:right;font-size:14.5px;color:var(--label2);transition:.2s}
+.steps button b{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:var(--fill);color:var(--label2);flex:none}
+.steps button.on{background:var(--card);color:var(--label);box-shadow:var(--shadow)}
+.steps button.on b{background:var(--tint);color:#fff}
+.steps small{display:block;font-size:12px;color:var(--label3)}
+.ctrls{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
+.pill{padding:9px 16px;border-radius:999px;background:var(--card);box-shadow:var(--shadow);font-size:13.5px;font-weight:600}
+.pill.primary{background:var(--label);color:var(--bg)}
+.phone-wrap{display:flex;justify-content:center}
+
+/* ---------- iPhone ---------- */
+.phone{width:393px;height:852px;border-radius:62px;padding:12px;background:#1b1b1d;position:relative;
+  box-shadow:0 0 0 2px #3a3a3c,0 0 0 9px #0d0d0e,0 40px 80px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.25)}
+.screen{position:relative;width:100%;height:100%;border-radius:50px;overflow:hidden;background:var(--bg);isolation:isolate}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:124px;height:36px;border-radius:20px;background:#000;z-index:60}
+.status{position:absolute;top:0;inset-inline:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:6px 34px 0;
+  z-index:55;font-weight:700;font-size:16px;direction:ltr;pointer-events:none}
+.status .icons{display:flex;gap:6px;align-items:center}
+.home-ind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:138px;height:5px;border-radius:3px;background:var(--label);opacity:.85;z-index:70}
+
+/* views & navigation */
+.view{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;padding:54px 0 110px;background:var(--bg)}
+.view::-webkit-scrollbar{display:none}
+.view.enter{animation:push .42s cubic-bezier(.2,.8,.2,1)}
+.view.fade{animation:fadeIn .35s ease}
+@keyframes push{from{transform:translateX(-100%)}to{transform:none}}
+@keyframes fadeIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+.navbar{position:sticky;top:0;z-index:20;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+  background:transparent;transition:background .2s}
+.navbar.solid{background:var(--bar);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sep)}
+.navbar .ttl{font-weight:700;font-size:17px;opacity:0;transition:.2s}
+.navbar.solid .ttl{opacity:1}
+.navbtn{color:var(--tint);font-size:17px;display:flex;align-items:center;gap:2px;min-width:60px}
+.navbtn.end{justify-content:flex-end}
+.iconbtn{width:34px;height:34px;border-radius:50%;background:var(--fill);display:grid;place-items:center;color:var(--tint)}
+.large{font-size:34px;font-weight:800;letter-spacing:-.01em;padding:2px 20px 6px}
+.subhead{padding:0 20px 14px;color:var(--label2);font-size:15px}
+
+/* tab bar */
+.tabbar{position:absolute;bottom:0;inset-inline:0;height:88px;z-index:40;display:flex;justify-content:space-around;padding:8px 10px 0;
+  background:var(--bar);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);border-top:.5px solid var(--sep)}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;font-weight:600;color:var(--label3);width:72px}
+.tab svg{width:26px;height:26px}
+.tab.on{color:var(--tint)}
+
+/* cards & lists */
+.section{padding:0 16px;margin-bottom:22px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;padding:0 6px 8px}
+.sec-h h3{font-size:21px;font-weight:800}
+.sec-h a{color:var(--tint);font-size:15px;cursor:pointer}
+.card{background:var(--card);border-radius:22px;box-shadow:var(--shadow)}
+.group{background:var(--card);border-radius:14px;overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;padding:11px 16px;min-height:50px;position:relative}
+.row+.row::before{content:"";position:absolute;top:0;inset-inline-start:60px;inset-inline-end:0;height:.5px;background:var(--sep)}
+.row .ic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:#fff;flex:none}
+.row .ic svg{width:18px;height:18px}
+.row .t{flex:1;font-size:16px}
+.row .v{color:var(--label2);font-size:15px}
+.chev{color:var(--label3);width:9px;height:15px;transform:scaleX(-1)}
+.badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--fill);color:var(--label2)}
+.badge.soon{background:rgba(10,132,255,.12);color:var(--blue)}
+
+/* buttons */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:52px;border-radius:16px;font-size:17px;font-weight:700;width:100%;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.fill{background:var(--tint);color:#fff}
+.btn.tinted{background:rgba(229,56,59,.12);color:var(--tint)}
+.btn.plain{color:var(--tint);height:44px}
+
+/* onboarding */
+.ob{position:absolute;inset:0;display:flex;flex-direction:column;padding:70px 28px 44px;background:var(--bg)}
+.ob .grow{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ob h2{font-size:30px;font-weight:900;letter-spacing:-.01em;line-height:1.3;margin-top:26px}
+.ob p{color:var(--label2);font-size:16px;line-height:1.85;margin-top:10px}
+.logo{width:116px;height:116px;border-radius:30px;display:grid;place-items:center;position:relative;overflow:hidden;
+  background:linear-gradient(145deg,#2b2d33,#0f1012);box-shadow:0 20px 40px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.15)}
+.logo::after{content:"";position:absolute;inset-inline:0;bottom:0;height:9px;background:linear-gradient(90deg,#E5383B 33.3%,#fff 33.3% 66.6%,#1F9D55 66.6%)}
+.welcome-bg{position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(60% 40% at 20% 10%,rgba(31,157,85,.18),transparent 70%),
+  radial-gradient(60% 40% at 85% 25%,rgba(229,56,59,.2),transparent 70%),var(--bg)}
+.feature-list{display:flex;flex-direction:column;gap:22px;margin-top:34px;text-align:right;width:100%}
+.feat{display:flex;gap:16px;align-items:flex-start}
+.feat .fi{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#fff;flex:none}
+.feat .fi svg{width:24px;height:24px}
+.feat b{font-size:16px;display:block}
+.feat span{font-size:14px;color:var(--label2);line-height:1.7}
+.dots{display:flex;gap:7px;justify-content:center;margin-bottom:22px}
+.dots i{width:7px;height:7px;border-radius:4px;background:var(--label3);transition:.3s}
+.dots i.on{width:22px;background:var(--tint)}
+.seg{display:flex;background:var(--fill);border-radius:10px;padding:2px;position:relative}
+.seg button{flex:1;height:34px;border-radius:8px;font-size:14px;font-weight:600;position:relative;z-index:1;transition:color .2s}
+.seg button.on{background:var(--card);box-shadow:0 2px 6px rgba(0,0,0,.12)}
+[data-theme=dark] .seg button.on{background:#636366}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.choice button{background:var(--card);border-radius:20px;padding:20px 12px 16px;display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-weight:700;font-size:15px;border:2px solid transparent;box-shadow:var(--shadow);transition:.2s}
+.choice button svg{width:64px;height:40px;color:var(--label2)}
+.choice button.on{border-color:var(--tint);color:var(--tint)}
+.choice button.on svg{color:var(--tint)}
+.regions{width:100%;margin-top:18px;text-align:right}
+.regions .group{max-height:270px;overflow-y:auto;scrollbar-width:none}
+.check{width:22px;height:22px;color:var(--tint);opacity:0}
+.row.sel .check{opacity:1}
+.notif-demo{width:100%;margin-top:30px;display:flex;flex-direction:column;gap:10px}
+.nbanner{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:20px;text-align:right;
+  background:var(--card);box-shadow:0 10px 30px rgba(0,0,0,.1);animation:drop .6s cubic-bezier(.2,.8,.2,1) both}
+.nbanner:nth-child(2){animation-delay:.25s;opacity:.85;transform:scale(.97)}
+@keyframes drop{from{opacity:0;transform:translateY(-14px)}}
+.nbanner .ni{width:38px;height:38px;border-radius:10px;flex:none;background:linear-gradient(145deg,#2b2d33,#0f1012);display:grid;place-items:center}
+.nbanner b{font-size:14px} .nbanner p{font-size:13px;color:var(--label2);margin:0;line-height:1.6}
+.nbanner small{margin-inline-start:auto;color:var(--label3);font-size:12px;align-self:flex-start}
+
+/* home */
+.hello{display:flex;align-items:center;justify-content:space-between;padding:6px 20px 14px}
+.hello .d{font-size:13px;font-weight:700;color:var(--label2);text-transform:uppercase}
+.hello h1{font-size:34px;font-weight:900;letter-spacing:-.01em}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(145deg,#E5383B,#8E1B2E);color:#fff;display:grid;place-items:center;font-weight:800}
+.hero{padding:20px;position:relative;overflow:hidden;color:#fff;background:linear-gradient(140deg,#E5383B 0%,#B5172F 55%,#6D0F24 100%)}
+.hero::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.08);top:-120px;left:-80px}
+.hero .k{font-size:13px;font-weight:700;opacity:.85}
+.hero h2{font-size:24px;font-weight:900;margin:6px 0 2px}
+.hero p{opacity:.85;font-size:14px}
+.hero .ring{position:absolute;left:20px;top:22px;width:84px;height:84px}
+.hero .ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;font-weight:900;line-height:1}
+.hero .ring small{display:block;font-size:10px;font-weight:600;opacity:.85;margin-top:2px}
+.hero .acts{display:flex;gap:8px;margin-top:18px}
+.hero .acts button{background:rgba(255,255,255,.2);backdrop-filter:blur(10px);padding:9px 14px;border-radius:12px;font-size:14px;font-weight:700}
+.hero .acts button.w{background:#fff;color:#B5172F}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tool{padding:16px;display:flex;flex-direction:column;gap:12px;text-align:right;min-height:132px;position:relative;transition:transform .15s}
+.tool:active{transform:scale(.97)}
+.tool .ti{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#fff}
+.tool .ti svg{width:23px;height:23px}
+.tool b{font-size:15.5px}
+.tool span{font-size:12.5px;color:var(--label2);line-height:1.6}
+.tool .badge{position:absolute;top:14px;left:14px}
+.news{display:flex;flex-direction:column}
+.news .n{display:flex;gap:12px;padding:14px 16px;align-items:flex-start}
+.news .n+.n{border-top:.5px solid var(--sep)}
+.news .src{font-size:12px;color:var(--label2);display:flex;gap:6px;align-items:center}
+.news .src i{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.news b{display:block;font-size:15px;line-height:1.6;margin:4px 0}
+.news .tags{color:var(--blue);font-size:13px}
+.news .thumb{width:62px;height:62px;border-radius:12px;flex:none;display:grid;place-items:center;color:#fff}
+.tip{display:flex;gap:14px;padding:16px;align-items:center;background:linear-gradient(135deg,rgba(31,157,85,.14),rgba(31,157,85,.04));box-shadow:none}
+.tip .ti{width:40px;height:40px;border-radius:12px;background:var(--green);display:grid;place-items:center;color:#fff;flex:none}
+.tip p{font-size:14px;line-height:1.75}
+
+/* garage */
+.carcard{overflow:hidden;cursor:pointer;transition:transform .15s}
+.carcard:active{transform:scale(.98)}
+.carcard .top{height:150px;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px}
+.carcard .top svg.car{width:250px;height:100px;filter:drop-shadow(0 14px 14px rgba(0,0,0,.25))}
+.carcard .meta{padding:14px 16px 16px}
+.carcard h4{font-size:19px;font-weight:800;display:flex;align-items:center;justify-content:space-between}
+.carcard .sub{color:var(--label2);font-size:13.5px;margin-top:2px}
+.plate{direction:ltr;display:inline-flex;align-items:stretch;height:26px;border-radius:5px;overflow:hidden;border:1.5px solid #1b1b1b;background:#fff;color:#111;
+  font-family:"SF Mono",ui-monospace,Menlo,monospace;font-weight:700;font-size:14px;letter-spacing:.06em}
+.plate .eu{background:#0b3fa8;color:#fff;width:18px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;font-size:9px;padding-bottom:2px}
+.plate .nr{padding:0 8px;display:flex;align-items:center}
+.plate .rg{background:#0b3fa8;width:12px}
+.chips{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.chip{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:10px;background:var(--fill)}
+.chip i{width:8px;height:8px;border-radius:50%}
+.chip.ok i{background:var(--green)} .chip.warn i{background:var(--orange)} .chip.bad i{background:var(--tint)}
+.chip.warn{background:rgba(245,158,11,.13)} .chip.bad{background:rgba(229,56,59,.12)}
+.empty-add{border:2px dashed var(--sep);border-radius:22px;padding:22px;text-align:center;color:var(--label2);font-size:14px;background:transparent;width:100%}
+.empty-add b{color:var(--tint);display:block;font-size:16px;margin-bottom:2px}
+
+/* car detail */
+.detail-hero{height:260px;margin-top:-54px;padding-top:54px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;position:relative}
+.detail-hero svg.car{width:310px;height:124px;filter:drop-shadow(0 18px 18px rgba(0,0,0,.3));margin-bottom:6px}
+.detail-head{text-align:center;padding:14px 20px 18px}
+.detail-head h2{font-size:28px;font-weight:900}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.spec{padding:12px;text-align:center}
+.spec b{display:block;font-size:18px;font-weight:800}
+.spec span{font-size:12px;color:var(--label2)}
+.deadline{display:flex;align-items:center;gap:14px;padding:14px 16px}
+.deadline+.deadline{border-top:.5px solid var(--sep)}
+.deadline .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;flex:none}
+.deadline .ic svg{width:21px;height:21px}
+.deadline .tx{flex:1}
+.deadline .tx b{font-size:15.5px;display:block}
+.deadline .tx span{font-size:13px;color:var(--label2)}
+.deadline .left{text-align:center;min-width:58px}
+.deadline .left b{font-size:20px;font-weight:900;display:block;line-height:1.1}
+.deadline .left span{font-size:11px;color:var(--label2)}
+.bar{height:5px;border-radius:3px;background:var(--fill);margin-top:7px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:3px}
+
+/* sheet */
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:80;opacity:0;pointer-events:none;transition:opacity .35s}
+.dim.on{opacity:1;pointer-events:auto}
+.sheet{position:absolute;inset-inline:0;bottom:0;top:58px;z-index:90;background:var(--bg);border-radius:14px 14px 0 0;
+  transform:translateY(105%);transition:transform .45s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.sheet.on{transform:none}
+.sheet .grab{width:36px;height:5px;border-radius:3px;background:var(--label3);margin:6px auto 0}
+.sheet .sh{display:flex;align-items:center;justify-content:space-between;padding:8px 16px 10px}
+.sheet .sh b{font-size:17px}
+.sheet .body{overflow-y:auto;padding:4px 16px 40px;scrollbar-width:none}
+.field{display:flex;align-items:center;gap:12px;padding:0 16px;min-height:50px;position:relative}
+.field+.field::before{content:"";position:absolute;top:0;inset-inline-start:16px;inset-inline-end:0;height:.5px;background:var(--sep)}
+.field label{width:96px;font-size:16px;flex:none}
+.field input,.field select{flex:1;border:0;background:none;outline:0;font-size:16px;color:var(--label);padding:12px 0;min-width:0}
+.field input::placeholder{color:var(--label3)}
+.field input.ltr{direction:ltr;text-align:right}
+.foot{font-size:12.5px;color:var(--label2);padding:6px 16px 18px;line-height:1.7}
+.euro{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px}
+.euro button{min-width:42px;height:34px;border-radius:10px;background:var(--fill);font-weight:700;font-size:14px}
+.euro button.on{background:var(--tint);color:#fff}
+.colors{display:flex;gap:12px;padding:12px 16px}
+.colors button{width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
+.colors button.on{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--tint)}
+
+/* tools */
+.badge.new{background:rgba(48,164,108,.14);color:var(--green)}
+.badge.gold{background:rgba(201,154,46,.16);color:#9A7414}
+.kwrow{display:flex;align-items:center;justify-content:space-between;margin:14px 0 6px}
+.stepb{width:46px;height:46px;border-radius:50%;background:var(--fill);font-size:24px;font-weight:600;color:var(--tint);display:grid;place-items:center}
+.stepb.sm{width:34px;height:34px;font-size:20px}
+.kwbig{text-align:center}
+.kwbig b{font-size:52px;font-weight:900;letter-spacing:-.02em;line-height:1}
+.kwbig span{display:block;font-size:14px;font-weight:700;color:var(--label2);margin-top:2px}
+.kwbig small{font-size:12.5px;color:var(--label3)}
+.slider{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--fill);margin:12px 0 4px;outline:0;direction:ltr;transform:scaleX(-1)}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.08)}
+.quick{display:flex;gap:6px;margin-top:10px}
+.quick button{flex:1;height:32px;border-radius:9px;background:var(--fill);font-size:13px;font-weight:700}
+.field select{appearance:none;-webkit-appearance:none;text-align:left;color:var(--tint);font-weight:600;cursor:pointer}
+.result{padding:20px 18px}
+.result .rk{font-size:13px;font-weight:700;color:var(--label2)}
+.result .rv{display:flex;align-items:baseline;gap:8px;margin:4px 0 10px}
+.result .rv b{font-size:46px;font-weight:900;letter-spacing:-.02em;color:var(--tint);line-height:1.1}
+.result .rv span{font-size:15px;color:var(--label2);font-weight:600}
+.lines{margin-top:12px;border-top:.5px solid var(--sep)}
+.lines div{display:flex;justify-content:space-between;gap:10px;padding:10px 0;font-size:14px;border-bottom:.5px solid var(--sep)}
+.lines span{color:var(--label2)}
+.cmp{margin-top:14px}
+.cmpbar{height:8px;border-radius:4px;background:linear-gradient(270deg,#30A46C,#F59E0B,#E5383B);position:relative}
+.cmpbar i{position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--label);transform:translate(50%,-50%)}
+.cmpl{display:flex;justify-content:space-between;font-size:12px;color:var(--label2);margin-top:8px;line-height:1.6}
+.cmpl b{color:var(--label);font-size:14px}
+.scale{position:relative;height:34px;margin-top:6px}
+.sbar{position:absolute;top:13px;inset-inline:0;height:8px;border-radius:4px;background:linear-gradient(270deg,#30A46C,#F59E0B 55%,#E5383B)}
+.mk{position:absolute;top:0;transform:translateX(50%);width:34px;height:34px;border-radius:50%;background:var(--card);border:3px solid var(--label);display:grid;place-items:center;transition:right .45s cubic-bezier(.2,.8,.2,1)}
+.mk b{font-size:13px;font-weight:900}
+.years{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.yr{display:flex;align-items:center;gap:8px}
+.yr .yn{font-size:13px;color:var(--label2);width:42px;flex:none}
+.yr .yc{width:30px;height:30px;border-radius:9px;background:var(--fill);display:grid;place-items:center;font-weight:800;font-size:14px;flex:none}
+.yr .yc.big{background:var(--label);color:var(--bg)}
+.yr .seg{flex:1}
+.seg.mini button{height:30px;font-size:12px}
+.seg button.on.bad{color:var(--tint)}
+.yr .ya{width:26px;font-size:12px;font-weight:800;text-align:center}
+.ya.down{color:var(--green)} .ya.up{color:var(--tint)}
+.yr.end{padding-top:6px;border-top:.5px solid var(--sep)}
+.sw.lock{opacity:.55}
+.advice{margin-top:12px;font-size:13.5px;line-height:1.75;padding:10px 12px;border-radius:12px}
+.advice.warn{background:rgba(245,158,11,.14)} .advice.ok{background:rgba(48,164,108,.12)} .advice.info{background:rgba(10,132,255,.1)}
+.formula{padding:16px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.formula span{padding:7px 10px;border-radius:10px;background:var(--fill);font-size:13px;font-weight:700}
+.formula i{font-style:normal;font-weight:900;color:var(--tint)}
+.formula p{width:100%;font-size:13px;color:var(--label2);line-height:1.7;margin-top:6px}
+
+.qbar{position:relative;height:10px;border-radius:5px;background:var(--fill);margin:14px 0 0}
+.qbar .q80{position:absolute;top:0;height:100%;border-radius:5px;background:rgba(10,132,255,.25)}
+.qbar .qrange{position:absolute;top:0;height:100%;border-radius:5px;background:linear-gradient(270deg,#30A46C,#0A84FF)}
+.qbar i{position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--label);transform:translate(50%,-50%)}
+.qbar em{position:absolute;top:16px;transform:translateX(50%);font-style:normal;font-size:11px;color:var(--label2);white-space:nowrap}
+.qbar em::before{content:"";position:absolute;top:-12px;left:50%;width:2px;height:10px;background:var(--label3)}
+.rp{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:.5px solid var(--sep);align-items:center}
+.rp b{font-size:17px}
+.rd{text-align:left;font-size:12px;font-weight:700;line-height:1.6;white-space:nowrap}
+.rd.ok{color:var(--green)} .rd.bad{color:var(--tint)}
+.ctaq{display:flex;align-items:center;gap:12px;padding:14px 16px;width:100%}
+.ctaq .ti{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#fff;flex:none}
+.ctaq .ti svg{width:23px;height:23px}
+.ctaq b{display:block;font-size:16px} .ctaq span{font-size:13px;color:var(--label2)}
+.qsteps{display:flex;justify-content:space-between;font-size:11.5px;color:var(--label3);font-weight:700;padding:0 2px}
+.qsteps .on{color:var(--tint)} .qsteps .done{color:var(--label2)}
+.qprog{height:4px;border-radius:2px;background:var(--fill);margin-top:6px;overflow:hidden}
+.qprog i{display:block;height:100%;background:var(--tint);margin-right:0;transition:width .35s}
+/* toggles */
+.sw{width:51px;height:31px;border-radius:16px;background:var(--fill);position:relative;transition:.25s;flex:none}
+.sw::after{content:"";position:absolute;top:2px;right:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.15);transition:.25s}
+.sw.on{background:#34C759}
+.sw.on::after{right:22px}
+
+/* toast */
+.toast{position:absolute;top:62px;left:50%;transform:translate(-50%,-30px);opacity:0;z-index:100;background:var(--card);
+  box-shadow:0 10px 30px rgba(0,0,0,.18);border-radius:999px;padding:10px 18px;font-size:14px;font-weight:700;display:flex;gap:8px;align-items:center;
+  transition:.4s cubic-bezier(.2,.8,.2,1);white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast svg{width:20px;height:20px;color:var(--green)}
+
+/* gallery */
+.gallery{display:none;padding:40px 40px 80px;max-width:1500px;margin:auto}
+.gallery h2{font-size:28px;font-weight:900;margin-bottom:6px}
+.gallery p{color:var(--label2);margin-bottom:28px}
+.ggrid{display:flex;flex-wrap:wrap;gap:34px 26px;justify-content:center}
+.gitem{display:flex;flex-direction:column;align-items:center;gap:14px}
+.gitem .mini{width:275px;height:596px;overflow:hidden}
+.gitem .mini .phone{transform:scale(.7);transform-origin:top right}
+[dir=rtl] .gitem .mini .phone{transform-origin:top right}
+.gitem span{font-weight:700;font-size:14px}
+.gitem span b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--tint);color:#fff;font-size:12px;margin-inline-end:6px}
+body.show-gallery .stage{display:none}
+body.show-gallery .gallery{display:block}
+@media (max-width:900px){.stage{grid-template-columns:1fr;padding:20px}.side{order:2}}
+
+/* ===== real phone: the app fills the screen, no frame, no fake status bar ===== */
+html.app, html.app body{height:100%;overflow:hidden;background:var(--bg);overscroll-behavior:none}
+html.app .stage{display:block;padding:0;max-width:none;min-height:0;height:100%}
+html.app .side, html.app .gallery{display:none}
+html.app .phone-wrap{display:block;height:100%}
+html.app .phone{width:100%;height:100%;border-radius:0;padding:0;background:var(--bg);box-shadow:none}
+html.app .screen{border-radius:0}
+html.app .island, html.app .status, html.app .home-ind{display:none}
+html.app .view{padding-top:env(safe-area-inset-top);padding-bottom:calc(90px + env(safe-area-inset-bottom))}
+html.app .ob{padding-top:calc(30px + env(safe-area-inset-top));padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+html.app .tabbar{height:calc(56px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom)}
+html.app .sheet{top:calc(10px + env(safe-area-inset-top))}
+html.app .toast{top:calc(12px + env(safe-area-inset-top))}
+html.app .detail-hero{margin-top:calc(-1 * env(safe-area-inset-top));padding-top:env(safe-area-inset-top)}
+html.app input, html.app select{font-size:16px}
+</style>
+<script>
+  // real phone (or installed app) → full-screen app mode
+  if (matchMedia("(max-width: 700px)").matches || navigator.standalone || matchMedia("(display-mode: standalone)").matches)
+    document.documentElement.classList.add("app");
+</script>
+</head>
+<body>
+
+<!-- ============ presentation ============ -->
+<div class="stage">
+  <div class="side">
+    <h1>نمونه‌ی اپ <span>خودرو ایتالیا</span></h1>
+    <p class="lead">نسخه‌ی اول با طراحی شبیه اپل. روی گوشی بزن و مثل یه اپ واقعی باهاش کار کن، یا از لیست پایین برو سراغ هر مرحله.</p>
+    <div class="steps" id="steps"></div>
+    <div class="ctrls">
+      <button class="pill" id="prev">→ قبلی</button>
+      <button class="pill primary" id="next">بعدی ←</button>
+      <button class="pill" id="theme">🌙 حالت تاریک</button>
+      <button class="pill" id="gal">▦ همه‌ی صفحه‌ها</button>
+    </div>
+  </div>
+  <div class="phone-wrap"><div class="phone" id="phone"></div></div>
+</div>
+
+<div class="gallery" id="gallery">
+  <h2>همه‌ی صفحه‌ها</h2>
+  <p>همه‌ی صفحه‌ها کنار هم. روی هر کدوم بزنی، توی گوشی باز می‌شه.</p>
+  <div class="ggrid" id="ggrid"></div>
+</div>
+
+<script>
+/* =========================================================
+   Data (sample only — no real account, numbers are examples)
+   ========================================================= */
+const FA = (s) => String(s).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
+const today = new Date(); today.setHours(12,0,0,0);
+const addDays = (n) => { const d = new Date(today); d.setDate(d.getDate()+n); return d; };
+const fmtDate = (d) => new Intl.DateTimeFormat("fa-IR-u-ca-gregory-nu-arabext", {day:"numeric", month:"long", year:"numeric"}).format(d);
+const fmtDay = (d) => new Intl.DateTimeFormat("fa-IR-u-ca-gregory-nu-arabext", {weekday:"long", day:"numeric", month:"long"}).format(d);
+const daysLeft = (d) => Math.round((d - today) / 86400000);
+
+// region names + bollo rate (€/kW, Euro 4–6, up to 100 kW) — from the "Bollo Auto" guide of Khodro Italy (2026)
+const RATE = { "آبروتزو":3.12, "بازیلیکاتا":2.58, "کالابریا":2.84, "کامپانیا":3.12, "امیلیارومانیا":2.84, "فریولی-ونتزیا جولیا":2.58,
+  "لاتزیو":2.84, "لیگوریا":2.84, "لمباردیا":2.58, "مارکه":2.58, "مولیزه":2.58, "پیمونته":2.58, "پوگلیا":2.58, "ساردنیا":2.58,
+  "سیسیل":2.58, "توسکانا":2.71, "ترنتینو-آلتوآدیجه":2.58, "اومبریا":2.58, "واله‌دائوستا":2.58, "ونتو":2.84 };
+const REGIONS = Object.keys(RATE);
+// above 100 kW (Euro 4–6), as in the guide
+const RATE_OVER = { 3.12:4.69, 2.84:4.26, 2.71:4.07, 2.58:3.87 };
+// national rates for older cars (Euro 0–3): [up to 100 kW, above 100 kW]
+const NAT = { 0:[3.00,4.50], 1:[2.90,4.35], 2:[2.80,4.20], 3:[2.70,4.05] };
+// motorcycles over 50 cc (national): fixed amount up to 11 kW + €/kW above 11 kW
+const MOTO_BASE = { 0:[26.00,1.70], 1:[23.00,1.30], 2:[21.00,1.00], 3:[19.11,0.88] };
+const EUR = (n) => FA(n.toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 })).replace(/\./g, "٫").replace(/,/g, "٬");
+
+/* ===== Insurance price model — built only from official IVASS data =====
+   Source: IVASS, IPER survey, II quarter 2026 (prices really paid on new RC contracts, taxes included).
+   1) AGE_BM: average price by age band × bonus-malus group (national, IVASS table A13)
+   2) PROV:  each province's average and its 25th / 75th percentile (IVASS table A12)
+   3) inside a bonus-malus group, a real insurer's class coefficients (Allianz BM table) spread the price by class
+   price ≈ AGE_BM[age][group] × (province average ÷ national average) × class adjustment
+   range = price × (province p25 ÷ average) … price × (province p75 ÷ average)  → "half of people like you pay between" */
+const IPER = {
+  date: "سه‌ماهه‌ی دوم ۲۰۲۶",
+  nat: { car:421.5, moto:321 },
+  ages: { car:["تا ۲۴","۲۵ تا ۳۴","۳۵ تا ۴۴","۴۵ تا ۵۹","۶۰ به بالا"], moto:["تا ۲۵","۲۶ تا ۳۹","۴۰ تا ۴۹","۵۰ تا ۵۹","۶۰ تا ۶۹","۷۰ به بالا"] },
+  // [CU 1, CU 2–3, CU 4–10, CU 11–18]
+  ageBM: { car:[[808,1046,1129,1460],[487,694,637,936],[373,544,541,847],[383,574,607,888],[369,567,648,842]],
+           moto:[[635,702,730,1026],[407,407,360,576],[327,308,293,450],[305,309,285,413],[264,270,257,351],[244,257,240,341]] },
+  prov: { car: parseProv("Agrigento:351,239,307,410;Alessandria:374,255,326,432;Ancona:440,303,390,510;Arezzo:383,269,343,447;Ascoli Piceno:388,275,350,449;Asti:365,245,319,425;Avellino:381,252,336,454;Bari:411,275,363,485;Barletta-Andria-Trani:425,287,377,501;Belluno:358,258,320,412;Benevento:385,270,342,452;Bergamo:385,260,339,450;Biella:341,231,300,398;Bologna:441,291,389,519;Bolzano:389,277,353,451;Brescia:394,266,347,461;Brindisi:422,284,370,493;Cagliari:421,278,364,489;Caltanissetta:379,248,327,447;Campobasso:331,230,294,387;Caserta:534,358,472,629;Catania:435,286,379,510;Catanzaro:368,241,323,436;Chieti:362,251,323,422;Como:412,279,367,484;Cosenza:348,236,306,412;Cremona:375,255,329,432;Crotone:431,268,362,510;Cuneo:358,254,318,411;Enna:312,209,271,365;Fermo:417,298,378,484;Ferrara:391,269,348,457;Firenze:507,348,452,594;Foggia:453,295,392,535;Forli-Cesena:399,274,355,467;Frosinone:402,272,355,469;Genova:484,316,419,567;Gorizia:344,233,298,393;Grosseto:409,275,359,479;Imperia:388,262,343,455;Isernia:353,249,314,411;L'Aquila:375,258,332,433;La Spezia:464,315,407,535;Latina:473,315,416,556;Lecce:376,257,331,440;Lecco:386,263,343,451;Livorno:451,304,394,530;Lodi:380,256,337,443;Lucca:497,342,441,580;Macerata:425,297,380,492;Mantova:364,248,319,422;Massa-Carrara:517,352,456,606;Matera:356,242,316,412;Messina:416,273,368,492;Milano:412,265,356,486;Modena:423,285,376,500;Monza e della Brianza:402,267,354,474;Napoli:596,412,534,703;Novara:359,240,312,414;Nuoro:377,253,332,443;Oristano:316,221,280,365;Padova:409,281,366,480;Palermo:417,275,361,489;Parma:408,278,363,478;Pavia:392,261,343,456;Perugia:411,287,366,476;Pesaro e Urbino:405,285,363,470;Pescara:413,278,367,486;Piacenza:404,273,359,475;Pisa:486,334,430,569;Pistoia:514,357,461,599;Pordenone:334,233,296,388;Potenza:310,213,273,360;Prato:591,407,527,691;Ragusa:402,264,342,464;Ravenna:427,293,383,501;Reggio Calabria:415,271,370,498;Reggio nell'Emilia:417,285,371,490;Rieti:445,306,395,522;Rimini:429,292,380,502;Roma:505,322,434,598;Rovigo:370,258,328,424;Salerno:444,299,393,520;Sassari:395,258,344,462;Savona:377,257,339,443;Siena:372,259,332,433;Siracusa:400,263,343,464;Sondrio:365,259,329,422;Taranto:415,275,362,486;Teramo:381,267,345,448;Terni:415,285,367,486;Torino:454,297,395,534;Trapani:375,255,330,438;Trento:348,245,310,400;Treviso:411,286,369,479;Trieste:363,242,319,425;Udine:344,243,308,399;Valle d'Aosta:340,236,300,394;Varese:397,267,353,469;Venezia:425,291,380,495;Verbano-Cusio-Ossola:348,243,313,406;Vercelli:343,234,299,393;Verona:387,267,346,451;Vibo Valentia:410,266,364,491;Vicenza:389,269,347,451;Viterbo:378,261,335,440", "196,680 202,741 240,838 214,707 217,705 196,721 200,743 215,797 225,822 209,662 216,710 202,745 182,664 224,861 216,734 207,771 221,824 223,844 194,780 182,621 278,1049 223,875 187,721 200,679 213,797 182,681 201,722 208,911 204,666 156,624 230,765 210,747 272,964 227,920 213,764 213,780 244,991 189,677 219,803 203,748 199,655 207,722 249,916 239,937 203,720 206,735 242,878 199,741 271,956 233,800 197,710 276,991 193,682 210,821 202,843 218,816 204,792 314,1136 192,709 206,734 177,601 218,776 217,835 219,781 204,776 228,774 222,759 216,799 213,780 262,936 284,964 187,629 169,594 324,1132 213,809 225,812 205,817 220,792 239,848 224,825 244,1048 206,713 233,864 204,794 203,704 209,692 209,803 205,670 215,824 208,704 223,794 229,913 204,727 196,659 225,773 190,708 194,641 194,653 204,768 224,806 193,638 189,659 209,731 199,807 212,736 209,712"), moto: parseProv("Agrigento:285,170,243,352;Alessandria:247,153,215,302;Ancona:266,165,235,329;Arezzo:238,149,209,290;Ascoli Piceno:272,170,240,336;Asti:237,152,205,290;Avellino:427,224,370,560;Bari:412,220,350,522;Barletta-Andria-Trani:431,234,371,559;Belluno:208,137,190,260;Benevento:383,210,321,490;Bergamo:264,156,225,329;Biella:215,140,191,265;Bologna:280,160,236,346;Bolzano:215,142,189,260;Brescia:264,156,230,328;Brindisi:373,189,316,488;Cagliari:299,169,243,366;Caltanissetta:340,184,280,431;Campobasso:278,163,244,350;Caserta:517,262,444,699;Catania:447,244,372,560;Catanzaro:310,166,260,397;Chieti:274,167,240,344;Como:294,180,261,365;Cosenza:383,213,330,490;Cremona:243,152,210,295;Crotone:406,201,326,550;Cuneo:229,152,206,277;Enna:274,159,230,340;Fermo:269,174,235,324;Ferrara:247,152,210,304;Firenze:331,199,289,400;Foggia:460,240,396,598;Forli-Cesena:243,154,211,299;Frosinone:313,170,262,400;Gallura Nord-Est Sardegna:305,181,260,379;Genova:346,219,301,419;Gorizia:224,142,193,272;Grosseto:236,152,204,285;Imperia:267,176,238,318;Isernia:330,211,291,412;L'Aquila:297,160,254,380;La Spezia:296,190,258,353;Latina:378,213,325,478;Lecce:297,175,255,370;Lecco:263,157,227,324;Livorno:297,186,259,358;Lodi:273,155,235,340;Lucca:276,174,243,338;Macerata:260,162,230,320;Mantova:242,149,213,302;Massa-Carrara:288,182,251,345;Matera:284,174,246,358;Medio Campidano:239,151,207,282;Messina:402,227,344,504;Milano:302,170,248,371;Modena:281,160,241,353;Monza e della Brianza:293,169,246,368;Napoli:616,344,522,785;Novara:247,152,211,299;Nuoro:274,156,236,349;Ogliastra:271,157,226,336;Oristano:240,152,200,285;Padova:261,153,226,324;Palermo:398,219,329,490;Parma:262,159,232,328;Pavia:251,153,215,305;Perugia:241,151,209,291;Pesaro e Urbino:237,158,210,284;Pescara:302,175,257,369;Piacenza:246,152,210,302;Pisa:270,162,227,328;Pistoia:300,178,263,373;Pordenone:215,135,182,260;Potenza:298,175,256,380;Prato:361,232,328,447;Ragusa:291,172,250,360;Ravenna:254,157,221,310;Reggio Calabria:421,225,350,535;Reggio nell'Emilia:275,167,242,341;Rieti:304,176,270,388;Rimini:297,190,263,360;Roma:408,233,344,494;Rovigo:224,145,194,272;Salerno:504,287,428,632;Sassari:261,160,222,320;Savona:245,158,214,291;Siena:214,137,189,264;Siracusa:345,194,284,421;Sondrio:219,148,194,265;Sulcis Iglesiente:238,151,199,287;Taranto:391,197,328,502;Teramo:280,175,247,342;Terni:241,151,210,298;Torino:259,152,220,319;Trapani:309,177,257,390;Trento:234,150,211,290;Treviso:241,148,212,300;Trieste:257,152,212,310;Udine:211,137,184,259;Valle d'Aosta:235,148,208,287;Varese:276,164,238,342;Venezia:260,151,225,326;Verbano-Cusio-Ossola:226,150,202,276;Vercelli:228,146,197,274;Verona:255,155,224,315;Vibo Valentia:351,190,297,457;Vicenza:245,149,213,308;Viterbo:253,155,220,308", "129,600 110,497 121,543 112,484 123,560 116,470 147,954 147,946 155,949 95,406 145,857 118,560 99,428 111,628 108,409 119,551 128,860 126,680 132,764 114,566 153,1167 170,1020 114,707 123,576 136,603 144,833 115,496 136,931 119,434 110,605 126,553 107,514 149,698 149,1049 114,500 115,708 140,640 161,704 100,460 122,479 141,521 146,645 112,659 146,607 142,844 126,638 116,552 146,600 102,606 133,551 123,518 99,506 140,580 135,582 120,501 155,891 124,682 112,605 118,636 219,1394 109,521 115,590 118,578 119,477 106,557 159,911 108,529 110,524 111,497 128,453 129,655 106,502 131,571 141,621 96,452 130,630 158,719 140,608 119,513 149,976 123,571 124,624 140,596 162,931 102,458 185,1159 119,549 130,484 98,430 146,765 121,412 112,517 131,910 130,561 111,492 107,557 127,665 112,448 100,492 118,570 96,418 112,480 113,581 99,572 110,427 107,463 119,520 121,803 105,507 116,510") },
+};
+// t: "name:mean,p25,p50,p75;…"   tail: "p10,p95 …" in the same order (IVASS table A12)
+function parseProv(t, tail){ const o = {}, tl = tail.split(" "); t.split(";").forEach((p, i) => { const [n, v] = p.split(":"); const [mean,p25,p50,p75] = v.split(",").map(Number); const [p10,p95] = tl[i].split(",").map(Number);
+  // p90 is not published: read it between p75 and p95 on a log scale (normal-curve positions 0.674 → 1.282 → 1.645)
+  const p90 = Math.exp(Math.log(p75) + (1.2816-0.6745)/(1.6449-0.6745) * (Math.log(p95) - Math.log(p75)));
+  o[n] = { mean,p10,p25,p50,p75,p90,p95 }; }); return o; }
+const BM_COEF = [0,1.030,1.106,1.140,1.175,1.211,1.248,1.287,1.327,1.368,1.410,1.454,1.499,1.545,1.720,2.000,3.100,3.500,4.000]; // Allianz, real policy document
+/* Years of patente (licence) — IVASS does not publish this split, so we add our own factor.
+   Why it depends on age: in IVASS's class 11–18 group, young riders/drivers are mostly real beginners,
+   but for 26+ the group is full of experienced people who just start again in class 14 (new vehicle,
+   no family class). So a beginner aged 26+ pays far more than that group's average; a beginner aged
+   ≤24/25 pays about the group average.
+   Calibration:
+   - moto 26+: real contract data (rider 30, Caserta, 125cc, RC only): yr1 €1,890, yr2 €1,316/yr → ×2.04, ×1.58
+   - car 26+: published beginner prices in class 14 (Facile.it 1,000–1,200; sum.money 1,000–2,000; ticalcolo 1,500–3,000)
+     vs IVASS 25–34 group €936 → middle ≈ ×1.4
+   - youngest band: ×1 (checked: Bari agency €1,420, Segugio simulation €1,470, IVASS ≤24 group €1,460)
+   Year 3 sits between; after 3 years the factor is gone ("neopatentato" = licence under 3 years). */
+const LIC = { moto:[2.04, 1.58, 1.25, 1], car:[1.40, 1.25, 1.10, 1] };
+const licFactor = (kind, age, lic) => age === 0 ? 1 : (LIC[kind][lic] ?? 1);
+const LIC_LABELS = ["سال اول", "سال دوم", "سال سوم", "۳ سال به بالا"];
+const REAL_SEED = [
+  { kind:"moto", prov:"Caserta", age:1, cu:14, lic:0, paid:1890, note:"اسکوتر ۱۲۵، فقط RC، استفاده‌ی شخصی", seed:true },
+  { kind:"car", prov:"Bari", age:0, cu:14, lic:0, paid:1420, note:"فیات پاندا، تازه‌کار — عدد منتشرشده‌ی یه آژانس آلیانز در باری", seed:"pub" },
+  { kind:"car", prov:"—", age:0, cu:14, lic:0, paid:1470, note:"تازه‌کار، بدون تخفیف — شبیه‌سازی منتشرشده‌ی Segugio (کل ایتالیا)", seed:"pub" },
+  { kind:"moto", prov:"—", age:0, cu:14, lic:0, paid:1150, note:"موتور، تازه‌کار ۱۸ ساله — میانگین منتشرشده (کل ایتالیا)", seed:"pub" },
+  { kind:"moto", prov:"Caserta", age:1, cu:13, lic:1, paid:1316, note:"همون اسکوتر، سال دوم — ۱۵۷۹ € قسطی ماهانه = ۱۳۱۶ € سالانه", seed:true },
+];
+function insEstimate(kind, prov, ageIdx, cu, lic = 3){
+  const g = cu === 1 ? 0 : cu <= 3 ? 1 : cu <= 10 ? 2 : 3;
+  const ref = [1, 2.5, 7, 14][g];
+  const refCoef = g === 1 ? (BM_COEF[2] + BM_COEF[3]) / 2 : BM_COEF[ref];
+  const adj = g === 0 ? 1 : BM_COEF[cu] / refCoef;
+  const nat = IPER.nat[kind], P = IPER.prov[kind][prov] || { mean:nat, p10:nat*.5, p25:nat*.68, p50:nat*.9, p75:nat*1.18, p90:nat*1.6 };
+  const pIdx = P.mean / IPER.nat[kind];
+  const base = IPER.ageBM[kind][Math.min(ageIdx, IPER.ageBM[kind].length-1)][g];
+  const lf = licFactor(kind, ageIdx, lic);
+  const est = base * pIdx * adj * lf;
+  // same shape as the province's real price spread, moved to this profile's level
+  const k = est / P.mean;
+  return { est, typ: P.p50 * k, low: P.p25 * k, high: P.p75 * k, lo80: P.p10 * k, hi80: P.p90 * k, base, pIdx, adj, lf, provMean:P.mean, g };
+}
+
+/* ===== Quote engine (insurer-style: one multiplier per answer) =====
+   core  = insEstimate(): IVASS province × age × class (+ new-licence factor)  [official / calibrated]
+   then  × claims history × vehicle power × km × parking × use × guide × black box × limit × payment
+   tag: "o" = official/real contract data · "e" = our estimate, to be learned from real contracts */
+const QF = {
+  claims: { label:"تصادف مقصر (۵ سال اخیر)", opts:[["نداشتم",1,"o"],["۱ بار، پارسال",1.94,"o"],["۱ بار، قبل‌تر",1.25,"e"],["۲ بار یا بیشتر",2.6,"e"]] },
+  power: { car:[["تا ۵۰ کیلووات",0.92],["۵۱ تا ۷۵",1],["۷۶ تا ۱۰۰",1.1],["۱۰۱ تا ۱۵۰",1.27],["بیشتر از ۱۵۰",1.5]],
+           moto:[["تا ۱۲۵ سی‌سی",1],["۱۲۶ تا ۳۰۰",0.95],["۳۰۱ تا ۶۰۰",1],["۶۰۱ تا ۹۰۰",1.15],["بیشتر از ۹۰۰",1.3]] },
+  km: [["کمتر از ۵ هزار",0.85],["۵ تا ۱۰ هزار",0.94],["۱۰ تا ۱۵ هزار",1],["۱۵ تا ۲۰ هزار",1.1],["بیشتر از ۲۰ هزار",1.22]],
+  park: [["تو خیابون",1],["حیاط بسته",0.97],["پارکینگ / گاراژ",0.93]],
+  use: [["فقط شخصی",1],["شخصی + رفت‌وآمد کار",1.05],["کاری (پیک، تحویل)",1.35]],
+  guide: [["فقط خودم",0.93],["هر کس ۲۶ سال به بالا",1],["هر کسی (آزاد)",1.25]],
+  box: [["نه",1],["آره",0.9]],
+  limit: [["حداقل قانونی",1],["۱۰ میلیون",1.04],["۲۵ میلیون",1.09]],
+  pay: [["یه‌جا، سالانه",1,"o"],["قسطی، ماهانه",1.2,"o"]],
+};
+function quoteCalc(q){
+  const age = q.kind==="car" ? (q.age<25?0:q.age<35?1:q.age<45?2:q.age<60?3:4) : (q.age<26?0:q.age<40?1:q.age<50?2:q.age<60?3:q.age<70?4:5);
+  const lic = Math.min(3, Math.max(0, q.licYears));
+  const core = insEstimate(q.kind, q.prov, age, q.cu, lic);
+  const f = [
+    ["استان، سن، کلاس" + (core.lf!==1?" و پاتنته‌ی تازه":""), core.est, "o", true],
+    [QF.claims.label + ": " + QF.claims.opts[q.claims][0], QF.claims.opts[q.claims][1], QF.claims.opts[q.claims][2]],
+    ["قدرت: " + QF.power[q.kind][q.power][0], QF.power[q.kind][q.power][1], "e"],
+    ["کیلومتر سالانه: " + QF.km[q.km][0], QF.km[q.km][1], "e"],
+    ["شب کجا پارکه: " + QF.park[q.park][0], QF.park[q.park][1], "e"],
+    ["استفاده: " + QF.use[q.use][0], QF.use[q.use][1], "e"],
+    ["کی می‌رونه: " + QF.guide[q.guide][0], QF.guide[q.guide][1], "e"],
+    ["جعبه سیاه: " + QF.box[q.box][0], QF.box[q.box][1], "e"],
+    ["سقف پوشش: " + QF.limit[q.limit][0], QF.limit[q.limit][1], "e"],
+    ["پرداخت: " + QF.pay[q.pay][0], QF.pay[q.pay][1], "o"],
+  ];
+  const mult = f.slice(1).reduce((a, x) => a * x[1], 1), total = core.est * mult, k = total / core.est;
+  // more answers known → narrower spread than the whole province (×0.75 on the log scale; to be checked with contracts)
+  const sh = (p) => total * Math.pow(p / core.est, 0.75);
+  const taxes = 0.105 + 0.16, net = total / (1 + taxes);
+  return { total, f, lo80: sh(core.lo80), hi80: sh(core.hi80), typ: sh(core.typ),
+    net, ssn: net*0.105, ipt: net*0.16, commission: total*0.166, claims: net*0.668, monthly: q.pay ? total/12 : 0 };
+}
+
+function calcBollo(kind, kw, euro, region){
+  kw = Math.max(1, Math.round(kw)); const lines = []; let total = 0, approx = false;
+  if (kind === "moto") {
+    const [base, per] = MOTO_BASE[Math.min(euro, 3)];
+    total = base; lines.push([`تا ${FA(11)} کیلووات (ثابت)`, base]);
+    if (kw > 11) { const x = (kw - 11) * per; total += x; lines.push([`${FA(kw-11)} کیلووات × ${EUR(per)} یورو`, x]); }
+    return { total, lines, approx:false, rate:null, note:"نرخ کشوری موتورهای بالای ۵۰ سی‌سی. چندتا منطقه یه کم بیشتر می‌گیرن." };
+  }
+  const reg = RATE[region] ?? 2.58;
+  let r1, r2;
+  if (euro >= 4) { r1 = reg; r2 = RATE_OVER[reg] ?? +(reg * 1.5).toFixed(2); }
+  else { const k = reg / 2.58; r1 = +(NAT[euro][0] * k).toFixed(2); r2 = +(NAT[euro][1] * k).toFixed(2); approx = k !== 1; }
+  const a = Math.min(kw, 100) * r1; total = a; lines.push([`${FA(Math.min(kw,100))} کیلووات × ${EUR(r1)} یورو`, a]);
+  if (kw > 100) { const b = (kw - 100) * r2; total += b; lines.push([`${FA(kw-100)} کیلووات بالای ۱۰۰ × ${EUR(r2)} یورو`, b]); }
+  if (kw > 185) { const c = (kw - 185) * 20; total += c; lines.push([`سوپربولو: ${FA(kw-185)} کیلووات × ۲۰ یورو`, c]); }
+  return { total, lines, approx, rate:r1 };
+}
+
+const state = {
+  step: 0, tab: "home", obSlide: 0,
+  vehicle: "car", region: "کامپانیا", notify: true,
+  bollo: { kind:"car", kw:70, euro:6, region:"کامپانیا" },
+  quote: { step:0, kind:"moto", brand:"", model:"", year:2025, power:0, fuel:0, prov:"Caserta", age:30, licYears:1, job:"", km:2, park:0, use:0, guide:1, cu:13, claims:0, box:0, limit:0, pay:1 },
+  insq: { kind:"moto", prov:"Caserta", age:1, cu:14, lic:0, monthly:false },
+  real: loadReal(), rf: null,
+  ins: { start:14, years:[false,false,true,false], value:6000, cov:{ rc:true, kaskoFull:false, kaskoPart:false, theft:true, glass:false, road:true, nature:false, driver:false, legal:false } },
+  sheet: false, detail: null,
+  newCar: { kind:"car", name:"", year:"", plate:"", kw:"", euro:6, color:"#1F2937" },
+  cars: [
+    { id:1, kind:"car", name:"فیات پاندا", year:2019, plate:"GH 482 KT", fuel:"بنزین", kw:51, euro:6, color:"#E5383B",
+      dl:{ bollo:addDays(12), insurance:addDays(41), revisione:addDays(118) } },
+    { id:2, kind:"moto", name:"هوندا اس‌اچ ۱۲۵", year:2021, plate:"FX 19 284", fuel:"بنزین", kw:9, euro:5, color:"#1F2937",
+      dl:{ bollo:addDays(74), insurance:addDays(6), revisione:addDays(230) } },
+  ],
+};
+
+/* =========================================================
+   Icons (simple SF-Symbols-like strokes)
+   ========================================================= */
+const I = {
+  home:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2 3 10.4V20a1 1 0 0 0 1 1h5.5v-6h5v6H20a1 1 0 0 0 1-1v-9.6z"/></svg>',
+  garage:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.5 9.5 7 5.6A2 2 0 0 1 8.9 4.3h6.2A2 2 0 0 1 17 5.6l1.5 3.9A2.5 2.5 0 0 1 20.5 12v5a1 1 0 0 1-1 1h-1v1.5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V18h-7v1.5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V18h-1a1 1 0 0 1-1-1v-5a2.5 2.5 0 0 1 2-2.5Zm2.1-.2h8.8l-1.1-3a.8.8 0 0 0-.7-.5H9.4a.8.8 0 0 0-.7.5ZM7 14.6a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6Zm10 0a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6Z"/></svg>',
+  tools:'<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="2.2"/><rect x="13" y="3" width="8" height="8" rx="2.2"/><rect x="3" y="13" width="8" height="8" rx="2.2"/><rect x="13" y="13" width="8" height="8" rx="2.2" opacity=".55"/></svg>',
+  me:'<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4.2"/><path d="M3.8 20.2c.9-4 4.2-6.2 8.2-6.2s7.3 2.2 8.2 6.2a.8.8 0 0 1-.8 1H4.6a.8.8 0 0 1-.8-1Z"/></svg>',
+  euro:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17.5 6.5A7 7 0 1 0 17.5 17.5M4 10h9M4 14h9"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.6 3.1 8.3 7.5 9.5 4.4-1.2 7.5-4.9 7.5-9.5V6Z"/><path d="m8.8 12 2.2 2.2 4.2-4.4" stroke-linecap="round"/></svg>',
+  list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m4 6.5 1.5 1.5L8 5.5M4 12.5 5.5 14 8 11.5M4 18.5 5.5 20 8 17.5M11 7h9M11 13h9M11 19h9"/></svg>',
+  wrench:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.1L3.6 17.1a1.9 1.9 0 0 0 2.7 2.7l5.7-5.7a4 4 0 0 0 5.1-5.4l-2.5 2.5-2.4-.4-.4-2.4Z"/></svg>',
+  chart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>',
+  bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9Z"/><path d="M10 20a2.2 2.2 0 0 0 4 0"/></svg>',
+  news:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="15" height="16" rx="2.5"/><path d="M18 8h2a1 1 0 0 1 1 1v9a2 2 0 0 1-4 0M7 8h7M7 12h7M7 16h4"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.1 7-11.5a7 7 0 1 0-14 0C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+  moon:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1Z"/></svg>',
+  globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.2"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  back:'<svg viewBox="0 0 12 20" width="12" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l8 8-8 8"/></svg>',
+  chev:'<svg class="chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7.5 7.5l-6 6"/></svg>',
+  check:'<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+  ok:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1.2 14.3-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4Z"/></svg>',
+  bulb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3Z"/></svg>',
+};
+const CAR = (c) => `<svg class="car" viewBox="0 0 300 120"><defs>
+  <linearGradient id="b${c.replace('#','')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity=".95"/><stop offset="1" stop-color="${c}"/></linearGradient>
+  <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe3ff" stop-opacity=".9"/><stop offset="1" stop-color="#7aa7d9" stop-opacity=".7"/></linearGradient></defs>
+  <ellipse cx="150" cy="108" rx="128" ry="7" fill="rgba(0,0,0,.18)"/>
+  <path d="M28 82c0-10 6-17 16-19l40-6 30-26c6-5 13-8 21-8h58c9 0 17 4 23 10l26 24 26 4c9 1 15 8 15 17v11c0 4-3 7-7 7H35c-4 0-7-3-7-7Z" fill="url(#b${c.replace('#','')})"/>
+  <path d="M96 57 120 36c4-3 9-5 14-5h28v26ZM170 31h23c6 0 12 3 16 7l20 19h-59Z" fill="url(#g)"/>
+  <path d="M40 74h22M244 74h14" stroke="#ffd166" stroke-width="5" stroke-linecap="round" opacity=".9"/>
+  <circle cx="86" cy="96" r="19" fill="#18181b"/><circle cx="86" cy="96" r="9" fill="#a1a1aa"/>
+  <circle cx="222" cy="96" r="19" fill="#18181b"/><circle cx="222" cy="96" r="9" fill="#a1a1aa"/>
+  <path d="M60 64h190" stroke="rgba(255,255,255,.25)" stroke-width="2"/></svg>`;
+const MOTO = (c) => `<svg class="car" viewBox="0 0 300 120"><ellipse cx="150" cy="110" rx="110" ry="6" fill="rgba(0,0,0,.18)"/>
+  <circle cx="72" cy="88" r="24" fill="none" stroke="#18181b" stroke-width="9"/><circle cx="228" cy="88" r="24" fill="none" stroke="#18181b" stroke-width="9"/>
+  <circle cx="72" cy="88" r="6" fill="#a1a1aa"/><circle cx="228" cy="88" r="6" fill="#a1a1aa"/>
+  <path d="M72 88 112 58h70l20 30M112 58l-12-14h-16" stroke="#3f3f46" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M104 60c8-14 26-22 46-22h40c10 0 18 6 20 16l2 10H118c-8 0-14-2-14-4Z" fill="${c}"/>
+  <path d="M150 38c6-10 16-14 28-12" stroke="${c}" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <path d="M200 40l26 48" stroke="#3f3f46" stroke-width="6" stroke-linecap="round"/><path d="M214 28h22" stroke="#18181b" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="226" cy="44" r="6" fill="#ffd166"/></svg>`;
+const ART = (v) => v.kind === "moto" ? MOTO(v.color) : CAR(v.color);
+const KIND_SVG = { car:'<svg viewBox="0 0 64 40" fill="currentColor"><path d="M6 27c0-3 2-5.5 5-6l8-1.5 7-7c1.5-1.4 3.4-2.2 5.5-2.2h9c2.2 0 4.3.9 5.8 2.5l5.7 6.2 4 .7c2.3.4 4 2.4 4 4.8V29c0 1.1-.9 2-2 2H8a2 2 0 0 1-2-2Z"/><circle cx="18" cy="31" r="5" fill="var(--card)" stroke="currentColor" stroke-width="3"/><circle cx="48" cy="31" r="5" fill="var(--card)" stroke="currentColor" stroke-width="3"/></svg>',
+  moto:'<svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="28" r="8"/><circle cx="51" cy="28" r="8"/><path d="M13 28 24 17h15l6 11M24 17l-3-5h-5M39 17l4-6h6M45 11l6 17"/></svg>' };
+
+const plate = (p) => `<span class="plate"><span class="eu">I</span><span class="nr">${p}</span><span class="rg"></span></span>`;
+const status = (n) => n < 0 ? "bad" : n <= 14 ? "bad" : n <= 45 ? "warn" : "ok";
+const DL = { bollo:["بولو", "#E5383B", I.euro], insurance:["بیمه", "#0A84FF", I.shield], revisione:["رویزیونه", "#8E5CF7", I.wrench] };
+const nextDeadline = () => {
+  let best = null;
+  for (const c of state.cars) for (const [k, d] of Object.entries(c.dl)) if (!best || d < best.d) best = { c, k, d };
+  return best;
+};
+
+/* =========================================================
+   Screens
+   ========================================================= */
+const STEPS = [
+  { id:"welcome",  t:"خوش‌آمدگویی",   s:"اولین صفحه" },
+  { id:"features", t:"اپ چی کار می‌کنه", s:"سه ویژگی اصلی" },
+  { id:"setup",    t:"ماشین و شهرت",    s:"تو ۱۰ ثانیه تنظیمش کن" },
+  { id:"notify",   t:"یادآوری‌ها",        s:"اجازه‌ی اعلان" },
+  { id:"home",     t:"خانه",              s:"تاریخ‌ها، ابزارها، خبرها" },
+  { id:"garage",   t:"گاراژ من",          s:"ماشین و موتورهات" },
+  { id:"add",      t:"افزودن وسیله",       s:"فرم ساده از پایین صفحه" },
+  { id:"detail",   t:"جزئیات ماشین",      s:"همه‌ی تاریخ‌ها یه جا" },
+  { id:"tools",    t:"ابزارها",           s:"همه‌ی ابزارها" },
+  { id:"bollo",    t:"حساب بولو", s:"از روی راهنمای بولو" },
+  { id:"quote",    t:"فرم قیمت بیمه",     s:"۵ مرحله، مثل Prima و Facile" },
+  { id:"insurance",t:"بیمه چنده؟",        s:"قیمت حدودی از آمار رسمی IVASS" },
+  { id:"profile",  t:"تنظیمات",           s:"منطقه، اعلان، تم" },
+];
+
+function statusBar(){ return `<div class="island"></div><div class="status"><span>9:41</span><span class="icons">
+  <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+  <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.6c2.2 0 4.2.9 5.7 2.3l1.1-1.1A9.6 9.6 0 0 0 8 1 9.6 9.6 0 0 0 1.2 3.8l1.1 1.1A8 8 0 0 1 8 2.6Zm0 3.2c1.3 0 2.5.5 3.4 1.3l1.1-1.1A6.4 6.4 0 0 0 8 4.2c-1.7 0-3.3.7-4.5 1.8l1.1 1.1c.9-.8 2.1-1.3 3.4-1.3Zm0 3.2c-.5 0-1 .2-1.3.5L8 11l1.3-1.5c-.3-.3-.8-.5-1.3-.5Z"/></svg>
+  <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="17" height="9" rx="2" fill="currentColor"/><path d="M25 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2Z" fill="currentColor" opacity=".45"/></svg>
+  </span></div>`; }
+
+function tabbar(active){
+  const T = [["home","خانه",I.home],["garage","گاراژ",I.garage],["tools","ابزارها",I.tools],["profile","من",I.me]];
+  return `<nav class="tabbar">${T.map(([id,t,ic]) => `<button class="tab ${active===id?"on":""}" data-tab="${id}">${ic}<span>${t}</span></button>`).join("")}</nav>`;
+}
+
+const LOGO = `<div class="logo">${CAR("#E5383B").replace('class="car"','style="width:92px;height:40px;margin-bottom:6px"')}</div>`;
+
+function vWelcome(){
+  return `<div class="ob"><div class="welcome-bg"></div>
+    <div class="grow">${LOGO}
+      <h2>خودرو ایتالیا</h2>
+      <p>هر چی درباره‌ی ماشین و موتور تو ایتالیا<br>لازم داری، ساده و فارسی.</p>
+    </div>
+    <button class="btn fill" data-go="features">شروع کنیم</button>
+    <button class="btn plain" data-go="home">قبلاً ثبت‌نام کردم</button>
+  </div>`;
+}
+
+function vFeatures(){
+  return `<div class="ob"><div class="grow" style="justify-content:flex-start;padding-top:20px">
+    <h2 style="margin-top:0">هر چی لازم داری،<br>تو یه اپ</h2>
+    <div class="feature-list">
+      <div class="feat"><div class="fi" style="background:#E5383B">${I.euro}</div><div><b>بولوت رو بدون دردسر حساب کن</b><span>بگو ماشینت چند کیلوواته و کجا زندگی می‌کنی، بقیه‌ش با ما.</span></div></div>
+      <div class="feat"><div class="fi" style="background:#0A84FF">${I.shield}</div><div><b>بیمه رو بفهم، گول نخور</b><span>کلاس بیمه، کاسکو، فرانشیز… همه رو ساده توضیح دادیم.</span></div></div>
+      <div class="feat"><div class="fi" style="background:#30A46C">${I.list}</div><div><b>دست‌دوم بخر، ضرر نکن</b><span>یه چک‌لیست قدم‌به‌قدم قبل از اینکه پول بدی.</span></div></div>
+      <div class="feat"><div class="fi" style="background:#F59E0B">${I.bell}</div><div><b>دیگه هیچ تاریخی یادت نمی‌ره</b><span>بیمه، بولو و رویزیونه رو قبل از اینکه دیر بشه بهت می‌گیم.</span></div></div>
+    </div></div>
+    <div class="dots"><i></i><i class="on"></i><i></i><i></i></div>
+    <button class="btn fill" data-go="setup">ادامه</button>
+  </div>`;
+}
+
+function vSetup(){
+  return `<div class="ob" style="padding-top:64px"><div class="grow" style="justify-content:flex-start">
+    <h2 style="margin-top:0;font-size:26px">ماشین داری یا موتور؟</h2>
+    <p style="margin-top:4px">بعداً هم می‌تونی عوضش کنی.</p>
+    <div class="choice" style="margin-top:18px">
+      <button class="${state.vehicle==='car'?'on':''}" data-veh="car">${KIND_SVG.car}ماشین</button>
+      <button class="${state.vehicle==='moto'?'on':''}" data-veh="moto">${KIND_SVG.moto}موتور</button>
+    </div>
+    <div class="regions"><div class="sec-h" style="padding:0 4px 8px"><h3 style="font-size:17px">کدوم منطقه زندگی می‌کنی؟</h3></div>
+      <div class="group">${REGIONS.map(r => `<button class="row ${state.region===r?'sel':''}" data-region="${r}" style="width:100%"><span class="t">${r}</span>${I.check}</button>`).join("")}</div>
+      <div class="foot">بولو تو هر منطقه یه کم فرق داره، واسه همین می‌پرسیم.</div>
+    </div></div>
+    <div class="dots"><i></i><i></i><i class="on"></i><i></i></div>
+    <button class="btn fill" data-go="notify">ادامه</button>
+  </div>`;
+}
+
+function vNotify(){
+  return `<div class="ob"><div class="welcome-bg"></div><div class="grow">
+    <div class="fi" style="width:84px;height:84px;border-radius:24px;background:linear-gradient(145deg,#F59E0B,#E5383B);display:grid;place-items:center;color:#fff">${I.bell.replace('<svg','<svg width="44" height="44"')}</div>
+    <h2>یادت می‌ندازیم 🔔</h2>
+    <p>دو هفته قبل از اینکه بیمه، بولو یا رویزیونه‌ات تموم بشه، یه پیام کوتاه برات می‌فرستیم.</p>
+    <div class="notif-demo">
+      <div class="nbanner"><div class="ni">${CAR("#E5383B").replace('class="car"','style="width:30px;height:14px"')}</div><div><b>بیمه‌ی موتورت ۶ روز دیگه تموم می‌شه</b><p>هوندا اس‌اچ ۱۲۵ · بزن تا تمدیدش کنی</p></div><small>الان</small></div>
+      <div class="nbanner"><div class="ni">${CAR("#E5383B").replace('class="car"','style="width:30px;height:14px"')}</div><div><b>بولوی فیات پاندا</b><p>۱۲ روز دیگه باید بدی</p></div><small>۲ ساعت</small></div>
+    </div></div>
+    <div class="dots"><i></i><i></i><i></i><i class="on"></i></div>
+    <button class="btn fill" data-notify="1" data-go="home">باشه، خبرم کن</button>
+    <button class="btn plain" data-notify="0" data-go="home">بعداً</button>
+  </div>`;
+}
+
+function vHome(){
+  const n = nextDeadline(); const left = daysLeft(n.d); const [lbl] = DL[n.k];
+  const pct = Math.max(.06, Math.min(1, 1 - left/365));
+  const C = 2*Math.PI*36;
+  const news = [
+    ["#0A84FF", I.news, "شهرداری میلان", "از ۱ دسامبر، دیزلی‌های یورو ۵ دیگه نمی‌تونن برن تو «آریا ب»", "#میلان #لمباردی"],
+    ["#30A46C", I.pin, "استان کامپانیا", "بولوت اکتبر تموم شده؟ تا آخر نوامبر وقت داری بدی", "#ناپل #کامپانیا"],
+  ];
+  return `<div class="navbar" data-title="خانه"><span class="ttl">خانه</span></div>
+  <div class="hello"><div><div class="d">${fmtDay(today)}</div><h1>سلام 👋</h1></div><div class="avatar">خ</div></div>
+  <div class="section"><div class="card hero">
+    <svg class="ring" viewBox="0 0 84 84"><circle cx="42" cy="42" r="36" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="8"/>
+      <circle cx="42" cy="42" r="36" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct)}" transform="rotate(-90 42 42)"/></svg>
+    <div class="ring"><b>${FA(left)}<small>روز</small></b></div>
+    <div class="k">نزدیک‌ترین تاریخ</div>
+    <h2>${lbl} ${n.c.name}</h2>
+    <p>${fmtDate(n.d)}</p>
+    <div class="acts"><button class="w" data-open="${n.c.id}">جزئیات</button><button data-toast="باشه، فردا ساعت ۹ یادت می‌ندازیم">یادم بنداز</button></div>
+  </div></div>
+  <div class="section"><div class="sec-h"><h3>ابزارها</h3><a data-tab="tools">همه</a></div>
+    <div class="tools">
+      <button class="card tool" data-tool="bollo"><span class="badge new">جدید</span><div class="ti" style="background:#E5383B">${I.euro}</div><b>حساب بولو</b><span>بولوی سالانه‌ات چقدره؟</span></button>
+      <button class="card tool" data-tool="insurance"><span class="badge new">جدید</span><div class="ti" style="background:#0A84FF">${I.shield}</div><b>بیمه چنده؟</b><span>قیمت حدودی + کلاس بیمه</span></button>
+      <button class="card tool"><span class="badge soon">به‌زودی</span><div class="ti" style="background:#30A46C">${I.list}</div><b>چک‌لیست خرید</b><span>قبل از خرید دست‌دوم</span></button>
+      <button class="card tool"><span class="badge soon">به‌زودی</span><div class="ti" style="background:#8E5CF7">${I.chart}</div><b>خرج سالانه</b><span>ماشینت سالی چقدر خرج داره؟</span></button>
+    </div></div>
+  <div class="section"><div class="sec-h"><h3>خبرهای رسمی</h3><a>کانال تلگرام</a></div>
+    <div class="card news">${news.map(([c,ic,src,t,tags]) => `<div class="n"><div class="thumb" style="background:${c}">${ic.replace('<svg','<svg width="28" height="28"')}</div>
+      <div><div class="src"><i></i>${src} · امروز</div><b>${t}</b><div class="tags">${tags}</div></div></div>`).join("")}</div>
+    <div class="foot">این‌ها نمونه‌ان؛ تو اپ واقعی خبرها مستقیم از ربات خبر میان.</div></div>
+  <div class="section"><div class="card tip"><div class="ti">${I.bulb}</div><p><b>می‌دونستی؟</b> با پاتنته ب می‌تونی موتور تا ۱۲۵ سی‌سی هم برونی — ولی فقط تو خود ایتالیا.</p></div></div>
+  ${tabbar("home")}`;
+}
+
+function carCard(v){
+  const chips = Object.entries(v.dl).map(([k,d]) => { const n = daysLeft(d); return `<span class="chip ${status(n)}"><i></i>${DL[k][0]} · ${FA(n)} روز</span>`; }).join("");
+  return `<div class="card carcard" data-open="${v.id}">
+    <div class="top" style="background:radial-gradient(80% 90% at 50% 100%, ${v.color}22, transparent 70%), linear-gradient(180deg, var(--card2), var(--card))">${ART(v)}</div>
+    <div class="meta"><h4>${v.name} ${plate(v.plate)}</h4>
+      <div class="sub">${FA(v.year)} · ${v.fuel} · ${FA(v.kw)} کیلووات · یورو ${FA(v.euro)}</div>
+      <div class="chips">${chips}</div></div></div>`;
+}
+
+function vGarage(){
+  return `<div class="navbar" data-title="گاراژ من"><span class="navbtn"></span><span class="ttl">گاراژ من</span><span class="navbtn end"><button class="iconbtn" data-sheet="1">${I.plus.replace('<svg','<svg width="18" height="18"')}</button></span></div>
+  <div class="large">گاراژ من</div>
+  <div class="subhead">${FA(state.cars.length)} وسیله · ${state.region}</div>
+  <div class="section" style="display:flex;flex-direction:column;gap:16px">${state.cars.map(carCard).join("")}
+    <button class="empty-add" data-sheet="1"><b>+ اضافه کردن ماشین یا موتور</b>فقط پلاک و کیلووات رو می‌خوایم</button></div>
+  ${tabbar("garage")}`;
+}
+
+function vDetail(){
+  const v = state.cars.find(c => c.id === state.detail) || state.cars[0];
+  const rows = Object.entries(v.dl).sort((a,b) => a[1]-b[1]).map(([k,d]) => {
+    const n = daysLeft(d), [t,c,ic] = DL[k], s = status(n);
+    const col = s==="ok" ? "var(--green)" : s==="warn" ? "var(--orange)" : "var(--tint)";
+    return `<div class="deadline"><div class="ic" style="background:${c}">${ic}</div>
+      <div class="tx"><b>${t}</b><span>${fmtDate(d)}</span><div class="bar"><i style="width:${Math.max(6,100-n/3.65)}%;background:${col}"></i></div></div>
+      <div class="left"><b style="color:${col}">${FA(n)}</b><span>روز مونده</span></div></div>`;
+  }).join("");
+  return `<div class="navbar solid-on-scroll" data-title="${v.name}"><button class="navbtn" data-back="garage">${I.back}<span>گاراژ</span></button><span class="ttl">${v.name}</span><span class="navbtn end"><button class="navbtn end" style="min-width:0" data-toast="ویرایش تو نسخه‌ی بعدی میاد">ویرایش</button></span></div>
+  <div class="detail-hero" style="background:radial-gradient(70% 70% at 50% 85%, ${v.color}33, transparent 70%)">${ART(v)}</div>
+  <div class="detail-head"><h2>${v.name}</h2><div style="margin-top:8px">${plate(v.plate)}</div></div>
+  <div class="section"><div class="specs">
+    <div class="card spec"><b>${FA(v.kw)}</b><span>کیلووات</span></div>
+    <div class="card spec"><b>یورو ${FA(v.euro)}</b><span>آلایندگی</span></div>
+    <div class="card spec"><b>${FA(v.year)}</b><span>سال ساخت</span></div></div></div>
+  <div class="section"><div class="sec-h"><h3>موعدها</h3></div><div class="card">${rows}</div></div>
+  <div class="section"><div class="group">
+    <button class="row" style="width:100%" data-tool="bollo" data-car="${v.id}"><div class="ic" style="background:#E5383B">${I.euro}</div><span class="t">بولوی این ${v.kind==='moto'?'موتور':'ماشین'}</span><span class="v">${EUR(calcBollo(v.kind, v.kw, v.euro, state.region).total)} €</span>${I.chev}</button>
+    <button class="row" style="width:100%" data-tool="insurance"><div class="ic" style="background:#0A84FF">${I.shield}</div><span class="t">بیمه رو بفهم</span>${I.chev}</button>
+    <div class="row"><div class="ic" style="background:#F59E0B">${I.bell}</div><span class="t">یادآوری‌ها</span><span class="v">۱۴ روز قبل</span>${I.chev}</div>
+  </div></div>
+  ${tabbar("garage")}`;
+}
+
+function vTools(){
+  const T = [["حساب بولو","ماشین و موتور، هر ۲۰ منطقه","#E5383B",I.euro,"bollo"],["بیمه چنده؟","قیمت حدودی از آمار رسمی","#0A84FF",I.shield,"insurance"],
+    ["چک‌لیست خرید","۳۰ نکته قبل از خرید دست‌دوم","#30A46C",I.list],["خرج سالانه","بولو + بیمه + بنزین + سرویس","#8E5CF7",I.chart],
+    ["رویزیونه","کی، کجا، چند؟","#F59E0B",I.wrench],["خبرهای رسمی","از کانال تلگرام خودرو ایتالیا","#14B8A6",I.news]];
+  return `<div class="navbar" data-title="ابزارها"><span class="ttl">ابزارها</span></div>
+  <div class="large">ابزارها</div><div class="subhead">دوتاش آماده‌ست، بقیه هم کم‌کم میان.</div>
+  <div class="section"><div class="tools">${T.map(([t,s,c,ic,tool]) => `<button class="card tool" ${tool ? `data-tool="${tool}"` : `data-toast="«${t}» تو نسخه‌ی بعدی اضافه می‌شه"`}>${tool ? '<span class="badge new">جدید</span>' : '<span class="badge soon">به‌زودی</span>'}<div class="ti" style="background:${c}">${ic}</div><b>${t}</b><span>${s}</span></button>`).join("")}</div></div>
+  ${tabbar("tools")}`;
+}
+
+function vProfile(){
+  const dark = document.documentElement.dataset.theme === "dark";
+  return `<div class="navbar" data-title="تنظیمات"><span class="ttl">تنظیمات</span></div>
+  <div class="large">تنظیمات</div>
+  <div class="section"><div class="card" style="display:flex;gap:14px;align-items:center;padding:16px"><div class="avatar" style="width:58px;height:58px;font-size:22px">خ</div>
+    <div style="flex:1"><b style="font-size:18px">حساب من</b><div class="sub" style="color:var(--label2);font-size:13.5px">${FA(state.cars.length)} وسیله · ${state.region}</div></div>${I.chev}</div></div>
+  <div class="section"><div class="group">
+    <button class="row" style="width:100%" data-go="setup"><div class="ic" style="background:#30A46C">${I.pin}</div><span class="t">منطقه</span><span class="v">${state.region}</span>${I.chev}</button>
+    <div class="row"><div class="ic" style="background:#F59E0B">${I.bell}</div><span class="t">یادآوری‌ها</span><button class="sw ${state.notify?'on':''}" data-sw="notify"></button></div>
+    <div class="row"><div class="ic" style="background:#5856D6">${I.moon}</div><span class="t">حالت تاریک</span><button class="sw ${dark?'on':''}" data-sw="dark"></button></div>
+    <div class="row"><div class="ic" style="background:#0A84FF">${I.globe}</div><span class="t">زبان</span><span class="v">فارسی</span>${I.chev}</div>
+  </div></div>
+  <div class="section"><div class="group">
+    <div class="row"><div class="ic" style="background:#229ED9">${I.news}</div><span class="t">کانال تلگرام</span><span class="v" style="direction:ltr">@khodro_italy</span>${I.chev}</div>
+    <div class="row"><div class="ic" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">${I.me}</div><span class="t">اینستاگرام</span><span class="v" style="direction:ltr">@khodro_italy</span>${I.chev}</div>
+    <div class="row"><div class="ic" style="background:#8E8E93">${I.info}</div><span class="t">درباره‌ی اپ</span><span class="v">نسخه‌ی ۰٫۱</span>${I.chev}</div>
+  </div><div class="foot">این فقط یه نمونه‌ی طراحیه. اطلاعات الکیه و جایی فرستاده نمی‌شه.</div></div>
+  ${tabbar("profile")}`;
+}
+
+function sheetHTML(){
+  const n = state.newCar;
+  const COLORS = ["#1F2937","#E5383B","#F5F5F4","#0A84FF","#30A46C","#F59E0B"];
+  return `<div class="grab"></div>
+  <div class="sh"><button class="navbtn" data-sheet="0">انصراف</button><b>ماشین جدید</b><button class="navbtn end" style="font-weight:700" data-save="1">ذخیره</button></div>
+  <div class="body">
+    <div class="seg" style="margin:6px 0 18px"><button class="${n.kind==='car'?'on':''}" data-kind="car">ماشین</button><button class="${n.kind==='moto'?'on':''}" data-kind="moto">موتور</button></div>
+    <div style="display:flex;justify-content:center;margin:-6px 0 6px">${(n.kind==="moto"?MOTO:CAR)(n.color).replace('class="car"','style="width:220px;height:88px;filter:drop-shadow(0 12px 12px rgba(0,0,0,.2))"')}</div>
+    <div class="group">
+      <div class="field"><label>مدل</label><input data-f="name" value="${n.name}" placeholder="${n.kind==='moto'?'مثلاً یاماها تی‌مکس':'مثلاً فیات ۵۰۰'}"></div>
+      <div class="field"><label>سال ساخت</label><input data-f="year" value="${n.year}" inputmode="numeric" placeholder="۲۰۲۰"></div>
+      <div class="field"><label>پلاک</label><input class="ltr" data-f="plate" value="${n.plate}" placeholder="AB 123 CD"></div>
+      <div class="field"><label>توان موتور</label><input data-f="kw" value="${n.kw}" inputmode="numeric" placeholder="کیلووات — تو لیبرتو، خونه‌ی P.2"></div>
+    </div>
+    <div class="foot">کیلووات رو واسه حساب کردن بولو لازم داریم.</div>
+    <div class="group"><div style="padding:12px 16px 0;font-size:13px;color:var(--label2)">کلاس یورو</div>
+      <div class="euro">${[0,1,2,3,4,5,6].map(e => `<button class="${n.euro===e?'on':''}" data-euro="${e}">${FA(e)}</button>`).join("")}</div></div>
+    <div class="group" style="margin-top:18px"><div style="padding:12px 16px 0;font-size:13px;color:var(--label2)">رنگ</div>
+      <div class="colors">${COLORS.map(c => `<button style="background:${c}" class="${n.color===c?'on':''}" data-color="${c}"></button>`).join("")}</div></div>
+    <button class="btn fill" style="margin-top:22px" data-save="1">اضافه کن به گاراژ</button>
+  </div>`;
+}
+
+function vBollo(){
+  const b = state.bollo;
+  return `<div class="navbar solid" data-title="حساب بولو"><button class="navbtn" data-back="tools">${I.back}<span>ابزارها</span></button><span class="ttl">حساب بولو</span><span class="navbtn end"></span></div>
+  <div class="large" style="padding-top:8px">حساب بولو</div>
+  <div class="subhead">ببین امسال چقدر بولو باید بدی.</div>
+  <div class="section"><div class="seg"><button class="${b.kind==='car'?'on':''}" data-bkind="car">ماشین</button><button class="${b.kind==='moto'?'on':''}" data-bkind="moto">موتور</button></div></div>
+  <div class="section"><div class="card" style="padding:18px 16px 14px">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <span style="font-weight:700">ماشینت چند کیلوواته؟</span><span class="foot" style="padding:0">تو لیبرتو، خونه‌ی P.2</span></div>
+    <div class="kwrow"><button class="stepb" data-kw="-1">−</button><div class="kwbig"><b id="kwv">${FA(b.kw)}</b><span>کیلووات</span><small id="cvv">≈ ${FA(Math.round(b.kw/0.736))} اسب</small></div><button class="stepb" data-kw="1">+</button></div>
+    <input type="range" class="slider" id="kwr" min="1" max="${b.kind==='moto'?120:400}" value="${b.kw}">
+    <div class="quick">${(b.kind==='moto'?[9,11,15,35,70]:[51,70,85,110,190]).map(k => `<button data-kwset="${k}">${FA(k)}</button>`).join("")}</div>
+  </div></div>
+  <div class="section"><div class="group"><div style="padding:12px 16px 0;font-size:13px;color:var(--label2)">کلاس یورو — تو لیبرتو، خونه‌ی V.9</div>
+    <div class="euro">${[0,1,2,3,4,5,6].map(e => `<button class="${b.euro===e?'on':''}" data-beuro="${e}">${FA(e)}</button>`).join("")}</div></div></div>
+  <div class="section"><div class="group"><div class="field"><label>منطقه</label>
+    <select id="breg">${REGIONS.map(r => `<option ${r===b.region?'selected':''}>${r}</option>`).join("")}</select></div></div></div>
+  <div class="section" id="bres">${bolloResult()}</div>
+  <div class="section"><div class="card tip"><div class="ti">${I.bulb}</div><p>این عدد حدودیه. عدد دقیق رو با پلاکت تو سایت ACI چک کن. ماشین‌های برقی تو بیشتر منطقه‌ها چند سال اول بولو نمی‌دن.</p></div></div>
+  ${tabbar("tools")}`;
+}
+function bolloResult(){
+  const b = state.bollo, r = calcBollo(b.kind, b.kw, b.euro, b.region);
+  let cmp = "";
+  if (b.kind === "car") {
+    const cheap = calcBollo("car", b.kw, b.euro, "لمباردیا").total, dear = calcBollo("car", b.kw, b.euro, "کامپانیا").total;
+    const span = Math.max(1, dear - cheap), pos = ((r.total - cheap) / span) * 100;
+    cmp = `<div class="cmp"><div class="cmpbar"><i style="right:${Math.min(100,Math.max(0,pos))}%"></i></div>
+      <div class="cmpl"><span>ارزون‌ترین منطقه<br><b>${EUR(cheap)} €</b></span><span style="text-align:left">گران‌ترین منطقه<br><b>${EUR(dear)} €</b></span></div></div>`;
+  }
+  return `<div class="card result">
+    <div class="rk">بولوی سالانه‌ات</div>
+    <div class="rv"><b>${EUR(r.total)}</b><span>یورو در سال</span></div>
+    ${r.approx ? '<span class="badge" style="background:rgba(245,158,11,.15);color:#B45309">حدودی — واسه یورو ۰ تا ۳ این منطقه عدد رسمی منتشر نشده</span>' : ""}
+    <div class="lines">${r.lines.map(([t,v]) => `<div><span>${t}</span><b>${EUR(v)} €</b></div>`).join("")}</div>
+    ${cmp}${r.note ? `<div class="foot" style="padding:8px 0 0">${r.note}</div>` : ""}
+  </div>`;
+}
+
+function insClasses(){
+  const out = [state.ins.start]; let c = state.ins.start;
+  for (const acc of state.ins.years) { c = acc ? Math.min(18, c + 2) : Math.max(1, c - 1); out.push(c); }
+  return out;
+}
+function vInsurance(){
+  const s = state.ins, path = insClasses(), last = path[path.length-1];
+  const F = [["شهری که توش زندگی می‌کنی","جاهایی که تصادف یا دزدی بیشتره، گرون‌ترن.",1],["سن و سابقه‌ی پاتنته","جوون‌ترها و تازه‌پاتنته‌گرفته‌ها بیشتر می‌دن.",1],
+    ["قدرت ماشین","ماشین قوی‌تر، بیمه‌ی گرون‌تر.",1],["نوع سوخت","بنزینی، دیزلی، هیبرید یا برقی — خرج تعمیرشون فرق داره.",0],
+    ["جعبه سیاه","یه ردیاب تو ماشین؛ بعضی شرکت‌ها باهاش تخفیف می‌دن.",0],["سقف پوشش","سقف رو بیشتر از حداقل بگیری، گرون‌تر می‌شه.",0],
+    ["فرانشیز","اون تیکه از خسارت که خودت می‌دی؛ هرچی بیشتر، بیمه ارزون‌تر.",0],["برای چی ازش استفاده می‌کنی","شخصی یا کاری، و سالی چند کیلومتر می‌ری.",0]];
+  const C = [["rc","بیمه‌ی شخص ثالث (RC)","اجباریه — فقط خسارت بقیه رو می‌ده",1],["kaskoFull","کاسکوی کامل","تقریباً هر خسارتی به ماشین خودت",0],["kaskoPart","کاسکوی جزئی","فقط اگه با یه ماشین دیگه تصادف کنی",0],
+    ["theft","دزدی و آتیش","اگه ماشینو بدزدن یا بسوزه",0],["glass","شیشه","شیشه جلو، بغل‌ها و آینه‌ها",0],["road","امداد جاده‌ای","یدک‌کش و تعمیر سر جا",0],
+    ["nature","حوادث طبیعی","تگرگ، سیل، طوفان",0],["driver","حادثه‌ی راننده","اگه خودت آسیب ببینی",0],["legal","وکیل و دادگاه","خرج وکیل اگه کار به دادگاه بکشه",0]];
+  const kasko = s.cov.kaskoFull || s.cov.kaskoPart;
+  return `<div class="navbar solid" data-title="بیمه رو بفهم"><button class="navbtn" data-back="tools">${I.back}<span>ابزارها</span></button><span class="ttl">بیمه رو بفهم</span><span class="navbtn end"></span></div>
+  <div class="large" style="padding-top:8px">بیمه رو بفهم</div>
+  <div class="subhead">قیمت بیمه تو ایتالیا از کجا میاد؟ قدم‌به‌قدم.</div>
+
+  <div class="section"><button class="card ctaq" data-tool="quote"><div class="ti" style="background:#0A84FF">${I.shield}</div><div style="flex:1;text-align:right"><b>قیمت بیمه‌ات رو کامل حساب کن</b><span>۵ مرحله، مثل سایت‌های بیمه</span></div>${I.chev}</button></div>
+  <div class="section"><div class="sec-h"><h3>بیمه‌ات حدوداً چنده؟</h3></div><div class="card" style="padding:16px">
+    <div class="seg" style="margin-bottom:12px"><button class="${state.insq.kind==='car'?'on':''}" data-qkind="car">ماشین</button><button class="${state.insq.kind==='moto'?'on':''}" data-qkind="moto">موتور</button></div>
+    <div class="group" style="background:var(--card2)">
+      <div class="field"><label>استان</label><select id="qprov">${Object.keys(IPER.prov[state.insq.kind]).sort().map(p => `<option ${p===state.insq.prov?'selected':''}>${p}</option>`).join("")}</select></div>
+      <div class="field"><label>کلاس بیمه</label><div class="kwrow" style="margin:0;gap:10px;flex:1;justify-content:flex-end">
+        <button class="stepb sm" data-qcu="-1">−</button><b style="font-size:19px;min-width:28px;text-align:center" id="qcu">${FA(state.insq.cu)}</b><button class="stepb sm" data-qcu="1">+</button></div></div>
+    </div>
+    <div style="font-size:13px;color:var(--label2);margin:12px 2px 6px">سنت</div>
+    <div class="euro" style="padding:0">${IPER.ages[state.insq.kind].map((a,i) => `<button class="${state.insq.age===i?'on':''}" data-qage="${i}" style="padding:0 10px">${a}</button>`).join("")}</div>
+    <div style="font-size:13px;color:var(--label2);margin:12px 2px 6px">سابقه‌ی پاتنته</div>
+    <div class="euro" style="padding:0">${LIC_LABELS.map((a,i) => `<button class="${state.insq.lic===i?'on':''}" data-qlic="${i}" style="padding:0 10px">${a}</button>`).join("")}</div>
+    <div style="font-size:13px;color:var(--label2);margin:12px 2px 6px">پرداخت</div>
+    <div class="seg"><button class="${!state.insq.monthly?'on':''}" data-qpay="0">یه‌جا، سالانه</button><button class="${state.insq.monthly?'on':''}" data-qpay="1">قسطی، ماهانه</button></div>
+    <div id="qres">${insQuoteHTML()}</div>
+  </div></div>
+
+  <div class="section" id="realsec">${realHTML()}</div>
+
+  <div class="section"><div class="sec-h"><h3>کلاس بیمه‌ات</h3></div><div class="card" style="padding:16px">
+    <p style="font-size:14px;color:var(--label2);line-height:1.8;margin-bottom:12px">مهم‌ترین چیزیه که قیمت بیمه رو تعیین می‌کنه (تقریباً نصفش). از ۱ (ارزون‌ترین) تا ۱۸ (گرون‌ترین). هر سال بی‌تصادف <b style="color:var(--green)">یه کلاس می‌ری پایین</b>، هر تصادفی که مقصر باشی <b style="color:var(--tint)">دو کلاس می‌ری بالا</b>.</p>
+    <div class="scale"><div class="sbar"></div><i class="mk" style="right:${(last-1)/17*100}%"><b>${FA(last)}</b></i></div>
+    <div class="cmpl" style="margin:4px 0 12px"><span>۱ · ارزون‌ترین</span><span>۱۸ · گرون‌ترین</span></div>
+    <div class="field" style="padding:0;min-height:44px"><label>از کلاس</label><div class="kwrow" style="margin:0;gap:10px;justify-content:flex-start">
+      <button class="stepb sm" data-cls="-1">−</button><b style="font-size:20px;min-width:30px;text-align:center">${FA(s.start)}</b><button class="stepb sm" data-cls="1">+</button>
+      <span class="foot" style="padding:0">${s.start===14?"پاتنته‌ی تازه":""}</span></div></div>
+    <div class="years">${s.years.map((acc,i) => `<div class="yr"><span class="yn">سال ${FA(i+1)}</span><span class="yc">${FA(path[i])}</span>
+      <div class="seg mini"><button class="${!acc?'on':''}" data-yr="${i}" data-acc="0">بی‌تصادف</button><button class="${acc?'on bad':''}" data-yr="${i}" data-acc="1">تصادف، مقصر</button></div>
+      <span class="ya ${acc?'up':'down'}">${acc?'+۲':'−۱'}</span></div>`).join("")}
+      <div class="yr end"><span class="yn">سال ${FA(s.years.length+1)}</span><span class="yc big">${FA(last)}</span><span style="flex:1;font-size:13px;color:var(--label2)">کلاست بعد از ${FA(s.years.length)} سال</span></div></div>
+    <div class="foot" style="padding:10px 0 0">کلاس مال خودته، نه ماشین؛ شرکت بیمه رو هم عوض کنی باهات میاد. با «RC فامیلیاره» می‌تونی کلاس خوب یکی از خانواده رو واسه ماشین یا موتور خودت هم بگیری.</div>
+  </div></div>
+
+  <div class="section"><div class="sec-h"><h3>دیگه چی قیمت رو بالا پایین می‌کنه؟</h3></div><div class="group">
+    ${F.map(([t,d,top],i) => `<div class="row" style="align-items:flex-start"><div class="ic" style="background:${top?'#C99A2E':'#8E8E93'};font-weight:800;font-size:13px">${FA(i+1)}</div><div class="t"><b style="font-size:15.5px">${t}</b>${top?' <span class="badge gold">خیلی مهم</span>':''}<div style="font-size:13px;color:var(--label2);margin-top:2px">${d}</div></div></div>`).join("")}
+  </div></div>
+
+  <div class="section"><div class="sec-h"><h3>چه پوشش‌هایی می‌خوای؟</h3></div><div class="group">
+    ${C.map(([k,t,d,lock]) => `<div class="row"><div style="flex:1"><b style="font-size:15.5px">${t}</b>${lock?' <span class="badge">اجباری</span>':''}<div style="font-size:13px;color:var(--label2);margin-top:2px">${d}</div></div><button class="sw ${s.cov[k]?'on':''} ${lock?'lock':''}" data-cov="${k}"></button></div>`).join("")}
+  </div>
+  <div class="card" style="padding:16px;margin-top:12px">
+    <div style="display:flex;justify-content:space-between;font-weight:700"><span>ماشینت چقدر می‌ارزه؟</span><span id="valv">${EUR(s.value).replace("٫۰۰","")} €</span></div>
+    <input type="range" class="slider" id="valr" min="1000" max="40000" step="500" value="${s.value}">
+    <div id="advice">${insAdvice()}</div>
+  </div></div>
+
+  <div class="section"><div class="sec-h"><h3>قیمت بیمه چطور ساخته می‌شه</h3></div><div class="card formula">
+    <span>قیمت پایه</span><i>×</i><span>کلاس بیمه</span><i>×</i><span>شهر و راننده</span><i>+</i><span>پوشش‌های اضافه</span><i>−</i><span>تخفیف‌ها</span>
+    <p>هر شرکت حساب‌کتاب خودشو داره؛ واسه همین از چندتا شرکت یا سایت مقایسه «پروِنتیوو» بگیر.</p></div></div>
+
+  <div class="section"><div class="sec-h"><h3>چطور ارزون‌تر بگیری</h3></div><div class="group">
+    ${["اگه کسی تو خانواده کلاس بهتری داره، با RC فامیلیاره ازش استفاده کن.","واسه ماشین ارزون، پول کاسکو نده.","قبل از اینکه خودکار تمدید بشه، چندتا قیمت بگیر و مقایسه کن.","ماشینت ارزونه؟ فرانشیز رو بالاتر بگیر.","سالانه بدی معمولاً ارزون‌تر از قسطیه.","خسارت خیلی کوچیک رو گاهی بهتره خودت بدی تا کلاست بالا نره."]
+      .map(t => `<div class="row"><div class="ic" style="background:var(--green)">${I.ok}</div><span class="t" style="font-size:15px">${t}</span></div>`).join("")}
+  </div><div class="foot">این‌ها فقط واسه فهمیدنه، قیمت نیست. قیمت واقعی رو فقط شرکت بیمه بهت می‌ده.</div></div>
+  ${tabbar("tools")}`;
+}
+function insQuoteHTML(){
+  const q = state.insq, r0 = insEstimate(q.kind, q.prov, q.age, q.cu, q.lic), nat = IPER.nat[q.kind];
+  const pm = q.monthly ? 1.2 : 1, r = { ...r0 }; for (const key of ["est","typ","low","high","lo80","hi80"]) r[key] = r0[key] * pm;
+  const R = (n) => FA(Math.round(n/5)*5);
+  const min = r.lo80 * .9, max = r.hi80 * 1.05, pos = (v) => Math.min(100, Math.max(0, (v - min) / (max - min) * 100));
+  return `<div class="result" style="padding:16px 0 0">
+    <div class="rk">۸ نفر از هر ۱۰ نفری که مثل تو هستن، در سال می‌دن:</div>
+    <div class="rv"><b style="font-size:36px">${R(r.lo80)} تا ${R(r.hi80)}</b><span>یورو</span></div>
+    <div style="font-size:14px;margin:-4px 0 4px">معمولاً حدود <b>${R(r.typ)} €</b> · نصف آدم‌ها بین <b>${R(r.low)}</b> و <b>${R(r.high)} €</b></div>
+    <div class="qbar"><span class="q80" style="right:${pos(r.lo80)}%;width:${pos(r.hi80)-pos(r.lo80)}%"></span><span class="qrange" style="right:${pos(r.low)}%;width:${pos(r.high)-pos(r.low)}%"></span><i style="right:${pos(r.typ)}%"></i><em style="right:${pos(nat)}%">میانگین ایتالیا</em></div>
+    <div class="foot" style="padding:24px 0 0">چرا این‌قدر بازه پهنه؟ چون شرکت‌ها برای یه آدم قیمت‌های خیلی فرق‌دار می‌دن. اگه قیمتی که بهت دادن نزدیک بالای بازه‌ست، حتماً چند جای دیگه هم بپرس.</div>
+    <div class="lines" style="margin-top:28px">
+      <div><span>میانگین سن و کلاس تو (کل ایتالیا)</span><b>${FA(Math.round(r.base))} €</b></div>
+      <div><span>استان ${q.prov} (میانگین ${FA(r.provMean)} €)</span><b>× ${FA(r.pIdx.toFixed(2)).replace(".","٫")}</b></div>
+      ${r.g ? `<div><span>کلاس ${FA(q.cu)} داخل گروهش</span><b>× ${FA(r.adj.toFixed(2)).replace(".","٫")}</b></div>` : ""}
+      ${r.lf !== 1 ? `<div><span>پاتنته‌ی تازه (${LIC_LABELS[q.lic]})</span><b>× ${FA(r.lf.toFixed(2)).replace(".","٫")}</b></div>` : ""}
+      ${q.monthly ? `<div><span>قسطی ماهانه (+۲۰٪)</span><b>× ۱٫۲۰</b></div>` : ""}
+      <div><span>میانگین آدم‌هایی مثل تو</span><b>${R(r.est)} €</b></div>
+      <div><span>ازش مالیات و SSN (حدود ۲۱٪)</span><b>${R(r.est*0.265/1.265)} €</b></div>
+      ${q.monthly ? `<div><span>هر ماه حدوداً</span><b>${R(r.est/12)} €</b></div>` : ""}
+    </div>
+    <div class="foot" style="padding:10px 0 0">فقط بیمه‌ی شخص ثالث (RC)، با مالیات. قدرت موتور، جعبه سیاه و شرکت بیمه هنوز حساب نشدن، واسه همین یه بازه نشون می‌دیم.<br>منبع: IVASS، قیمت‌هایی که واقعاً پرداخت شده — ${IPER.date}.
+    ${q.lic<3 && q.age>0 ? `<br><b style="color:var(--orange)">ضریب پاتنته‌ی تازه از ${q.kind==='moto'?'قراردادهای واقعی':'قیمت‌های منتشرشده'} اومده و هنوز داده‌ی کمی پشتشه؛ هرچی قیمت بیشتری ثبت بشه، دقیق‌تر می‌شه.</b>` : ''}
+    ${q.monthly ? `<br><b style="color:var(--tint)">اگه یه‌جا بدی، حدود ${R(r0.est*0.2)} € کمتر می‌دی.</b> (۲۰٪ از یه قرارداد واقعی؛ هر شرکت فرق داره)` : ''}
+</div>
+    <a class="btn fill" style="margin-top:14px;text-decoration:none" href="https://www.preventivass.it/" target="_blank" rel="noopener">قیمت دقیق از همه‌ی شرکت‌ها ←</a>
+    <div class="foot" style="padding:6px 0 0;text-align:center">سایت رسمی و رایگان دولت (Preventivass)</div>
+  </div>`;
+}
+function loadReal(){ try { const x = JSON.parse(localStorage.getItem("ki_real") || "[]"); return Array.isArray(x) ? x : []; } catch { return []; } }
+function saveReal(){ try { localStorage.setItem("ki_real", JSON.stringify(state.real)); } catch {} }
+function realHTML(){
+  const all = [...REAL_SEED, ...state.real];
+  let inside = 0;
+  const rows = all.map((p) => { const E = insEstimate(p.kind, p.prov, p.age, p.cu, p.lic), m = E.est, diff = Math.round((p.paid - m) / m * 100);
+    const ok80 = p.paid >= E.lo80 && p.paid <= E.hi80; if (ok80) inside++;
+    return `<div class="rp"><div><b>${FA(p.paid)} €</b> <span class="badge ${p.seed?'gold':''}">${p.seed==='pub'?'منتشرشده':p.seed?'قرارداد واقعی':'ثبت تو'}</span>
+      <div class="foot" style="padding:2px 0 0">${p.kind==='moto'?'موتور':'ماشین'} · ${p.prov==='—'?'کل ایتالیا':p.prov} · کلاس ${FA(p.cu)} · ${IPER.ages[p.kind][p.age]} سال · پاتنته ${LIC_LABELS[p.lic]}${p.note?` · ${p.note}`:''}</div></div>
+      <div class="rd ${ok80?'ok':'bad'}">${ok80?'✓ تو بازه':'✗ بیرون بازه'}<br>${FA(Math.round(E.lo80/5)*5)}–${FA(Math.round(E.hi80/5)*5)} €</div></div>`; }).join("");
+  const f = state.rf;
+  const form = f ? `<div class="group" style="margin-top:12px;background:var(--card2)">
+      <div class="field"><label>چقدر دادی؟</label><input id="rpaid" inputmode="numeric" placeholder="مثلاً ۸۵۰" value="${f.paid||''}"><span style="color:var(--label2)">€</span></div>
+      <div class="field"><label>توضیح</label><input id="rnote" placeholder="مثلاً اسکوتر ۱۲۵، فقط RC" value="${f.note||''}"></div></div>
+      <div class="foot">بقیه‌ی مشخصات (موتور یا ماشین، استان، کلاس، سن، پاتنته) رو از فرم بالا برمی‌داریم.</div>
+      <div style="display:flex;gap:8px"><button class="btn tinted" data-rcancel="1">انصراف</button><button class="btn fill" data-rsave="1">ثبت</button></div>` :
+      `<button class="btn tinted" style="margin-top:12px" data-radd="1">+ قیمتی که پارسال دادی رو ثبت کن</button>`;
+  return `<div class="sec-h"><h3>قیمت‌های واقعی</h3></div><div class="card" style="padding:16px">
+    <p style="font-size:14px;line-height:1.8;color:var(--label2);margin-bottom:6px">بازه‌ی «۸ از ۱۰» رو با این قیمت‌ها تست می‌کنیم: <b style="color:var(--label)">${FA(inside)} از ${FA(all.length)}</b> تو بازه بودن. وقتی قیمت‌های واقعی زیاد بشن، می‌بینیم واقعاً ۸ از ۱۰ تو بازه می‌افتن یا نه، و بازه رو درست می‌کنیم.</p>
+    ${rows}${form}
+    <div class="foot" style="padding:10px 0 0">تو این نسخه‌ی نمونه، قیمت‌ها فقط روی همین گوشی ذخیره می‌شن.</div></div>`;
+}
+function updReal(){ const r = phone.querySelector("#realsec"); if (r) r.innerHTML = realHTML(); }
+function updQuote(){ const r = phone.querySelector("#qres"); if (r) r.innerHTML = insQuoteHTML(); const c = phone.querySelector("#qcu"); if (c) c.textContent = FA(state.insq.cu); }
+
+function insAdvice(){
+  const s = state.ins, kasko = s.cov.kaskoFull || s.cov.kaskoPart;
+  if (kasko && s.value < 8000) return `<div class="advice warn">⚠ ماشین ${EUR(s.value).replace("٫۰۰","")} یورویی؟ کاسکو معمولاً نمی‌صرفه؛ چند سال پولشو بدی، از خود ماشین بیشتر می‌شه.</div>`;
+  if (!kasko && s.value >= 15000) return `<div class="advice info">ماشینت گرونه؛ کاسکو (کامل یا جزئی) می‌تونه منطقی باشه.</div>`;
+  if (s.value < 8000) return `<div class="advice ok">✓ خوبه: واسه ماشین ارزون، بیمه‌ی ساده با فرانشیز بالاتر معمولاً به‌صرفه‌تره.</div>`;
+  return `<div class="advice ok">✓ پوشش‌هات با قیمت ماشینت جوره.</div>`;
+}
+
+function vQuote(){
+  const q = state.quote, S = ["وسیله","راننده","استفاده","سابقه","قرارداد","قیمت"];
+  const chips = (key, list) => `<div class="euro" style="padding:0 0 4px">${list.map((x,i) => `<button class="${q[key]===i?'on':''}" data-qset="${key}|${i}" style="padding:0 10px;height:36px">${x[0]}</button>`).join("")}</div>`;
+  const lab = (t) => `<div style="font-size:13px;color:var(--label2);margin:14px 2px 6px">${t}</div>`;
+  const num = (key, label, ph, ltr) => `<div class="field"><label>${label}</label><input data-qf="${key}" value="${q[key]??''}" placeholder="${ph}" ${ltr?'class="ltr"':''} inputmode="${ltr?'text':'numeric'}"></div>`;
+  let body = "";
+  if (q.step === 0) body = `<div class="seg" style="margin-bottom:6px"><button class="${q.kind==='car'?'on':''}" data-qkind2="car">ماشین</button><button class="${q.kind==='moto'?'on':''}" data-qkind2="moto">موتور</button></div>
+    <div class="group" style="margin-top:10px">${num("brand","برند", q.kind==='moto'?'مثلاً سیم (SYM)':'مثلاً فیات', true)}${num("model","مدل", q.kind==='moto'?'مثلاً Symphony 125':'مثلاً Panda', true)}${num("year","سال اولین پلاک","۲۰۲۲")}</div>
+    ${lab(q.kind==='moto'?"حجم موتور":"قدرت موتور (لیبرتو، خونه‌ی P.2)")}${chips("power", QF.power[q.kind])}
+    ${lab("سوخت")}${chips("fuel", [["بنزینی"],["دیزلی"],["هیبرید"],["برقی"]])}`;
+  if (q.step === 1) body = `<div class="group"><div class="field"><label>استان</label><select id="qprov2">${Object.keys(IPER.prov[q.kind]).sort().map(p => `<option ${p===q.prov?'selected':''}>${p}</option>`).join("")}</select></div>
+    ${num("age","سنت","۳۰")}${num("licYears","چند ساله پاتنته داری؟","۰ یعنی امسال گرفتم")}${num("job","شغل","مثلاً دانشجو", true)}</div>
+    <div class="foot">جنسیت رو نمی‌پرسیم: تو اروپا قیمت بیمه نباید به جنسیت ربط داشته باشه.</div>`;
+  if (q.step === 2) body = `${lab("سالی چند کیلومتر می‌ری؟")}${chips("km", QF.km)}${lab("شب کجا پارکش می‌کنی؟")}${chips("park", QF.park)}${lab("واسه چی استفاده می‌کنی؟")}${chips("use", QF.use)}${lab("کی می‌رونه؟")}${chips("guide", QF.guide)}`;
+  if (q.step === 3) body = `<div class="group"><div class="field"><label>کلاس بیمه (CU)</label><div class="kwrow" style="margin:0;gap:10px;flex:1;justify-content:flex-end">
+      <button class="stepb sm" data-qcu2="-1">−</button><b style="font-size:19px;min-width:28px;text-align:center">${FA(q.cu)}</b><button class="stepb sm" data-qcu2="1">+</button></div></div></div>
+    <div class="foot">بیمه‌ی اولته؟ کلاس ۱۴. روی «گواهی سابقه‌ی بیمه» (attestato di rischio) نوشته.</div>
+    ${lab(QF.claims.label)}${chips("claims", QF.claims.opts)}`;
+  if (q.step === 4) body = `${lab("جعبه سیاه")}${chips("box", QF.box)}${lab("سقف پوشش")}${chips("limit", QF.limit)}${lab("پرداخت")}${chips("pay", QF.pay)}`;
+  if (q.step === 5) {
+    const r = quoteCalc(q), R = (n) => FA(Math.round(n/5)*5), E2 = (n) => EUR(n) + " €";
+    const min = r.lo80*.9, max = r.hi80*1.05, pos = (v) => Math.min(100, Math.max(0, (v-min)/(max-min)*100));
+    body = `<div class="result" style="padding:4px 0 0">
+      <div class="rk">قیمت تخمینی بیمه‌ی ${q.kind==='moto'?'موتور':'ماشین'}ت (فقط RC)</div>
+      <div class="rv"><b>${R(r.total)}</b><span>یورو در سال</span></div>
+      ${q.pay ? `<div style="font-size:14px;margin:-6px 0 6px">ماهی حدود <b>${R(r.monthly)} €</b> · یه‌جا بدی حدود <b>${R(r.total/1.2)} €</b> می‌شه</div>` : ""}
+      <div style="font-size:14px">۸ نفر از ۱۰ نفری که مثل تو هستن: <b>${R(r.lo80)} تا ${R(r.hi80)} €</b></div>
+      <div class="qbar"><span class="q80" style="right:${pos(r.lo80)}%;width:${pos(r.hi80)-pos(r.lo80)}%"></span><i style="right:${pos(r.total)}%"></i></div>
+      <h4 style="margin:26px 0 6px;font-size:16px">از کجا اومد؟</h4>
+      <div class="lines">${r.f.map(([t,v,tag,base]) => `<div><span>${t} <span class="badge ${tag==='o'?'new':'soon'}" style="font-size:10px">${tag==='o'?'رسمی':'تخمینی'}</span></span><b>${base ? R(v)+" €" : "× "+FA(v.toFixed(2)).replace(".","٫")}</b></div>`).join("")}</div>
+      <h4 style="margin:22px 0 6px;font-size:16px">این پول کجا می‌ره؟</h4>
+      <div class="lines">
+        <div><span>خسارت‌هایی که شرکت پیش‌بینی می‌کنه</span><b>${E2(r.claims)}</b></div>
+        <div><span>کمیسیون فروش</span><b>${E2(r.commission)}</b></div>
+        <div><span>بقیه‌ی هزینه‌ها و سود شرکت</span><b>${E2(r.net - r.claims - r.commission)}</b></div>
+        <div><span>سهم سلامت (SSN) ۱۰٫۵٪</span><b>${E2(r.ssn)}</b></div>
+        <div><span>مالیات استانی ۱۶٪</span><b>${E2(r.ipt)}</b></div>
+      </div>
+      <div class="foot" style="padding:10px 0 0">«رسمی» = از آمار IVASS/ANIA یا قرارداد واقعی. «تخمینی» = حدس ما، که با قیمت‌های واقعی‌ای که ثبت می‌شه درست می‌شه.</div>
+      <a class="btn fill" style="margin-top:14px;text-decoration:none" href="https://www.preventivass.it/" target="_blank" rel="noopener">قیمت دقیق از همه‌ی شرکت‌ها ←</a>
+    </div>`;
+  }
+  return `<div class="navbar solid"><button class="navbtn" data-back="insurance">${I.back}<span>بیمه</span></button><span class="ttl">قیمت بیمه</span><span class="navbtn end"></span></div>
+  <div class="section" style="padding-top:10px">
+    <div class="qsteps">${S.map((t,i) => `<span class="${i<q.step?'done':i===q.step?'on':''}">${t}</span>`).join("")}</div>
+    <div class="qprog"><i style="width:${q.step/5*100}%"></i></div>
+    <div class="large" style="padding:10px 4px 4px;font-size:28px">${["چی داری؟","خودت","چطور ازش استفاده می‌کنی؟","سابقه‌ی بیمه","قرارداد","قیمتت"][q.step]}</div>
+    <div class="card" style="padding:16px;margin-top:8px">${body}</div>
+    <div style="display:flex;gap:10px;margin-top:16px">
+      ${q.step>0 ? `<button class="btn tinted" data-qnav="-1">قبلی</button>` : ""}
+      ${q.step<5 ? `<button class="btn fill" data-qnav="1">${q.step===4?'ببین چنده':'بعدی'}</button>` : `<button class="btn tinted" data-qnav="-5">از اول</button>`}
+    </div></div>
+  ${tabbar("tools")}`;
+}
+
+const VIEWS = { welcome:vWelcome, features:vFeatures, setup:vSetup, notify:vNotify, home:vHome, garage:vGarage, add:vGarage, detail:vDetail, tools:vTools, bollo:vBollo, insurance:vInsurance, quote:vQuote, profile:vProfile };
+
+/* =========================================================
+   Render
+   ========================================================= */
+const phone = document.getElementById("phone");
+function screenHTML(id, anim){
+  const body = VIEWS[id]();
+  const isOb = ["welcome","features","setup","notify"].includes(id);
+  return `<div class="screen">${statusBar()}
+    ${isOb ? `<div class="view ${anim||''}" style="padding:0">${body}</div>` : `<div class="view ${anim||''}">${body}</div>`}
+    <div class="dim ${id==='add'?'on':''}" data-sheet="0"></div>
+    <div class="sheet ${id==='add'?'on':''}">${sheetHTML()}</div>
+    <div class="toast" id="toast">${I.ok}<span></span></div>
+    <div class="home-ind"></div></div>`;
+}
+
+let current = "welcome";
+function go(id, anim = "fade"){
+  current = id;
+  state.step = STEPS.findIndex(s => s.id === id);
+  if (id === "detail" && !state.detail) state.detail = state.cars[0].id;
+  phone.innerHTML = screenHTML(id, anim);
+  pinTabbar(phone);
+  const view = phone.querySelector(".view");
+  const nav = phone.querySelector(".navbar");
+  if (nav && view) view.addEventListener("scroll", () => nav.classList.toggle("solid", view.scrollTop > 30));
+  if (id === "detail" && nav) nav.classList.add("solid");
+  renderSteps();
+}
+
+// the tab bar is written inside the scrolling view; move it to the screen so it stays at the bottom
+function pinTabbar(root){ root.querySelectorAll(".screen").forEach(sc => { const t = sc.querySelector(".view .tabbar"); if (t) sc.appendChild(t); }); }
+function toast(msg){
+  const t = phone.querySelector("#toast"); if (!t) return;
+  t.querySelector("span").textContent = msg; t.classList.add("on");
+  clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("on"), 2200);
+}
+
+function renderSteps(){
+  document.getElementById("steps").innerHTML = STEPS.map((s,i) =>
+    `<button class="${i===state.step?'on':''}" data-step="${s.id}"><b>${FA(i+1)}</b><span>${s.t}<small>${s.s}</small></span></button>`).join("");
+}
+
+/* =========================================================
+   Events (one listener for the whole page)
+   ========================================================= */
+document.addEventListener("click", (e) => {
+  if (e.target.closest("a[href]")) return;
+  const el = e.target.closest("button,[data-open],[data-tab],[data-go],[data-sheet],a,.dim"); if (!el) return;
+  const d = el.dataset;
+  if (d.step) return go(d.step);
+  if (d.go) { if (d.notify !== undefined) state.notify = d.notify === "1"; return go(d.go, d.go === "home" ? "fade" : "fade"); }
+  if (d.tab) { state.detail = null; return go(d.tab); }
+  if (d.open) { state.detail = Number(d.open); return go("detail", "enter"); }
+  if (d.back) return go(d.back, "fade");
+  if (d.veh) { state.vehicle = d.veh; const y = phone.querySelector(".view").scrollTop; go("setup", ""); return; }
+  if (d.region) { state.region = d.region; phone.querySelectorAll("[data-region]").forEach(b => b.classList.toggle("sel", b === el)); return; }
+  if (d.toast) return toast(d.toast);
+  if (d.tool) {
+    if (d.tool === "bollo" && d.car) { const v = state.cars.find(c => c.id === Number(d.car)); if (v) Object.assign(state.bollo, { kind:v.kind, kw:v.kw, euro:v.euro, region:state.region }); }
+    else if (d.tool === "bollo") state.bollo.region = state.region;
+    return go(d.tool, "enter");
+  }
+  if (d.bkind) { state.bollo.kind = d.bkind; state.bollo.kw = d.bkind === "moto" ? 11 : 70; return go("bollo", ""); }
+  if (d.beuro) { state.bollo.euro = Number(d.beuro); phone.querySelectorAll("[data-beuro]").forEach(x => x.classList.toggle("on", x === el)); return updBollo(); }
+  if (d.kw) { setKw(state.bollo.kw + Number(d.kw)); return; }
+  if (d.kwset) { setKw(Number(d.kwset)); return; }
+  if (d.qkind) { state.insq.kind = d.qkind; state.insq.age = Math.min(state.insq.age, IPER.ages[d.qkind].length-1); if (!IPER.prov[d.qkind][state.insq.prov]) state.insq.prov = "Caserta"; return rerender(); }
+  if (d.qage) { state.insq.age = Number(d.qage); phone.querySelectorAll("[data-qage]").forEach(x => x.classList.toggle("on", x === el)); return updQuote(); }
+  if (d.qset) { const [k,v] = d.qset.split("|"); state.quote[k] = Number(v); el.parentElement.querySelectorAll("button").forEach(x => x.classList.toggle("on", x === el)); return; }
+  if (d.qkind2) { state.quote.kind = d.qkind2; state.quote.power = 0; if (!IPER.prov[d.qkind2][state.quote.prov]) state.quote.prov = "Caserta"; return rerender(); }
+  if (d.qcu2) { state.quote.cu = Math.min(18, Math.max(1, state.quote.cu + Number(d.qcu2))); return rerender(); }
+  if (d.qnav) { const q = state.quote; q.step = Math.min(5, Math.max(0, q.step + Number(d.qnav)));
+    if (q.step >= 2 && (!q.age || q.age < 14 || q.age > 99)) { q.step = 1; go("quote",""); return toast("سنت رو درست بنویس"); }
+    go("quote",""); phone.querySelector(".view").scrollTop = 0; return; }
+  if (d.qpay) { state.insq.monthly = d.qpay === "1"; phone.querySelectorAll("[data-qpay]").forEach(x => x.classList.toggle("on", x === el)); return updQuote(); }
+  if (d.qlic) { state.insq.lic = Number(d.qlic); phone.querySelectorAll("[data-qlic]").forEach(x => x.classList.toggle("on", x === el)); return updQuote(); }
+  if (d.radd) { state.rf = { paid:"", note:"" }; return updReal(); }
+  if (d.rcancel) { state.rf = null; return updReal(); }
+  if (d.rsave) {
+    const num = (v) => Number(String(v).replace(/[۰-۹]/g, c => "۰۱۲۳۴۵۶۷۸۹".indexOf(c)).replace(/[^\d.]/g, ""));
+    const paid = num(phone.querySelector("#rpaid").value);
+    if (!paid || paid < 30 || paid > 10000) { phone.querySelector("#rpaid").focus(); return toast("یه عدد درست بنویس (یورو در سال)"); }
+    state.real.push({ ...state.insq, paid, note: phone.querySelector("#rnote").value.trim().slice(0,80) });
+    saveReal(); state.rf = null; updReal(); return toast("ثبت شد، مرسی ✓");
+  }
+  if (d.qcu) { state.insq.cu = Math.min(18, Math.max(1, state.insq.cu + Number(d.qcu))); return updQuote(); }
+  if (d.cls) { state.ins.start = Math.min(18, Math.max(1, state.ins.start + Number(d.cls))); return rerender(); }
+  if (d.yr) { state.ins.years[Number(d.yr)] = d.acc === "1"; return rerender(); }
+  if (d.cov) { if (d.cov === "rc") return toast("بیمه‌ی شخص ثالث اجباریه، نمی‌شه خاموشش کرد");
+    state.ins.cov[d.cov] = !state.ins.cov[d.cov];
+    if (d.cov === "kaskoFull" && state.ins.cov.kaskoFull) state.ins.cov.kaskoPart = false;
+    if (d.cov === "kaskoPart" && state.ins.cov.kaskoPart) state.ins.cov.kaskoFull = false;
+    return rerender(); }
+  if (d.sheet !== undefined) {
+    if (d.sheet === "1") { state.newCar = { kind:"car", name:"", year:"", plate:"", kw:"", euro:6, color:"#1F2937" }; refreshSheet(); phone.querySelector(".sheet").classList.add("on"); phone.querySelector(".dim").classList.add("on"); state.step = 6; renderSteps(); }
+    else { phone.querySelector(".sheet").classList.remove("on"); phone.querySelector(".dim").classList.remove("on"); state.step = STEPS.findIndex(s => s.id === "garage"); renderSteps(); }
+    return;
+  }
+  if (d.kind) { state.newCar.kind = d.kind; return refreshSheet(); }
+  if (d.euro) { state.newCar.euro = Number(d.euro); return refreshSheet(); }
+  if (d.color) { state.newCar.color = d.color; return refreshSheet(); }
+  if (d.save) {
+    const n = state.newCar;
+    if (!n.name.trim()) { const i = phone.querySelector('[data-f=name]'); i.focus(); i.closest(".field").animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(0)"}],{duration:300}); return; }
+    state.cars.push({ id:Date.now(), kind:n.kind, name:n.name.trim(), year:Number(String(n.year).replace(/[۰-۹]/g,c=>"۰۱۲۳۴۵۶۷۸۹".indexOf(c)))||2020,
+      plate:(n.plate||"AA 000 AA").toUpperCase(), fuel:"بنزین", kw:Number(String(n.kw).replace(/[۰-۹]/g,c=>"۰۱۲۳۴۵۶۷۸۹".indexOf(c)))||55, euro:n.euro, color:n.color,
+      dl:{ bollo:addDays(150), insurance:addDays(200), revisione:addDays(365) } });
+    go("garage"); setTimeout(() => toast("اضافه شد به گاراژ ✓"), 120); return;
+  }
+  if (d.sw === "notify") { state.notify = !state.notify; el.classList.toggle("on", state.notify); return; }
+  if (d.sw === "dark") { setTheme(document.documentElement.dataset.theme !== "dark"); el.classList.toggle("on"); return; }
+});
+document.addEventListener("input", (e) => {
+  if (e.target.dataset.f) state.newCar[e.target.dataset.f] = e.target.value;
+  if (e.target.id === "kwr") setKw(Number(e.target.value));
+  if (e.target.id === "valr") { state.ins.value = Number(e.target.value); phone.querySelector("#valv").textContent = EUR(state.ins.value).replace("٫۰۰","") + " €"; phone.querySelector("#advice").innerHTML = insAdvice(); }
+});
+document.addEventListener("change", (e) => { if (e.target.id === "breg") { state.bollo.region = e.target.value; updBollo(); }
+  if (e.target.id === "qprov") { state.insq.prov = e.target.value; updQuote(); }
+  if (e.target.id === "qprov2") state.quote.prov = e.target.value; });
+document.addEventListener("input", (e) => { const k = e.target.dataset.qf; if (!k) return;
+  const v = e.target.value, n = Number(String(v).replace(/[۰-۹]/g, c => "۰۱۲۳۴۵۶۷۸۹".indexOf(c)));
+  state.quote[k] = ["year","age","licYears"].includes(k) ? (isNaN(n) ? 0 : n) : v; });
+document.addEventListener("input", (e) => { if (state.rf && e.target.id === "rpaid") state.rf.paid = e.target.value; if (state.rf && e.target.id === "rnote") state.rf.note = e.target.value; });
+function setKw(v){
+  const max = state.bollo.kind === "moto" ? 120 : 400;
+  state.bollo.kw = Math.min(max, Math.max(1, Math.round(v)));
+  const q = (s) => phone.querySelector(s);
+  if (q("#kwv")) { q("#kwv").textContent = FA(state.bollo.kw); q("#cvv").textContent = `≈ ${FA(Math.round(state.bollo.kw/0.736))} اسب`; q("#kwr").value = state.bollo.kw; }
+  updBollo();
+}
+function updBollo(){ const r = phone.querySelector("#bres"); if (r) r.innerHTML = bolloResult(); }
+function rerender(){ const v = phone.querySelector(".view"), y = v ? v.scrollTop : 0; go(current, ""); const n = phone.querySelector(".view"); if (n) n.scrollTop = y; }
+function refreshSheet(){ const s = phone.querySelector(".sheet"); if (s) s.innerHTML = sheetHTML(); }
+
+function setTheme(dark){
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  document.getElementById("theme").textContent = dark ? "☀️ حالت روشن" : "🌙 حالت تاریک";
+}
+document.getElementById("theme").onclick = () => { setTheme(document.documentElement.dataset.theme !== "dark"); if (current === "profile") go("profile", ""); };
+document.getElementById("next").onclick = () => go(STEPS[Math.min(STEPS.length-1, state.step+1)].id);
+document.getElementById("prev").onclick = () => go(STEPS[Math.max(0, state.step-1)].id);
+document.addEventListener("keydown", (e) => {
+  if (e.target.matches("input")) return;
+  if (e.key === "ArrowLeft") document.getElementById("next").click();
+  if (e.key === "ArrowRight") document.getElementById("prev").click();
+});
+
+/* gallery: every step side by side */
+document.getElementById("gal").onclick = () => {
+  const g = document.getElementById("ggrid");
+  const keep = current;
+  g.innerHTML = STEPS.map((s,i) => { if (s.id === "detail") state.detail = state.cars[0].id;
+    return `<div class="gitem" data-step-g="${s.id}"><div class="mini"><div class="phone">${screenHTML(s.id, "")}</div></div><span><b>${FA(i+1)}</b>${s.t}</span></div>`; }).join("");
+  pinTabbar(g);
+  document.body.classList.add("show-gallery"); window.scrollTo(0,0);
+  go(keep, "");
+};
+document.getElementById("ggrid").addEventListener("click", (e) => {
+  const it = e.target.closest("[data-step-g]"); if (!it) return;
+  e.stopPropagation(); document.body.classList.remove("show-gallery"); go(it.dataset.stepG);
+}, true);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") document.body.classList.remove("show-gallery"); });
+
+if (matchMedia("(prefers-color-scheme: dark)").matches) setTheme(true);
+const IS_APP = document.documentElement.classList.contains("app");
+function persist(){ try { localStorage.setItem("ki_state", JSON.stringify({ seen:true, region:state.region, vehicle:state.vehicle, notify:state.notify,
+  cars:state.cars.map(c => ({ ...c, dl:Object.fromEntries(Object.entries(c.dl).map(([k,d]) => [k, d.toISOString()])) })) })); } catch {} }
+function restore(){ try { const x = JSON.parse(localStorage.getItem("ki_state") || "null"); if (!x) return false;
+  Object.assign(state, { region:x.region || state.region, vehicle:x.vehicle || state.vehicle, notify:x.notify ?? state.notify });
+  if (Array.isArray(x.cars) && x.cars.length) state.cars = x.cars.map(c => ({ ...c, dl:Object.fromEntries(Object.entries(c.dl).map(([k,d]) => [k, new Date(d)])) }));
+  return !!x.seen; } catch { return false; } }
+const seen = IS_APP && restore();
+document.addEventListener("click", () => setTimeout(persist, 50), true);
+document.addEventListener("change", () => setTimeout(persist, 50), true);
+if (IS_APP && "serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+go(seen ? "home" : "welcome");
+</script>
+</body>
+</html>
