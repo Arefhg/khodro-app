@@ -3,6 +3,9 @@
 Newest first. What we did, and what we learned.
 
 ## 22 Nov 2026
+- v0.3: Home keeps the new order but gets the old colorful look back: hello + avatar,
+  red countdown card, colored icon rows, news cards with colored thumbnails and tags,
+  colored emergency tiles, emoji in section titles.
 - v0.2: put the new Home into the real app (`vHome` in `index.html`).
   Removed the countdown ring, tool cards, fake news, tip and the fake "remind me" button.
   Reminder shows bollo and insurance only, closest first. Checked on a phone-size screen, light and dark.

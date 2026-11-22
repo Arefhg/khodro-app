@@ -3,8 +3,8 @@
 Last update: 22 Nov 2026
 
 ## Where we are
-- Version 0.2 is live on GitHub Pages and installed on Aref's iPhone.
-- v0.2: new Home with three sections (reminder, latest news, emergency numbers).
+- Version 0.3 is live on GitHub Pages and installed on Aref's iPhone.
+- v0.3: new Home with three sections (reminder, latest news, emergency numbers), in the old colorful style.
 - Phase 1 (redesign) has started. Three design directions are in `design/directions.html`.
   Waiting for Aref to choose one.
 
