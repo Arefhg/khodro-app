@@ -16,8 +16,8 @@ jobs:
           curl -sfL -A "$ua" -o venezia_map.pdf "https://www.comune.venezia.it/sites/comune.venezia.it/files/page/files/Area%20limitazioni%20e%20percorsi.pdf" || echo fail3
           curl -sfL -A "$ua" -o firenze_8397.pdf "https://ambiente.comune.fi.it/sites/ambiente.comune.fi.it/files/2024-12/2024-M-8397_compressed-1.pdf" || echo fail4
           for f in *.pdf; do pdftotext -layout "$f" "${f%.pdf}.txt" || true; pdfinfo "$f" | grep -E "Pages|Page size" > "${f%.pdf}.info" || true; done
-          pdftoppm -r 110 -png venezia_map.pdf venezia_map || true
-          pdftoppm -r 60 -png firenze_8397.pdf firenze_p || true
-          ls -la
+          pdftoppm -r 80 -jpeg venezia_map.pdf venezia_map || true
+          pdftoppm -r 60 -jpeg -l 10 firenze_8397.pdf firenze_p; pdftoppm -r 40 -jpeg -f 11 firenze_8397.pdf firenze_q || true
+          rm -f *.pdf; pdftoppm -v >/dev/null 2>&1; ls -la
           cd .. && git config user.name bot && git config user.email bot@users.noreply.github.com
           git add tmp_docs && git commit -qm "docs added" && git push
