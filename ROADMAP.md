@@ -19,5 +19,5 @@
 - App Store rules and publishing.
 
 ## Later ideas (from Aref's existing material, not planned yet)
-- Used-car buying checklist, yearly cost, revisione, passaggio di proprietà fees,
+- Used-car buying checklist, revisione, passaggio di proprietà fees,
   diesel limit maps, used-car prices, traffic fines.

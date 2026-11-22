@@ -13,6 +13,9 @@ Each decision: the date, what we chose, and why.
 - Chose (Aref): 1) reminder for bollo or insurance, 2) latest news, short, with the Telegram channel link, 3) emergency numbers.
 - Style (Aref): keep the old colorful look (colors, emoji, countdown ring) with the new order.
 
+## 22 Nov 2026 – No yearly cost tool
+- Chose (Aref): remove "خرج سالانه" from the app and the roadmap.
+
 ## Open questions (waiting for Aref)
 1. Design direction: A (Calm iOS), B (Garage first, dark), C (Friendly guide), or a mix?
 2. Main look: light or dark?
