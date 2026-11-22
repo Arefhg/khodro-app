@@ -1,0 +1,693 @@
+                                                                         Giovanna Labate
+                                                                         15.10.2026
+                                                                         10:48:32
+                                                                         GMT+02:00
+
+
+
+
+IL PIANO REGIONALE
+DELLA QUALITA’
+DELL’ARIA
+(PRQA)
+PARTE II – NORME TECNICHE DI ATTUAZIONE
+
+
+Dipartimento Ambiente, Paesaggio e Qualità urbana: Paolo Garofoli, Giovanna Labate,
+Daniela Battista, Monica Bevere
+
+
+                                     Settembre 2026
+                                                           PRQA – NORME TECNICHE DI ATTUAZIONE
+
+Indice
+TITOLO I: DISPOSIZIONI GENERALI                                                                       3
+  Articolo 1 – Finalità generali e obiettivi specifici                                                3
+  Articolo 2 – Durata e ambito territoriale di applicazione del Piano                                 5
+  Articolo 3 – Zonizzazione del territorio regionale                                                  5
+  Articolo 4 – Inventario delle emissioni regionale                                                   5
+  Articolo 5 – Rete di monitoraggio della qualità dell’aria                                           5
+  Articolo 6 – Efficacia delle disposizioni del PRQA                                                  6
+  Articolo 7 – Strumenti attuativi del piano                                                          6
+  Articolo 8 – Provvedimenti abilitativi in materia ambientale                                        7
+TITOLO II: MISURE PER IL RAGGIUNGIMENTO DEI VALORI LIMITE E DEI LIVELLI CRITICI E PER IL
+PERSEGUIMENTO DEI VALORI OBIETTIVO                                                                    8
+SEZIONE I - MISURE IN AMBITO URBANO                                                                   8
+  Articolo 9 – Misure locali finalizzate al miglioramento della qualità dell’aria relativamente alle
+  concentrazioni degli inquinanti normati in allegato IX dal D.Lgs. 155/2010.                        8
+  Articolo 10 – Limitazione alla circolazione veicolare dei veicoli privati a motore nei centri abitati
+  a seguito del superamento delle soglie di alert                                                      9
+  Articolo 11– Ulteriori indirizzi e misure di contenimento delle concentrazioni degli inquinanti a
+  seguito del superamento delle soglie di alert                                                    10
+SEZIONE II - MISURE IN MATERIA DI ATTIVITA’ PRODUTTIVE                                               11
+  Articolo 13 – Prescrizioni e altre condizioni per le installazioni soggette alle autorizzazioni
+  integrate ambientali                                                                               11
+  Articolo 14– Procedure di valutazione di impatto ambientale                                        12
+SEZIONE III - MISURE IN MATERIA DI ATTIVITA’ PORTUALI                                                12
+  Articolo 15 – Indirizzi e misure nell’ambito delle attività portuali                               12
+SEZIONE IV - MISURE IN MATERIA DI AGRICOLTURA                                                        13
+  Articolo 16 – Divieto di abbruciamenti dei residui vegetali                                        13
+TITOLO III: USO SOSTENIBILE DELL’ENERGIA                                                             13
+  Articolo 17– Obblighi e divieti                                                                    13
+  Articolo 18 – Misure per il risparmio energetico e contenimento delle emissioni                    14
+  Articolo 19 – Catasto regionale degli impianti termici                                             14
+TITOLO IV: ULTERIORI INTERVENTI PER IL MIGLIORAMENTO DELLA QUALITÀ DELL’ARIA                         15
+
+
+
+
+                                                                                                      2
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                            PRQA – NORME TECNICHE DI ATTUAZIONE
+
+
+                      TITOLO I: DISPOSIZIONI GENERALI
+Articolo 1 – Finalità generali e obiettivi specifici
+1. Il Piano Regionale per la Qualità dell’aria ambiente, di seguito “PRQA”, dà attuazione agli articoli
+   9, 10 e 13 del Decreto Legislativo 13 agosto 2010, n. 155 e smi, prevedendo, relativamente agli
+   inquinanti indicati, le misure strutturali ed emergenziali necessarie per il raggiungimento dei
+   valori limite e dei livelli critici nel più breve tempo possibile, per il perseguimento dei valori
+   obiettivo e per il mantenimento del loro rispetto al fine di adempiere agli obblighi derivanti dalla
+   Direttiva comunitaria 2008/50/CE, sostituita dalla nuova Direttiva comunitaria 2024/2881
+   relativa alla qualità dell’aria ambiente e per un’aria più pulita in Europa, che entrerà in vigore il
+   1 gennaio 2030.
+2. Per il raggiungimento degli obiettivi di cui al punto 1 è necessaria l’azione coordinata e
+   congiunta del livello di governo europeo, statale, regionale e locale. A livello regionale è
+   necessaria una strategia integrata a cui concorrono le azioni dei settori competenti in materia
+   di governo del territorio, trasporti, attività produttive, agricoltura ed energia.
+3. Il PRQA è lo strumento di programmazione con il quale la Regione, in attuazione degli indirizzi
+   e degli obiettivi definiti nella legge regionale n. 52 del 30 novembre 2019 e nella Strategia
+   Regionale di Sviluppo Sostenibile (SRSvS), approvata con DGR n. 1670 del 27/11/2023, persegue
+   le finalità di sostenibilità in coerenza con tutta la pianificazione regionale tra cui,
+   principalmente, il Piano Paesaggistico Territoriale Regionale (PPTR), il Piano Energetico
+   Ambientale Regionale (PEAR) e il Piano Regionale Qualità dell'Aria (PRQA) vigenti, il Piano
+   Attuativo del Piano Regionale dei Trasporti (PA – PRT), il Piano di Tutela delle Acque (PTA), il
+   Piano Regionale delle Coste (PRC), il Programma Forestale Regionale (P-PFR), il Patto dei Sindaci
+   per il Clima e l’Energia, il Quadro di azioni prioritarie (PAF) per Natura 2020 in Puglia ed il Piano
+   straordinario per la rigenerazione olivicola 2020.
+4. Il PRQA, nel rispetto di quanto previsto dalla normativa comunitaria, statale e regionale:
+   a. contiene l'individuazione e la classificazione delle zone e degli agglomerati di cui al Decreto
+       Legislativo 13 agosto 2010, n. 155 e successive modifiche e integrazioni (Attuazione della
+       direttiva 2008/50/CE relativa alla qualità dell'aria ambiente e per un'aria più pulita in Europa)
+       nonché la valutazione della qualità dell'aria ambiente;
+   b. individua le postazioni facenti parte della rete regionale di rilevamento della qualità dell'aria
+       ambiente nel rispetto dei criteri tecnici stabiliti dalla normativa comunitaria e nazionale in
+       materia di valutazione e misurazione della qualità dell'aria ambiente e ne stabilisce le
+       modalità di gestione;
+   c. definisce le modalità di realizzazione, gestione e aggiornamento dell'inventario regionale
+       delle emissioni in atmosfera;
+   d. definisce il quadro conoscitivo relativo allo stato della qualità dell'aria ambiente nel rispetto
+       dei criteri, delle modalità e delle tecniche di misurazione stabiliti dal D.Lgs. 155/2010 e
+       s.m.e.i.;
+   e. stabilisce obiettivi generali, indirizzi e direttive per l'individuazione e per l'attuazione delle
+       azioni e delle misure per il risanamento, il miglioramento ovvero il mantenimento della
+       qualità dell'aria ambiente, anche ai fini della lotta ai cambiamenti climatici, secondo quanto
+       previsto dal D.Lgs. 155/2010 e s.m.e i.;
+   f. individua criteri, valori limite, condizioni e prescrizioni finalizzati a prevenire o a limitare le
+
+                                                                                                        3
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                            PRQA – NORME TECNICHE DI ATTUAZIONE
+
+      emissioni in atmosfera derivanti dalle attività antropiche in conformità di quanto previsto
+      dall'articolo 11 del D.Lgs. 155/2010 e s.m.e i.;
+   g. individua i criteri e le modalità per l'informazione al pubblico dei dati relativi alla qualità
+      dell'aria ambiente nel rispetto del decreto legislativo 19 agosto 2005, n. 195 (Attuazione della
+      direttiva 2003/4/CE sull'accesso del pubblico all'informazione ambientale);
+   h. definisce il quadro delle risorse attivabili in coerenza con gli stanziamenti di bilancio;
+   i. assicura l'integrazione e il raccordo tra gli strumenti della programmazione regionale di
+      settore.
+5. Gli obiettivi, le finalità e gli indirizzi di cui al punto 4, lettera e), sono articolati in settori di
+   intervento, con particolare riferimento a quelli della mobilità, dei trasporti, delle attività
+   produttive, delle politiche agricole, delle attività nelle aree portuali e dell’energia secondo
+   quanto stabilito dall’articolo 11 del d.lgs. 155/2010.
+6. Al fine di evitare, prevenire o ridurre effetti nocivi per la salute umana e per l’ambiente nel suo
+   complesso, nel rispetto della normativa vigente, il PRQA persegue la finalità di tutela della
+   qualità dell’aria attraverso i macro-obiettivi riportati di seguito:
+   a. Conseguire la riduzione delle emissioni di biossidi di azoto (NOx), particolato fine (PM10 e
+      PM2,5), Benzo(a)pirene (BaP), biossido di zolfo (SO2), composti organici volatili non metanici
+      (COVNM), ammoniaca (NH3) al 2028 e al 2030.
+   b. Conseguire il rispetto dei limiti di qualità dell'aria e portare a zero la percentuale di
+      popolazione esposta a superamenti oltre i valori limite di materiale particolato fine PM 10 .
+   c. Mantenere una buona qualità dell'aria nelle zone e negli agglomerati in cui i livelli di
+      inquinamento sono stabilmente al di sotto dei valori limite.
+   d. Ridurre la percentuale della popolazione esposta a livelli di ozono superiori al valore
+      obiettivo, ovvero ridurre le emissioni dei precursori di ozono sull'intero territorio regionale.
+   e. Aggiornare e migliorare il quadro delle conoscenze:
+        1. Aggiornare la classificazione delle zone e degli agglomerati e rimodulare la rete regionale
+           di rilevamento della qualità dell'aria ambiente in esito al recepimento della Direttiva UE
+           2024/2881
+        2. Attivare il monitoraggio delle emissioni di una serie di sostanze per cui non sono previsti
+           obblighi di riduzione in conformità alla direttiva comunitaria e al decreto legislativo n.
+           81/2018
+        3. Ridefinire le modalità di realizzazione, gestione e aggiornamento dell’inventario regionale
+           delle emissioni in atmosfera.
+   f. Favorire la partecipazione informata dei cittadini alle azioni del Piano regionale per la qualità
+      dell'aria:
+        1. La Regione e gli enti locali, ciascuno nell’ambito delle proprie competenze, avvalendosi di
+           ARPA Puglia, promuovono iniziative di divulgazione, di informazione e di educazione
+           ambientale, sulla natura, le sorgenti, la diffusione degli inquinanti nonché sullo stato della
+           qualità dell’aria ambiente.
+        2. La Regione attraverso il supporto di Arpa Puglia promuove la formazione e
+           l’accompagnamento degli amministratori e del personale amministrativo degli enti locali
+           in ordine alle azioni e alle misure del Piano di risanamento della qualità dell’aria di loro
+           competenza.
+
+
+
+                                                                                                        4
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                            PRQA – NORME TECNICHE DI ATTUAZIONE
+
+Articolo 2 – Durata e ambito territoriale di applicazione del Piano
+   1. L’arco temporale di riferimento degli scenari del PRQA si estende fino all’anno 2030.
+   2. Il presente Piano è rivisto ed aggiornato in base all’evoluzione del quadro normativo
+      comunitario e nazionale e conoscitivo e le sue disposizioni trovano applicazione fino alla
+      data di approvazione di un successivo nuovo Piano.
+   3. Le disposizioni del PRQA sono riferite all’intero territorio regionale salvo che non sia
+      diversamente previsto.
+   4. A seguito del recepimento nel quadro normativo nazionale dei valori più stringenti
+      introdotti dalla nuova direttiva (UE) 2024/2881 sarà necessario aggiornare gli scenari
+      emissivi e le valutazioni modellistiche del PRQA entro il 2028 secondo le previsioni di Piano,
+      al fine di verificare l’eventuale ricorso ai meccanismi di deroga disciplinati dall’art. 18 della
+      stessa direttiva.
+
+Articolo 3 – Zonizzazione del territorio regionale
+   1. In attuazione degli articoli 3 e 4 del d.lgs. 155/2010, il territorio regionale è suddiviso nelle
+      seguenti zone e agglomerati:
+              ● Codice IT1615 – Zona collinare 2025;
+              ● Codice IT1616 – Zona di pianura 2025;
+              ● Codice IT1617 – Zona industriale 2025;
+              ● Codice IT1618 – Agglomerato di Bari 2025
+              ● Codice IT1619 – Zona Salento 2025.
+      Ai fini della protezione della vegetazione e degli ecosistemi, per O3, NOx e SO2 è stata
+      prevista una specifica zonizzazione del territorio regionale articolata nelle seguenti due
+      zone:
+              ● IT1620 Zona pianura - ECO 2025.
+              ● IT1621 Zona collinare - ECO 2025.
+
+Articolo 4 – Inventario delle emissioni regionale
+1. La gestione, la tenuta e la pubblicazione dell’inventario delle emissioni regionale di cui all’art. 22
+   del d.lgs. 155/2010 e smi rientra tra le competenze di Arpa Puglia.
+2. Arpa Puglia procede all’aggiornamento dell’inventario delle emissioni conformemente alle
+   previsioni dell’art. 22 del d.lgs. 155/2010 e smi e in allineamento alla metodologia EMEP/EEA
+   2023 e adeguata disaggregazione settoriale (SNAP) per i comparti più rilevanti (residenziale,
+   traffico, agricoltura, industria). Nell’ambito di tali attività di aggiornamento, al fine di ridurre le
+   incertezze nella stima di PM2.5 e B(a)P evidenziate dalla modellizzazione, dovranno essere
+   approfondite le emissioni da biomassa domestica e delle sorgenti diffuse.
+
+Articolo 5 – Rete di monitoraggio della qualità dell’aria
+1. Arpa Puglia è il soggetto gestore della Rete Regionale della Qualità dell’Aria ai sensi dell’art. 5
+   comma 7 D.Lgs. 155/2010.
+2. ARPA Puglia garantisce gli adempimenti necessari alla corretta gestione e manutenzione della
+   rete (come da previsione dell’art. 5 comma 8 del D.Lgs. 155/2010).
+
+                                                                                                          5
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                           PRQA – NORME TECNICHE DI ATTUAZIONE
+
+3. ARPA Puglia cura gli adempimenti previsti all’art. 17 del D.Lgs. 155/2010.
+4. ARPA Puglia procede alle attività di Reporting e trasmissione dei dati:
+   ● Trasmissione periodica dei dati e metadati sulla qualità dell’aria a ISPRA attraverso la
+     piattaforma InfoAria, includendo i dataset richiesti (B, D, D1b, C, E1a, E1b, G).
+   ● Elaborazione e pubblicazione sul portale istituzionale di report mensili e annuali, con
+     l’obiettivo di informare cittadini e portatori di interesse sugli andamenti della qualità dell’aria.
+   ● Elaborazione del report annuale di qualità dell’aria integrato con le elaborazioni modellistiche
+     (entro il 30 giugno dell’anno successivo a quello a cui si riferisce il report).
+   ● Gestione del portale istituzionale (https://www.arpa.puglia.it/pagina2795_aria.html ) per
+     rendere accessibili i dati rilevati dalla rete di monitoraggio della qualità aria in maniera
+     trasparente e fruibile.
+5. ARPA Puglia procede alle comunicazioni di alert sui dati di monitoraggio della qualità dell’aria alla
+   Regione Puglia e agli Enti territoriali interessati, in caso di superamento delle soglie previste
+   all’articolo 9.
+
+Articolo 6 – Efficacia delle disposizioni del PRQA
+1. Il Piano, redatto in attuazione degli articoli 9, 10 e 13 del D.Lgs. n. 155/2010, contiene specifici
+   indirizzi riguardanti la determinazione degli interventi idonei alla realizzazione degli obiettivi di
+   PRQA, la programmazione della loro attuazione, il monitoraggio e il bilancio degli effetti. Le
+   disposizioni prescrittive del Piano devono trovare piena e immediata osservanza ed attuazione
+   da parte di tutti i soggetti pubblici e privati e prevalgono sulle disposizioni incompatibili
+   contenute nei vigenti strumenti di pianificazione e negli atti amministrativi attuativi. Gli enti
+   pubblici provvedono all'adeguamento delle previsioni degli strumenti di pianificazione e degli atti
+   amministrativi alle disposizioni contenute nel presente Piano. Le disposizioni contenute negli
+   strumenti di pianificazione vigenti in contrasto con le prescrizioni sopravvenute cessano di avere
+   efficacia decorsi 180 giorni dall’approvazione del Piano senza che gli enti pubblici abbiano
+   perfezionato gli adempimenti necessari ai sensi del presente comma.
+2. In caso di inosservanza da parte delle Amministrazioni comunali, rispetto a quanto riportato nel
+   comma 2, si applicano i poteri sostitutivi della Regione così come previsto dall’articolo 11, comma
+   3 della L. R. 31/2015.
+3. Il mancato recepimento delle misure di cui al presente Piano costituisce violazione di norme
+   attuative del diritto comunitario e rende il soggetto inadempiente responsabile, ai sensi
+   dell’articolo 43 della legge del 24 dicembre 2012 n. 234, degli oneri finanziari derivanti da
+   eventuali sentenze di condanna rese dalla Corte di Giustizia delle Comunità europee.
+
+Articolo 7 – Strumenti attuativi del piano
+1. All’attuazione delle previsioni contenute nel Piano provvedono, in particolare, per le materie di
+   competenza, gli atti e i provvedimenti di seguito elencati:
+   a. Gli strumenti della pianificazione territoriale ed urbanistica di cui alla L.R. 20 del 27 luglio
+      2001, quali: Piano Energetico Ambientale Regionale (PEAR), Piano Regionale Puglia FESR
+      FSE+ 2021-2027 (PR); la Strategia Regionale per lo Sviluppo Sostenibile (SRSvS); il Piano
+      attuativo del Piano Regionale dei Trasporti 2021-2027 (PRT); il Piano Regionale della Mobilità
+      Ciclistica (PRMC); il Piano strategico nazionale della PAC (PSP) 2023-2027 e relativo
+                                                                                                         6
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                              PRQA – NORME TECNICHE DI ATTUAZIONE
+
+      Complemento regionali per lo Sviluppo rurale 2023-2027 Puglia; il Piano Forestale Regionale
+      (PFR); i Piani di Gestione dei siti Natura 2000; il Piano Regionale delle Coste (PRC); il Piano
+      Regionale di Gestione dei Rifiuti Urbani (PRGRU); il Piano Regionale di Gestione Rifiuti
+      Speciali (PRGRS); i Piani Territoriali di Coordinamento delle Province (PTCP);
+   b. i piani urbani della mobilità sostenibile (PUMS), i Piani comunali delle coste (PCC), il Piano
+      Urbano del Traffico (PUT) dei Comuni e il Piano del traffico per la viabilità extraurbana delle
+      Province ai sensi dell’articolo 36 del decreto legislativo 30 aprile 1992, n. 285 (codice della
+      strada);
+   c. gli atti di programmazione del Trasporto Pubblico Locale di cui al decreto legislativo 19
+      novembre 1997, n. 422 e alla legge regionale n.18 del 31/10/2002;
+   d. le ordinanze sindacali in materia di traffico adottate ai sensi dell’articolo 7, del D.Lgs. n.
+      285/1992;
+   e. le autorizzazioni di cui alla parte V, titolo I del D.Lgs. n. 152/2006 e ss.mm.ii ed al titolo III-bis
+      della Parte Seconda del medesimo decreto ed i controlli di cui alla parte V, titoli I, II e III del
+      D.Lgs. n. 152/2006 e ss.mm.ii.;
+   f. gli ulteriori provvedimenti, a carattere puntuale o pianificatorio, adottati dalle Regioni e dagli
+      enti locali sulla base dei poteri attribuiti dalla legislazione vigente anche comunitaria ai sensi
+      dell’articolo 11, comma 5, del D.Lgs. n. 155/2010.
+
+Articolo 8 – Provvedimenti abilitativi in materia ambientale
+1. Le autorizzazioni ambientali, fra cui l’autorizzazione integrata ambientale (AIA), l’autorizzazione
+   unica ambientale (AUA), l’autorizzazione alle emissioni nonché gli ulteriori provvedimenti
+   abilitativi in materia ambientale, anche in regime di comunicazione, non possono contenere
+   previsioni contrastanti con le previsioni del Piano.
+2. Le autorità competenti in materia di AIA, hanno la facoltà di richiedere in sede di rilascio,
+   rinnovo e riesame, modifiche sostanziali delle AIA, prioritariamente per le installazioni di cui ai
+   punti 1, 4, 5, 6.5, 6.6 dell’Allegato VIII alla Parte Seconda del D.Lgs. 152/06 e s.m.i., la
+   presentazione di uno studio specialistico per la valutazione degli scenari futuri della qualità
+   dell’aria utilizzando una catena modellistica coerente con le previsioni d’impatto, che dimostri
+   che le emissioni derivanti dalla realizzazione di tali progetti non comportino un peggioramento
+   della qualità dell’aria come già specificato nella Deliberazione di Giunta Regionale n. 1135 dell’8
+   agosto 2023.
+3. Le autorità competenti in materia di autorizzazioni ambientali hanno la facoltà richiedere in
+   sede di rilascio, rinnovo e riesame, modifiche sostanziali delle AIA, prioritariamente per le
+   installazioni di cui ai punti 1, 4, 5, 6.5, 6.6 dell’Allegato VIII alla Parte Seconda del D.Lgs. 152/06
+   e s.m.i., la presentazione di uno studio di impatto odorigeno finalizzato all'individuazione e
+   caratterizzazione delle sorgenti odorigene significative ed alla stima dell’impatto olfattivo delle
+   emissioni mediante l'implementazione di idonei modelli matematici di dispersione in
+   atmosfera.
+4. Nei procedimenti autorizzativi (AIA e autorizzazioni ordinarie ex d.lgs. 152/2006 e smi) nelle
+   zone a rischio di superamento ai sensi della nuova direttiva 2024/2881 le autorità competenti
+
+                                                                                                               7
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                             PRQA – NORME TECNICHE DI ATTUAZIONE
+
+   dovranno richiedere la redazione di studi modellistici al fine di introdurre eventuali specifiche
+   condizioni tecniche finalizzate alla riduzione delle emissioni dei precursori del PM2,5
+   secondario, individuati in ossidi di azoto (NOx), ammoniaca (NH₃), biossido di zolfo (SO₂) e
+   composti organici volatili (COV), che consentano di traguardare il rispetto dei limiti posti dalla
+   Direttiva UE 2024/2881 del 23 ottobre 2024.
+
+
+  TITOLO II: MISURE PER IL RAGGIUNGIMENTO DEI VALORI
+ LIMITE E DEI LIVELLI CRITICI E PER IL PERSEGUIMENTO DEI
+                    VALORI OBIETTIVO
+
+                SEZIONE I - MISURE IN AMBITO URBANO
+Articolo 9 – Misure locali finalizzate al miglioramento della qualità dell’aria
+relativamente alle concentrazioni degli inquinanti normati in allegato IX dal
+D.Lgs. 155/2010.
+1. Al fine di garantire il miglioramento della qualità dell’aria relativamente alle concentrazioni degli
+   inquinanti normati in allegato IX dal D.Lgs. 155/2010, i Comuni adottano specifiche misure a
+   livello locale finalizzate a ridurre le emissioni delle principali sorgenti emissive.
+2. Sono confermate le procedure di alert sui dati di monitoraggio della qualità dell’aria a seguito
+   della validazione giornaliera effettuate sugli stessi dati da ARPA Puglia, nelle modalità indicate al
+   seguente comma 3.
+3. ARPA comunica entro 48 ore e in ogni caso dopo la validazione 1 livello sui dati di monitoraggio
+   (che avviene solo nei giorni lavorativi) il raggiungimento della soglia di alert agli enti territoriali
+   interessati (Comune/i, Province o Città Metropolitana, Regione) con riferimento ai parametri
+   normati in allegato IX al D.Lgs. 155/2010, qualora si verifichi almeno una delle seguenti
+   condizioni:
+   a. il numero annuale di superamenti del valore limite giornaliero eccede il 60% dei superamenti
+      consentiti in un anno civile, ovvero:
+
+        Inquinante        Valore limite      Valore limite     Numero di         Alert
+                          giornaliero        orario            superamenti
+                                                               consentiti dal
+                                                               D.lgs 155/2010
+        PM10              50 μg/Nmc          -                 n. 35             n. 21
+                                                               superamenti del   superamenti del
+                                                               valore medio      valore medio
+                                                               giornaliero       giornaliero
+        SO2               125 μg/Nmc         350 μg/Nmc        n. 24             n. 14
+                                                               superamenti del
+                                                                                 superamenti del
+                                                               valore limite
+                                                                                 valore limite
+                                                               orario
+                                                                                 orario
+                                                                                                        8
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                            PRQA – NORME TECNICHE DI ATTUAZIONE
+
+        NO2               40 μg/Nmc          200 μg/Nmc        n. 18             n. 11
+                                                               superamenti del   superamenti del
+                                                               valore limite     valore limite
+                                                               orario            orario
+
+         b. per gli inquinanti soggetti a valore limite giornaliero, si registrano almeno n. 5 giorni
+             consecutivi di superamento del valore limite giornaliero;
+         c. per gli inquinanti soggetti a valore limite orario, ferme restando le soglie di allarme
+             definite per gli inquinanti SO2 e NO2 in Allegato XII al D.Lgs. 155/2010, si registrano n. 5
+             ore, anche non consecutive nell’arco delle 24 ore giornaliere, di superamento del valore
+             limite orario.
+         d. per gli inquinanti soggetti a valore limite annuale, la media parziale raggiunge il valore
+             del 70 % del limite consentito.
+   Tenuto conto dell’inquinante interessato e della rappresentatività spaziale del punto di
+   misura/campionamento, la comunicazione relativa al raggiungimento della soglia di alert è
+   trasmessa anche ai Comuni il cui territorio risulti interessato dall’area di rappresentatività della
+   misura/campionamento.
+4. A seguito dell’informativa di ARPA Puglia, la Regione può promuovere l’attivazione di un Tavolo
+   Tecnico di confronto con i Comuni finalizzato alla definizione di una strategia di intervento per
+   garantire il contenimento dei livelli emissivi, attraverso l’attuazione di quanto previsto al
+   successivo comma 5 e l’individuazione di eventuali misure aggiuntive – rispetto a quelle di cui ai
+   successivi articoli 10 e 11- da attuarsi nei rispettivi territori di competenza.
+   Qualora la sorgente dell’inquinante che ha superato le soglie di alert possa attribuirsi a emissioni
+   di tipo industriale, la comunicazione di Arpa è inviata al Gestore dell’installazione e lo stesso
+   partecipa al Tavolo Tecnico.
+   In caso di inerzia da parte dei Comuni all’adozione degli atti necessari, provvedono le Province o
+   la Città Metropolitana di Bari.
+5. Il tavolo tecnico ha gli obiettivi di:
+   a. recuperare e organizzare in maniera organica tutte le informazioni utili per individuare
+       l’evento o la più probabile sorgente che ha determinato l’aumento di concentrazione degli
+       inquinanti;
+   b. definire il ruolo di ciascun ente territoriale nella fase di analisi del superamento delle soglie di
+       alert definite al comma 1;
+   c. definire la tempistica e le azioni di intervento volte a ridurre le concentrazioni degli inquinanti;
+   d. definire la tipologia degli atti di adozione da parte dell’ente per garantire l’attivazione delle
+       misure;
+   e. definire le modalità e i ruoli di monitoraggio della verifica delle disposizioni individuate per
+       ridurre le concentrazioni degli inquinanti.
+
+Articolo 10 – Limitazione alla circolazione veicolare dei veicoli privati a
+motore nei centri abitati a seguito del superamento delle soglie di alert
+1. Ai fini della tutela della qualità dell’aria, il PRQA prescrive che i Comuni pugliesi, qualora si
+   verifichino situazioni di criticità per superamento delle soglie di alert in una delle condizioni
+   descritte all’articolo 9, comma 3, per gli inquinanti PM10 e NOX, adottino misure di limitazione del
+   traffico e contenimento delle emissioni quali, ad esempio:
+
+                                                                                                        9
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                            PRQA – NORME TECNICHE DI ATTUAZIONE
+
+   a. limitazione alla circolazione, dal lunedì al venerdì, dalle ore 8:30 alle 18:30, fatte salve
+      eventuali deroghe, per le autovetture ed i veicoli commerciali di categoria N1, N2 ed N3 ad
+      alimentazione diesel, di categoria inferiore o uguale ad “Euro 5”. Le limitazioni si applicano al
+      Comune ove è collocata la stazione di monitoraggio che ha rilevato il superamento delle soglie
+      di alert, ed eventualmente a tutti i Comuni contermini, in base agli accordi con le rispettive
+      Province o con la Città Metropolitana di Bari definiti nel tavolo tecnico di cui al comma 3
+      dell’articolo 8.
+   b. estensione delle aree pedonali, delle ZTL, delle zone 30 km/h (in coerenza con la direttiva del
+      MIT 4620/2024) e delle corsie preferenziali;
+   c. istituzione di zone di limitazione alla circolazione per i veicoli maggiormente inquinanti
+      ovvero: limitazione alla circolazione, dal lunedì al venerdì, dalle ore 8:30 alle 18:30, fatte salve
+      eventuali deroghe, per le autovetture ed i veicoli commerciali di categoria N1, N2 ed N3 ad
+      alimentazione benzina, di categoria inferiore o uguale ad “Euro 2” e diesel di categoria
+      inferiore o uguale ad “Euro 5”;
+   d. istituzione di zone di rispetto davanti alle scuole dove è vietata la fermata e la sosta con motori
+      accesi;
+   e. intensificazione del lavaggio strade nel territorio urbanizzato nei periodi critici da novembre a
+      marzo.
+2. Le indicazioni contenute nel comma 1 costituiscono disposizioni prescrittive per i pertinenti
+   strumenti di pianificazione dei Comuni, fra cui il Piano Operativo ed il Piano Urbano del Traffico
+   e prescrizioni per i provvedimenti amministrativi in tema di traffico, fra cui, le ordinanze sindacali
+   di cui al D.Lgs. 285/1992.
+3. Il numero minimo di controlli da effettuare sul rispetto delle misure di limitazione alla
+   circolazione di cui al comma 1, sarà esplicitato nelle ordinanze sindacali.
+
+Articolo 11– Ulteriori indirizzi e misure di contenimento delle
+concentrazioni degli inquinanti a seguito del superamento delle soglie di
+alert
+1. Si riporta di seguito un elenco non esaustivo delle ulteriori possibili misure attuabili:
+   a. riduzione della velocità di circolazione dei veicoli, su autostrade e strade extraurbane
+      principali, come definite alle lettere A e B dell’art. 2, comma 3, del D.Lgs. 285/1992, nei tratti
+      stradali che attraversano i centri abitati ovvero che sono ubicati in prossimità dei centri
+      abitati dei comuni interessati dalla criticità;
+   b. divieto di qualsiasi tipologia di combustione all'aperto a scopo intrattenimento, quali, ad
+      esempio, falò tradizionali o fuochi d'artificio e i barbecue;
+   c. obbligo di adottare tutti gli accorgimenti atti a minimizzare l’emissione di polveri nelle
+      attività di cantiere. I cantieri edili interessati sono quelli che non necessitano, per durata, di
+      autorizzazione ambientale esplicita in quanto non classificabili quali impianti.
+
+
+
+
+                                                                                                       10
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                             PRQA – NORME TECNICHE DI ATTUAZIONE
+
+
+SEZIONE II - MISURE IN MATERIA DI ATTIVITA’ PRODUTTIVE
+Articolo 13 – Prescrizioni ed altre condizioni per le installazioni soggette
+alle autorizzazioni integrate ambientali
+1. L’Autorità competente si attiene, in sede di rilascio dell’autorizzazione integrata ambientale (AIA)
+   in zone a rischio di superamento ai sensi della nuova direttiva 2024/2881, alle seguenti
+   prescrizioni:
+   a. fissazione dei valori limite di emissione più bassi fra quelli previsti nei documenti di riferimento
+      sulle BAT (in particolare nella sezione "BAT conclusions”) elaborati ai sensi della direttiva
+      2010/75/UE, con riferimento alle polveri totali, agli NOx (ossidi di azoto), ossidi di zolfo (SO2),
+      ai COV non metanici e agli specifici composti organici del processo in esame, in caso di nuove
+      installazioni e per le installazione in esercizio nei procedimenti di riesame e riesame con
+      valenza di rinnovo, nei limiti in cui sia tecnicamente ed economicamente fattibile e non
+      comporti costi sproporzionati rispetto ai benefici ambientali. I limiti di applicabilità tecnica
+      devono essere adeguatamente motivati nel provvedimento di autorizzazione;
+   b. fissazione dei valori limite di emissione più bassi fra quelli previsti nei documenti di riferimento
+      sulle BAT (in particolare nella sezione "BAT conclusions”) elaborati ai sensi della direttiva
+      2010/75/UE, con riferimento alle polveri totali, agli NOx (ossidi di azoto), agli ossidi di zolfo
+      (SO2), ai COV non metanici e agli specifici composti organici del processo in esame in caso di
+      modifiche sostanziali delle installazioni esistenti che configurino incrementi di capacità
+      produttiva superiori o pari alla soglia di assoggettabilità ad AIA, nei limiti in cui sia
+      tecnicamente ed economicamente fattibile e non comporti costi sproporzionati rispetto ai
+      benefici ambientali. I limiti di applicabilità tecnica e di sostenibilità economica devono essere
+      adeguatamente motivati dal proponente e valutati nel provvedimento di autorizzazione;
+   c. in caso siano fissati nelle BAT conclusions valori limite di emissione con periodo di riferimento
+      annuale, o siano presenti sistemi di monitoraggio in continuo, le misure di cui alle lettere a. e
+      b. del comma 1 possono essere applicate con riferimento alle concentrazioni medie annue o
+      alle emissioni totali annue.
+2. Ai fini di tutela della qualità dell’aria, ai sensi all’articolo 271, comma 4, del D. Lgs. n. 152/2006,
+   potranno essere stabiliti appositi valori limite di emissione e prescrizioni più restrittive di quelle
+   previste dagli Allegati I, II e III e V alla parte quinta del D. Lgs. 3 aprile 2006, n. 152, nei limiti in
+   cui sia tecnicamente ed economicamente fattibile e non comporti costi sproporzionati rispetto
+   ai benefici ambientali.
+3. Nei procedimenti autorizzativi di Autorizzazione Integrata Ambientale ricadenti nelle zone a
+   rischio di superamento ai sensi della nuova direttiva 2024/2881, le autorità competenti dovranno
+   richiedere la redazione di studi modellistici al fine di introdurre eventuali specifiche condizioni
+   tecniche finalizzate alla riduzione delle emissioni del PM primario e fine, idrocarburi policiclici
+   aromatici, COV e precursori nonché del benzene, che consentano di traguardare il rispetto dei
+   limiti posti dalla Direttiva UE 2024/2881 del 23 ottobre 2024.
+4. Ai fini della tutela della salute dell’ambiente e del territorio regionale, nelle aree di Taranto e
+   Brindisi già dichiarate ad elevato rischio ambientale, qualora il rapporto di Valutazione di Danno
+   Sanitario (redatto ai sensi della legge regionale n. 21 del 2012), come pubblicato sul BURP,
+   evidenzi criticità, ai sensi dell’art. 3, comma 7 della citata legge, la realizzazione di nuovi
+                                                                                                    11
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                           PRQA – NORME TECNICHE DI ATTUAZIONE
+
+   stabilimenti è subordinata alla presentazione di un documento di non aggravio degli impatti
+   sanitari da inquinamento ambientale, approvato da ARESS, ARPA e ASL.
+5. Per gli impianti industriali ricadenti nell’area industriale di Taranto e Statte caratterizzati da un
+   importante contributo emissivo proveniente da sorgenti diffuse, ed in particolare per tutte le
+   attività connesse alla movimentazione di materiali polverulenti, le Autorizzazioni Integrate
+   Ambientali potranno prevedere specifiche misure di intervento atte a garantire il mantenimento
+   della qualità dell’aria valutate sulla base del ciclo produttivo dell’impianto stesso, quali a mero
+   titolo di esempio:
+   a. la riduzione della capacità produttiva, durante le giornate definite come “Wind Days”
+       caratterizzate da venti provenienti dal settore Nord Ovest, da definirsi in sede di
+       autorizzazione;
+   b. particolari procedure operative per ridurre la movimentazione di materiale polverulento e di
+       gestione di eventuali cumuli, anche attraverso la previsione della copertura dei cumuli.
+6. Nei bandi di finanziamento che la Regione promuove per le imprese è valutata anche la finalità
+   del miglioramento della qualità dell’aria e, in particolare, l’adozione delle migliori tecniche
+   disponibili al fine di conseguire una riduzione di emissioni per gli inquinanti polveri totali, NOx,
+   COV e SO2, anche oltre i requisiti minimi di legge.
+
+Articolo 14– Procedure di valutazione di impatto ambientale
+1. La Valutazione d’impatto ambientale (VIA ordinaria o PAUR) relativa a progetti ubicati in zone a
+   rischio di superamento ai sensi della nuova direttiva 2024/2881 dovrà contenere misure volte a
+   ridurre l’effetto delle emissioni di PM10, NOx, SO2, COV non metanici, NH3 e benzene introdotte
+   dall’intervento.
+2. Il proponente del progetto sottoposto alle procedure di cui al comma 1, ha l’obbligo di presentare
+   una relazione relativa alle emissioni per gli inquinanti PM 10, NOx, SO2, COV non metanici, NH3 e
+   benzene del progetto presentato nonché alle misure eventualmente necessarie alla riduzione
+   dell’effetto di tali emissioni.
+
+
+SEZIONE III - MISURE IN MATERIA DI ATTIVITA’ PORTUALI
+Articolo 15 – Indirizzi e misure nell’ambito delle attività portuali
+1. La Regione individua e promuove la mitigazione delle emissioni relative alle attività portuali. Di
+   seguito è presente un elenco non esaustivo delle possibili misure attuabili da parte delle autorità
+   marittime:
+    a. rinnovo e sostituzione della flotta di rimorchiatori anche ad alimentazione elettrica o ibrida
+       per contenere le emissioni in fase di manovra;
+    b. linee guida e prescrizioni per il contenimento delle emissioni polverulente dovute alle
+       operazioni di carico e scarico delle merci alla rinfusa, nonché per il contenimento delle
+       emissioni dovute allo stoccaggio di merci o combustibili solidi (carbone);
+    c. elettrificazione, anche parziale, delle banchine dei terminal commerciali e turistici per
+       ridurre le emissioni delle navi in fase di stazionamento;
+
+                                                                                                     12
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                           PRQA – NORME TECNICHE DI ATTUAZIONE
+
+    d. individuazione di modalità gestionali delle fasi di movimentazione delle navi che tengano
+       conto delle condizioni di dispersione degli inquinanti in aria;
+    e. rispetto dei limiti di emissioni di gas di scarico prodotte dal trasporto marittimo previsti per
+       il 2020 dalla direttiva 2012/33/UE del Parlamento europeo e del Consiglio, del 21 novembre
+       2012, che modifica la direttiva 1999/32/CE del Consiglio relativa al tenore di zolfo dei
+       combustibili per uso marittimo;
+    f. utilizzo di combustibili a basso tenore di zolfo durante il periodo di stazionamento nel porto;
+    g. promozione dell’utilizzo di carburanti alternativi (GPL, GNL, idrogeno...) per la fornitura di
+       energia alle navi in stanziamento.
+
+
+SEZIONE IV - MISURE IN MATERIA DI AGRICOLTURA
+Articolo 16 – Divieto di abbruciamenti dei residui vegetali
+1. L'accensione e la bruciatura delle stoppie e delle paglie presenti al termine di colture cerealicole
+   e foraggere nonché la bruciatura delle superfici a pascolo e della vegetazione spontanea presente
+   nei terreni coltivati, nei campi in stato di abbandono, incolti o a riposo è regolamentata dalla L.R.
+   38 del 12 dicembre 2016 e dalle linee guida di cui alla Deliberazione della Giunta regionale 28
+   giugno 2018, n. 1149.
+2. Trova altresì applicazione quanto previsto dall’art. 10 “Pratiche di raggruppamento e
+   abbruciamento di materiali vegetali nel luogo di produzione. Procedura d'infrazione n.
+   2014/2147” del DECRETO-LEGGE 13 giugno 2023, n. 69 al comma 2, ovvero fermo restando
+   quanto previsto dall'articolo 182, comma 6-bis, del decreto legislativo 3 aprile 2006, n.152, e
+   fatta salva la possibilità di adottare speciali deroghe per motivi sanitari e di sicurezza e per altri
+   motivi previsti dalla normativa vigente, le pratiche agricole di cui al medesimo articolo 182,
+   comma 6-bis, del decreto legislativo n. 152 del 2006 sono ammesse solo nei mesi di marzo, aprile,
+   maggio, giugno, settembre e ottobre.
+
+
+TITOLO III: USO SOSTENIBILE DELL’ENERGIA
+Articolo 17– Obblighi e divieti
+1. Su tutto il territorio regionale, a partire dal 1 gennaio 2026, è vietato installare generatori di
+   calore non aventi la certificazione o con classe di prestazione emissiva maggiore o uguale alle “4
+   stelle” ai sensi del Decreto Ministeriale del 7 novembre 2017 n. 186 (Regolamento recante la
+   disciplina dei requisiti, delle procedure e delle competenze per il rilascio di una certificazione dei
+   generatori di calore alimentati a biomasse combustibili solide) in adempimento a quanto previsto
+   dall’articolo 290 del D.Lgs. 152/2006.
+2. Nei Comuni nei quali i rapporti integrati di qualità dell’aria predisposti annualmente da ARPA
+   Puglia evidenziano criticità correlabili, in tutto o in parte, all'utilizzo dei generatori di calore
+   alimentati a biomasse in relazione al rispetto dei valori limite di cui al D.Lgs. 155/2010 e smi,
+   ovvero nei Comuni per i quali ARPA Puglia trasmette comunicazione di alert e nei quali, dunque,
+   possa insorgere il rischio di superamento dei valori limite stabiliti dal D.lgs. 155/2010 e smi per il
+   PM10, si dà mandato ai Sindaci di adottare le seguenti misure finalizzate a preservare la qualità
+   dell'aria:
+                                                                                                      13
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                             PRQA – NORME TECNICHE DI ATTUAZIONE
+
+   a. divieto all'utilizzo di generatori di calore alimentati a biomasse privi di certificazione
+       ambientale, ovvero con classe di prestazione emissiva inferiore a "3 stelle” ai sensi del DM n.
+       186 del 7 novembre 2017, negli edifici adibiti a residenza dotati di riscaldamento
+       multicombustibile;
+   b. divieto, per qualsiasi tipologia, di combustione all’aperto, anche per le deroghe consentite
+       dall’articolo 182, comma 6 bis, del decreto legislativo 3 aprile 2006, n. 152 (Norme in materia
+       ambientale);
+   c. attivazione di campagne di informazione e sensibilizzazione della popolazione sui
+       comportamenti a minor impatto sulla qualità dell’aria con particolare riferimento al materiale
+       particolato PM10 derivante dal riscaldamento domestico a biomassa.
+3. Dal 1° gennaio 2030 è vietato l'utilizzo di generatori di calore alimentati a biomasse privi di
+   certificazione ambientale, ovvero con classe di prestazione emissiva inferiore a "3 stelle” ai sensi
+   del DM n. 186 del 7 novembre 2017.
+4. E’ fatto obbligo di utilizzare, su tutto il territorio regionale, nei generatori di calore a pellet di
+   potenza termica nominale inferiore ai 35 kW, pellet che, oltre a rispettare le condizioni previste
+   dall’Allegato X, Parte II, sezione 4, paragrafo 1, lettera d) alla parte V del decreto legislativo n.
+   152/2006, sia certificato conforme alla classe A1 della norma UNI EN ISO 17225-2 da parte di un
+   Organismo di certificazione accreditato, prevedendo altresì obblighi di conservazione della
+   documentazione pertinente da parte dell’utilizzatore.
+5. I bandi regionali incentivano in via prioritaria la sostituzione di impianti a biomassa solida per il
+   riscaldamento ad uso civile più inquinanti e, a decorrere dal 1° gennaio 2026, la sostituzione di
+   impianti di riscaldamento a biomassa legnosa con sistemi alternativi ad alta efficienza non
+   alimentati a combustibili solidi o gassosi (quali, ad esempio pompe di calore).
+6. È vietato l’utilizzo dei generatori di calore alimentati a biomassa con una classe di prestazione
+   emissiva inferiore alle “4 stelle” nei Comuni delle zone critiche ai sensi della nuova direttiva
+   2024/2881.
+7. I Comuni, nell’ambito delle rispettive competenze, sono responsabili del rafforzamento delle
+   attività di vigilanza e controllo, finalizzate a garantire l’attuazione delle misure sopra riportate.
+
+Articolo 18 – Misure per il risparmio energetico e contenimento delle
+emissioni
+1. Per il raggiungimento degli obiettivi di qualità dell’aria, il Piano prevede i seguenti indirizzi volti
+   alla riduzione dei consumi energetici che devono trovare immediata osservanza ed attuazione,
+   tra l’altro, nei regolamenti e nelle ordinanze dei Comuni:
+   a. obbligo di chiusura delle porte di accesso al pubblico da parte di esercizi commerciali e degli
+       edifici con accesso al pubblico per evitare dispersioni termiche nelle fasi di riscaldamento e
+       raffrescamento. Sono esclusi gli esercizi commerciali e gli edifici dotati di dispositivi alternativi
+       alle porte d’accesso per l’isolamento termico degli ambienti;
+   b. nelle zone in cui sono presenti le maggiori criticità, durante la stagione termica, obbligo di
+       mantenimento delle temperature fino a massimo di 19 nelle case, negli uffici, nei luoghi per
+       le attività ricreative associative o di culto, nelle attività commerciali; fino a massimo di 17° C
+       nei luoghi che ospitano attività industriali ed artigianali. Sono esclusi da queste indicazioni gli
+       ospedali e le case di cura, le scuole ed i luoghi che ospitano attività sportive.
+
+
+                                                                                                         14
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                           PRQA – NORME TECNICHE DI ATTUAZIONE
+
+Articolo 19 – Catasto regionale degli impianti termici
+1. Per il censimento, il controllo e l’ispezione periodica la Regione provvede, in attuazione del D.P.R.
+   74/2013, entro il 31 dicembre 2026 ad assicurare la registrazione nel Catasto regionale già
+   esistente degli impianti termici degli impianti a biomassa legnosa con potenza termica utile
+   nominale non minore di 10 kW, esclusi i caminetti aperti.
+2. Al fine di recepire organicamente le migliori tecniche disponibili per il contenimento delle
+   emissioni per gli impianti FER, si provvederà all’adeguamento ed all’aggiornamento del
+   Regolamento Regionale n. 12/2008.
+
+
+TITOLO IV: ULTERIORI INTERVENTI PER IL MIGLIORAMENTO
+DELLA QUALITÀ DELL’ARIA
+1. Per il raggiungimento degli obiettivi di qualità dell’aria il Piano promuove interventi di
+   forestazione urbana e periurbana utili a migliorare le caratteristiche meteoclimatiche locali e
+   creare l’ambiente più opportuno per la ciclo-pedonalità, oltre che ad agire come barriera per gli
+   inquinanti.
+2. Il Piano promuove altresì, a titolo non esaustivo, i seguenti interventi:
+   ● introduzione di servizi di car sharing elettrico nei centri urbani;
+   ● promozione di flotte a basse o zero emissioni per il trasporto pubblico locale e per la logistica
+     urbana;
+   ● sostituzione di veicoli di servizio inquinanti;
+   ● istituzione di aree pedonali e/o zone a traffico limitato in sostituzione di aree carrabili e aperte
+     al traffico veicolare nei centri urbani;
+   ● elaborazione, nei capoluoghi e nei Comuni critici individuati dalla modellizzazione del PRQA,
+     di Piani Urbani della Qualità dell’Aria (PUQA) integrati con i PUMS, con specifiche misure di
+     riduzione delle emissioni da traffico;
+   ● attivazione graduale di Zone a Emissioni Ridotte (ZER) o equivalenti, nonché di aree a velocità
+     massima 30 km/h nei quartieri a maggiore densità abitativa, con limitazioni all’accesso dei
+     veicoli più inquinanti;
+   ● azioni di urbanistica tattica e mobilità di prossimità volte a ridurre l’uso dell’auto privata per
+     gli spostamenti di breve raggio (< 3 km), con benefici diretti sulle emissioni urbane di PM2.5 e
+     precursori;
+   ● miglioramento dell’accessibilità attraverso potenziamento dei servizi di trasporto pubblico
+     locale in sostituzione del veicolo privato;
+   ● miglioramento dell’accessibilità attraverso potenziamento dei servizi e delle infrastrutture per
+     la mobilità ciclopedonale in sostituzione del veicolo privato;
+
+
+
+
+                                                                                                      15
+PRQA - PARTE II – Norme tecniche di Attuazione
+                                                      PRQA – NORME TECNICHE DI ATTUAZIONE
+
+  ● miglioramento dell’accessibilità attraverso potenziamento dell’integrazione tra forme di
+    mobilità sostenibile (trasporto ciclopedonale e trasporto pubblico locale automobilistico e
+    ferroviario) e mobilità convenzionale;
+  ● facilitazione dell’accesso ai servizi di bike sharing e car sharing ai turisti e agli utenti
+    occasionali;
+  ● campagne di informazione e sensibilizzazione sugli impatti anche sanitari dei parametri
+    oggetto di monitoraggio della qualità dell’aria, con particolare riferimento al PM10, PM2.5,
+    benzo(a)pirene e O₃.
+
+
+
+
+                                                                                             16
+PRQA - PARTE II – Norme tecniche di Attuazione
+
