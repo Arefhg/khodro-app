@@ -3,6 +3,8 @@
 Newest first. What we did, and what we learned.
 
 ## 22 Nov 2026
+- Learned: GitHub Pages lets phones keep each file for up to 10 minutes, so new pushes
+  didn't show. Fix: `sw.js` now fetches with `cache: "no-cache"` (always checks for a newer file).
 - v0.3: Home keeps the new order but gets the old colorful look back: hello + avatar,
   red countdown card, colored icon rows, news cards with colored thumbnails and tags,
   colored emergency tiles, emoji in section titles.
