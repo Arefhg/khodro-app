@@ -10,14 +10,12 @@ jobs:
       - run: |
           sudo apt-get -qq install -y poppler-utils >/dev/null
           mkdir -p tmp_docs && cd tmp_docs
-          ua="Mozilla/5.0"
-          curl -sfL -A "$ua" -o puglia_nta.pdf "https://pugliacon.regione.puglia.it/documents/455951/545209/A09_DEL_2026_00038_Allegato+A_Parte+II_signed.pdf/4621bb1a-8acc-38f4-56af-d90511ae99c5" || echo fail1
-          curl -sfL -A "$ua" -o puglia_dgr1410.pdf "https://burp.regione.puglia.it/documents/20135/2851133/DEL_1410_2026.pdf/d03c7541-ea71-de7a-81ef-59faad5bb37f" || echo fail2
-          curl -sfL -A "$ua" -o venezia_map.pdf "https://www.comune.venezia.it/sites/comune.venezia.it/files/page/files/Area%20limitazioni%20e%20percorsi.pdf" || echo fail3
-          curl -sfL -A "$ua" -o firenze_8397.pdf "https://ambiente.comune.fi.it/sites/ambiente.comune.fi.it/files/2024-12/2024-M-8397_compressed-1.pdf" || echo fail4
-          for f in *.pdf; do pdftotext -layout "$f" "${f%.pdf}.txt" || true; pdfinfo "$f" | grep -E "Pages|Page size" > "${f%.pdf}.info" || true; done
-          pdftoppm -r 80 -jpeg venezia_map.pdf venezia_map || true
-          pdftoppm -r 60 -jpeg -l 10 firenze_8397.pdf firenze_p; pdftoppm -r 40 -jpeg -f 11 firenze_8397.pdf firenze_q || true
-          rm -f *.pdf; pdftoppm -v >/dev/null 2>&1; ls -la
+          B=https://accessoconcertificato.comune.fi.it/trasparenza-atti-allegati
+          curl -sfL -m 120 -o dg320.pdf "$B/385633/Deliberazione_di_Giunta_Completa-DG_2026_00280_00320.pdf" || echo fail1
+          curl -sfL -m 120 -o ord100.pdf "$B/155122/Ordinanza-ORD_2023_00102_00100.pdf" || echo fail2
+          curl -sfL -m 120 -o euro5map.pdf "$B/155122/Euro5_ZTL01%20PDF_OK.pdf" || echo fail3
+          for f in *.pdf; do pdftotext -layout "$f" "${f%.pdf}.txt" || true; pdfinfo "$f" > "${f%.pdf}.info" || true; done
+          pdftoppm -r 70 -jpeg euro5map.pdf euro5map || true
+          rm -f *.pdf; ls -la
           cd .. && git config user.name bot && git config user.email bot@users.noreply.github.com
           git add tmp_docs && git commit -qm "docs added" && git push
