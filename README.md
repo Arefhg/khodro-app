@@ -1,6 +1,9 @@
 # Khodro Italy – sample web app
 
-Persian (RTL) web app for Iranians in Italy: bollo calculator, insurance guide and estimate, garage with deadlines.
+Persian (RTL) web app for Iranians in Italy: bollo calculator, insurance guide and estimate, garage with deadlines, road emergency numbers (tap to call).
 Install on iPhone: open the site in Safari → Share → Add to Home Screen.
 
 Files: `index.html` (the whole app), `manifest.webmanifest` + icons (install), `sw.js` (offline).
+
+
+Emergency numbers (`SOS` list in index.html) were checked against official sources on 22 Nov 2026. Language notes say "not confirmed" where no official source said which languages are spoken.
