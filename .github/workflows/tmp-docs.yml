@@ -10,9 +10,13 @@ jobs:
       - run: |
           sudo apt-get -qq install -y poppler-utils >/dev/null
           mkdir -p tmp_docs && cd tmp_docs
-          curl -sfL -m 180 -o bs_nta.pdf "https://www.comune.brescia.it/sites/default/files/2024-02/V-NTAall00.pdf" || echo fail1
+          curl -sfL -m 120 -o ckan_ds51.json "https://dati.comune.milano.it/api/3/action/package_show?id=d7d9179a-8228-427f-9c86-1e30154be4fe" || echo f1
+          python3 -c "import json;d=json.load(open('ckan_ds51.json'));[print(r.get('format'),r['url']) for r in d['result']['resources']]" > ds51_urls.txt || true
+          for u in $(grep -i -E "^geojson|^json" ds51_urls.txt | awk '{print $2}'); do curl -sfL -m 120 -o "ds51_$(basename $u)" "$u" || true; done
+          curl -sfL -m 120 -o nil.zip "https://dati.comune.milano.it/dataset/e5a0d956-2eff-454d-b0ea-659cb7b55c0b/resource/4888f702-3b5a-4908-b80e-f51a64402936/download/ds61_infogeo_nil_localizzazione_shp.zip" || echo f2
+          for n in ztl ztl_diurna ztl_centro_storico zona_traffico_limitato; do curl -sfL -m 60 -o fi_$n.zip "https://datigis.comune.fi.it/shp/$n.zip" && echo ok $n || rm -f fi_$n.zip; done
+          curl -sfL -m 60 -o fi_ztl_notturna.zip "https://datigis.comune.fi.it/shp/ztl_notturna.zip" || true
           for f in *.pdf; do pdftotext -layout "$f" "${f%.pdf}.txt" || true; pdfinfo "$f" > "${f%.pdf}.info" || true; done
-          grep -n -i -E 'centro abitato|centri abitati|delimitazione|Art\\. 101' bs_nta.txt > bs_hits.txt || true; grep -n -i -A25 'Art\\. 101' bs_nta.txt > bs_art101.txt || true; rm -f bs_nta.txt
-          rm -f *.pdf; ls -la
+          ls -la
           cd .. && git config user.name bot && git config user.email bot@users.noreply.github.com
           git add tmp_docs && git commit -qm "docs added" && git push
