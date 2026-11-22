@@ -3,7 +3,8 @@
 Last update: 22 Nov 2026
 
 ## Where we are
-- Version 0.1 is live on GitHub Pages and installed on Aref's iPhone.
+- Version 0.2 is live on GitHub Pages and installed on Aref's iPhone.
+- v0.2: new Home with three sections (reminder, latest news, emergency numbers).
 - Phase 1 (redesign) has started. Three design directions are in `design/directions.html`.
   Waiting for Aref to choose one.
 
@@ -18,10 +19,9 @@ Last update: 22 Nov 2026
 - The whole app is one file (`index.html`, about 1,300 lines).
 - The desktop demo (phone frame, step list, gallery) is mixed into the app code.
 - Every tap rebuilds the screen: scroll jumps, no swipe-back, browser back leaves the app.
-- "Remind me" shows a message, but no reminder exists.
+- Home news is typed in by hand from the Telegram channel (posts 17, 14, 11). Later it must come from the news bot.
 - Dark mode choice is not saved.
 - The font loads from Google and is never cached, so offline it falls back to the system font.
-- Home news is invented sample text.
 - Bollo rates come from the "Bollo Auto" guide and are not yet checked against official sources.
   Euro 0–3 rates are a guess (national rate × region rate ÷ 2.58), not real data.
 - Garage dates are fake demo dates.

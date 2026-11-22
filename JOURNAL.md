@@ -3,6 +3,9 @@
 Newest first. What we did, and what we learned.
 
 ## 22 Nov 2026
+- v0.2: put the new Home into the real app (`vHome` in `index.html`).
+  Removed the countdown ring, tool cards, fake news, tip and the fake "remind me" button.
+  Reminder shows bollo and insurance only, closest first. Checked on a phone-size screen, light and dark.
 - New Home draft (top of `design/directions.html`): reminder, latest news from the
   real channel posts (17, 14, 11), emergency numbers with tap to call.
 - Read the whole repo and listed what's weak (see `STATUS.md`).
