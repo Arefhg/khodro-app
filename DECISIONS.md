@@ -9,6 +9,10 @@ Each decision: the date, what we chose, and why.
 ## 22 Nov 2026 – Insurance price model is on hold
 - Chose: keep the code, spend no time on it now.
 
+## 22 Nov 2026 – Home has three sections
+- Chose (Aref): 1) reminder for bollo or insurance, 2) latest news, short, with the Telegram channel link, 3) emergency numbers.
+- First draft is drawn in the style of direction A (style not chosen yet).
+
 ## Open questions (waiting for Aref)
 1. Design direction: A (Calm iOS), B (Garage first, dark), C (Friendly guide), or a mix?
 2. Main look: light or dark?
