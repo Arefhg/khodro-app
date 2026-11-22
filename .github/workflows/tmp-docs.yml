@@ -10,12 +10,11 @@ jobs:
       - run: |
           sudo apt-get -qq install -y poppler-utils >/dev/null
           mkdir -p tmp_docs && cd tmp_docs
-          B=https://accessoconcertificato.comune.fi.it/trasparenza-atti-allegati
-          curl -sfL -m 120 -o dg320.pdf "$B/385633/Deliberazione_di_Giunta_Completa-DG_2026_00280_00320.pdf" || echo fail1
-          curl -sfL -m 120 -o ord100.pdf "$B/155122/Ordinanza-ORD_2023_00102_00100.pdf" || echo fail2
-          curl -sfL -m 120 -o euro5map.pdf "$B/155122/Euro5_ZTL01%20PDF_OK.pdf" || echo fail3
+          B=https://accessoconcertificato.comune.fi.it/trasparenza-atti-allegati/385633
+          curl -sfL -m 120 -o all1.pdf "$B/All_1%20-%20Tabella%20divieti%20ZTL-SV.pdf" || echo fail1
+          curl -sfL -m 120 -o all2.pdf "$B/All_2%20-%20Disciplinare%20ZTL%20Scudo%20Verde.pdf" || echo fail2
           for f in *.pdf; do pdftotext -layout "$f" "${f%.pdf}.txt" || true; pdfinfo "$f" > "${f%.pdf}.info" || true; done
-          pdftoppm -r 70 -jpeg euro5map.pdf euro5map || true
+          pdftoppm -r 70 -jpeg all1.pdf all1 || true
           rm -f *.pdf; ls -la
           cd .. && git config user.name bot && git config user.email bot@users.noreply.github.com
           git add tmp_docs && git commit -qm "docs added" && git push
