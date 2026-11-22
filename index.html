@@ -253,6 +253,18 @@ input,select{font:inherit;color:inherit}
 .field input,.field select{flex:1;border:0;background:none;outline:0;font-size:16px;color:var(--label);padding:12px 0;min-width:0}
 .field input::placeholder{color:var(--label3)}
 .field input.ltr{direction:ltr;text-align:right}
+.sos{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;position:relative}
+.sos + .sos{border-top:.5px solid var(--sep, rgba(127,127,127,.25))}
+.sos .num{font-size:22px;font-weight:800;unicode-bidi:plaintext;text-align:right;letter-spacing:.5px}
+.sos .d{font-size:14.5px;line-height:1.75;margin-top:4px}
+.sos .lang{font-size:13px;color:var(--label2);margin-top:6px;line-height:1.6}
+.sos .tx{flex:1;min-width:0}
+.sos .call{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;background:#30A46C;margin-top:2px}
+.sos .call svg{width:22px;height:22px}
+.sos-hero{background:linear-gradient(145deg,#E5383B,#B91C1C);color:#fff;border-radius:18px;padding:18px;display:flex;gap:14px;align-items:center}
+.sos-hero b{font-size:40px;font-weight:900;direction:ltr}
+.sos-hero p{font-size:14.5px;line-height:1.7;opacity:.95}
+.sos-hero a{margin-inline-start:auto;background:#fff;color:#B91C1C;border-radius:999px;padding:10px 16px;font-weight:800;text-decoration:none;white-space:nowrap}
 .foot{font-size:12.5px;color:var(--label2);padding:6px 16px 18px;line-height:1.7}
 .euro{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px}
 .euro button{min-width:42px;height:34px;border-radius:10px;background:var(--fill);font-weight:700;font-size:14px}
@@ -566,6 +578,7 @@ const state = {
    Icons (simple SF-Symbols-like strokes)
    ========================================================= */
 const I = {
+  phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>',
   home:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2 3 10.4V20a1 1 0 0 0 1 1h5.5v-6h5v6H20a1 1 0 0 0 1-1v-9.6z"/></svg>',
   garage:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.5 9.5 7 5.6A2 2 0 0 1 8.9 4.3h6.2A2 2 0 0 1 17 5.6l1.5 3.9A2.5 2.5 0 0 1 20.5 12v5a1 1 0 0 1-1 1h-1v1.5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V18h-7v1.5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V18h-1a1 1 0 0 1-1-1v-5a2.5 2.5 0 0 1 2-2.5Zm2.1-.2h8.8l-1.1-3a.8.8 0 0 0-.7-.5H9.4a.8.8 0 0 0-.7.5ZM7 14.6a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6Zm10 0a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6Z"/></svg>',
   tools:'<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="2.2"/><rect x="13" y="3" width="8" height="8" rx="2.2"/><rect x="3" y="13" width="8" height="8" rx="2.2"/><rect x="13" y="13" width="8" height="8" rx="2.2" opacity=".55"/></svg>',
@@ -738,6 +751,7 @@ function vHome(){
     <div class="card news">${news.map(([c,ic,src,t,tags]) => `<div class="n"><div class="thumb" style="background:${c}">${ic.replace('<svg','<svg width="28" height="28"')}</div>
       <div><div class="src"><i></i>${src} · امروز</div><b>${t}</b><div class="tags">${tags}</div></div></div>`).join("")}</div>
     <div class="foot">این‌ها نمونه‌ان؛ تو اپ واقعی خبرها مستقیم از ربات خبر میان.</div></div>
+  <div class="section"><button class="card tool" data-tool="sos" style="width:100%;flex-direction:row;align-items:center;gap:12px;text-align:start"><div class="ti" style="background:#DC2626;margin:0">${I.phone}</div><div style="flex:1"><b>شماره‌های ضروری جاده</b><span style="display:block">اورژانس ۱۱۲، امداد خودرو، ترافیک</span></div>${I.chev}</button></div>
   <div class="section"><div class="card tip"><div class="ti">${I.bulb}</div><p><b>می‌دونستی؟</b> با پاتنته ب می‌تونی موتور تا ۱۲۵ سی‌سی هم برونی — ولی فقط تو خود ایتالیا.</p></div></div>
   ${tabbar("home")}`;
 }
@@ -786,11 +800,11 @@ function vDetail(){
 }
 
 function vTools(){
-  const T = [["حساب بولو","ماشین و موتور، هر ۲۰ منطقه","#E5383B",I.euro,"bollo"],["بیمه چنده؟","قیمت حدودی از آمار رسمی","#0A84FF",I.shield,"insurance"],
+  const T = [["شماره‌های ضروری","اورژانس، امداد خودرو، ترافیک","#DC2626",I.phone,"sos"],["حساب بولو","ماشین و موتور، هر ۲۰ منطقه","#E5383B",I.euro,"bollo"],["بیمه چنده؟","قیمت حدودی از آمار رسمی","#0A84FF",I.shield,"insurance"],
     ["چک‌لیست خرید","۳۰ نکته قبل از خرید دست‌دوم","#30A46C",I.list],["خرج سالانه","بولو + بیمه + بنزین + سرویس","#8E5CF7",I.chart],
     ["رویزیونه","کی، کجا، چند؟","#F59E0B",I.wrench],["خبرهای رسمی","از کانال تلگرام خودرو ایتالیا","#14B8A6",I.news]];
   return `<div class="navbar" data-title="ابزارها"><span class="ttl">ابزارها</span></div>
-  <div class="large">ابزارها</div><div class="subhead">دوتاش آماده‌ست، بقیه هم کم‌کم میان.</div>
+  <div class="large">ابزارها</div><div class="subhead">سه‌تاش آماده‌ست، بقیه هم کم‌کم میان.</div>
   <div class="section"><div class="tools">${T.map(([t,s,c,ic,tool]) => `<button class="card tool" ${tool ? `data-tool="${tool}"` : `data-toast="«${t}» تو نسخه‌ی بعدی اضافه می‌شه"`}>${tool ? '<span class="badge new">جدید</span>' : '<span class="badge soon">به‌زودی</span>'}<div class="ti" style="background:${c}">${ic}</div><b>${t}</b><span>${s}</span></button>`).join("")}</div></div>
   ${tabbar("tools")}`;
 }
@@ -1069,7 +1083,52 @@ function vQuote(){
   ${tabbar("tools")}`;
 }
 
-const VIEWS = { welcome:vWelcome, features:vFeatures, setup:vSetup, notify:vNotify, home:vHome, garage:vGarage, add:vGarage, detail:vDetail, tools:vTools, bollo:vBollo, insurance:vInsurance, quote:vQuote, profile:vProfile };
+
+/* Road emergency numbers (checked against official sources, Nov 2026) */
+const SOS = [
+  ["🚨 اورژانس", "رایگان و شبانه‌روزی", [
+    ["112","شماره اورژانس عمومی اروپا. برای پلیس، آتش‌نشانی، آمبولانس و کمک در دریا. حتی بدون سیم‌کارت، با گوشی قفل یا بدون شارژ هم کار می‌کند.","ایتالیایی، انگلیسی و زبان‌های دیگر با مترجم تلفنی. اگر ایتالیایی بلد نیستید، بهترین شماره همین است."],
+    ["113","پلیس ایتالیا، از جمله پلیس راه. برای تصادف، خطر در جاده یا هر مشکل امنیتی.","ایتالیایی. جایی که مرکز واحد ۱۱۲ فعال است، به همان مرکز با مترجم می‌رود؛ جاهای دیگر انگلیسی بستگی به اپراتور دارد."],
+    ["115","آتش‌نشانی. برای آتش گرفتن ماشین، گیر افتادن آدم‌ها در ماشین بعد از تصادف، یا نشت سوخت.","ایتالیایی. جایی که مرکز واحد ۱۱۲ فعال است، با مترجم؛ جاهای دیگر انگلیسی تضمینی نیست."],
+    ["118","اورژانس پزشکی و آمبولانس. وقتی کسی زخمی شده یا حالش بد است.","ایتالیایی. جایی که مرکز واحد ۱۱۲ فعال است، با مترجم؛ جاهای دیگر انگلیسی تضمینی نیست."],
+    ["1530","گارد ساحلی. برای اورژانس در دریا و کنار ساحل.","ایتالیایی (برای انگلیسی، تأیید رسمی پیدا نشد)."],
+  ]],
+  ["🔧 خرابی ماشین و یدک‌کش", "", [
+    ["803.116","امداد خودرو ACI. شبانه‌روزی، در سراسر ایتالیا، تماس رایگان. برای اعضای ACI یا کسانی که امداد خودرو در بیمه‌شان دارند رایگان است؛ بقیه طبق تعرفه ACI پول می‌دهند.","ایتالیایی (برای انگلیسی، تأیید رسمی پیدا نشد)."],
+    ["800.116.800","شماره ACI مخصوص رانندگانی که سیم‌کارت خارجی دارند.","مخصوص خارجی‌هاست، ولی فهرست رسمی زبان‌هایش پیدا نشد."],
+    ["+39 02 66165116","شماره ACI برای تماس از خارج از ایتالیا.","ایتالیایی (برای انگلیسی، تأیید رسمی پیدا نشد)."],
+    ["803.803","امداد خودرو یوروپ اسیستنس. در کل شبکه اتوبان‌های «اوتوسترادِ پر ایتالیا» مجاز است.","ایتالیایی (برای انگلیسی، تأیید رسمی پیدا نشد)."],
+    ["800.108.108","امداد خودرو تله‌پس، فقط برای مشتری‌های تله‌پس.","ایتالیایی (برای انگلیسی، تأیید رسمی پیدا نشد)."],
+    ["ستون‌های SOS","ستون‌های SOS کنار اتوبان را هم می‌شود برای کمک استفاده کرد (اگر بخش صوتی داشته باشند).","ایتالیایی (برای انگلیسی، تأیید رسمی پیدا نشد).", "nocall"],
+  ]],
+  ["🛣 اطلاعات جاده و ترافیک", "", [
+    ["1518","مرکز اطلاعات ترافیک دولت ایتالیا (CCISS). رایگان و شبانه‌روزی، برای وضعیت ترافیک همه جاده‌ها و اتوبان‌ها.","ایتالیایی (برای انگلیسی، تأیید رسمی پیدا نشد)."],
+    ["803.111","شماره واحد «اوتوسترادِ پر ایتالیا». رایگان، برای ترافیک اتوبان‌ها و عوارضی پرداخت‌نشده. شماره قدیمی ۸۴۰.۰۴.۲۱.۲۱ دیگر فعال نیست.","ایتالیایی (برای انگلیسی، تأیید رسمی پیدا نشد)."],
+    ["800.841.148","پرونتو آناس، برای جاده‌های اصلی دولتی. شبانه‌روزی، حتی روزهای تعطیل. برای اطلاعات ترافیک و گزارش خطر در جاده.","ایتالیایی (برای انگلیسی، تأیید رسمی پیدا نشد)."],
+  ]],
+  ["🩺 کمک پزشکی غیر اورژانسی", "", [
+    ["116117","پزشک کشیک شب و آخر هفته (گواردیا مدیکا). معمولاً روزهای کاری از ساعت ۲۰ تا ۸ صبح و آخر هفته از شنبه ساعت ۸ تا دوشنبه ساعت ۸. هنوز همه‌جا فعال نیست؛ اگر کار نکرد، شماره منطقه‌تان را از سایت ASL پیدا کنید.","ایتالیایی. در بعضی منطقه‌ها چندزبانه است (مثلاً توسکانا)."],
+  ]],
+  ["📱 اپلیکیشن مفید", "", [
+    ["اپ 112 Where ARE U","با این اپ با ۱۱۲ تماس می‌گیرید و موقعیت دقیق شما خودکار برای مرکز اورژانس فرستاده می‌شود. در منطقه‌هایی کار می‌کند که مرکز واحد ۱۱۲ فعال است.","همان مرکز ۱۱۲ با مترجم جواب می‌دهد؛ لازم نیست آدرس را به ایتالیایی توضیح دهید.", "nocall"],
+  ]],
+];
+
+function vSos(){
+  const row = ([n, d, lang, flag]) => `<div class="sos"><div class="tx"><div class="num">${n}</div><div class="d">${d}</div><div class="lang">🗣 زبان: ${lang}</div></div>
+    ${flag === "nocall" ? "" : `<a class="call" href="tel:${n.replace(/[^+\d]/g, "")}" aria-label="تماس با ${n}">${I.phone}</a>`}</div>`;
+  return `<div class="navbar solid" data-title="شماره‌های ضروری"><button class="navbtn" data-back="tools">${I.back}<span>ابزارها</span></button><span class="ttl">شماره‌های ضروری</span><span class="navbtn end"></span></div>
+  <div class="large" style="padding-top:8px">شماره‌های ضروری</div>
+  <div class="subhead">همه‌ی شماره‌هایی که تو جاده لازم داری. روی دکمه‌ی سبز بزن تا زنگ بزنی.</div>
+  <div class="section"><div class="sos-hero"><b>112</b><p>تصادف، آتش، زخمی یا خطر؟<br>اول این شماره.</p><a href="tel:112">تماس</a></div></div>
+  ${SOS.map(([h, sub, items]) => `<div class="section"><div class="sec-h"><h3>${h}</h3>${sub ? `<span class="foot" style="padding:0">${sub}</span>` : ""}</div>
+    <div class="group">${items.map(row).join("")}</div></div>`).join("")}
+  <div class="section"><div class="card tip"><div class="ti">${I.bulb}</div><p><b>قانون ساده:</b> تصادف، آتش، زخمی یا خطر: ۱۱۲ · خرابی ماشین: ۸۰۳.۱۱۶ · اطلاعات ترافیک: ۱۵۱۸<br>مراقب سایت‌های تقلبی امداد خودرو با نام ACI باشید؛ فقط aci.it و acimobility.it رسمی‌اند.</p></div>
+  <div class="foot">به‌روز شده: ۲۲ نوامبر ۲۰۲۶. شماره‌ها از سایت‌های رسمی چک شده‌اند.</div></div>
+  ${tabbar("tools")}`;
+}
+
+const VIEWS = { welcome:vWelcome, features:vFeatures, setup:vSetup, notify:vNotify, home:vHome, garage:vGarage, add:vGarage, detail:vDetail, tools:vTools, bollo:vBollo, insurance:vInsurance, quote:vQuote, profile:vProfile, sos:vSos };
 
 /* =========================================================
    Render
