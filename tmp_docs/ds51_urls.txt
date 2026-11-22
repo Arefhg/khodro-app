@@ -1,0 +1,3 @@
+GeoJSON https://dati.comune.milano.it/dataset/d7d9179a-8228-427f-9c86-1e30154be4fe/resource/d788b26b-31b4-4e57-992d-276a1280c8c2/download/disciplina_aree.geojson
+SHP https://dati.comune.milano.it/dataset/d7d9179a-8228-427f-9c86-1e30154be4fe/resource/f78eeb29-231f-4c14-9fab-6eacc742db9a/download/disciplina_aree_shp.zip
+CSV https://dati.comune.milano.it/dataset/d7d9179a-8228-427f-9c86-1e30154be4fe/resource/3a9418ff-ceb1-436a-aa05-acb5f05166e2/download/disciplina_aree.csv
