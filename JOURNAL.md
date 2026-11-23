@@ -3,6 +3,10 @@
 Newest first. What we did, and what we learned.
 
 ## 23 Nov 2026
+- No more fake data: the real app starts with an empty Garage (demo vehicles only in the desktop demo);
+  old demo vehicles saved on phones are removed; add-vehicle sheet has real dates (bollo, insurance,
+  revisione, all optional); model and kW are required; no invented plate, fuel or kW.
+- Learned: "·" next to a Persian number looks like ۰ (Persian zero is a dot), so use ":".
 - Added Capacitor 8: `package.json`, `capacitor.config.json`, `scripts/copy-web.mjs`.
 - Added `ios/` and `android/` projects. iOS uses Swift Package Manager (no CocoaPods needed).
 - `scripts/make-icons.py` makes all icons and splash screens from one picture.

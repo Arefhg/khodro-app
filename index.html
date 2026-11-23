@@ -575,8 +575,9 @@ const state = {
   real: loadReal(), rf: null,
   ins: { start:14, years:[false,false,true,false], value:6000, cov:{ rc:true, kaskoFull:false, kaskoPart:false, theft:true, glass:false, road:true, nature:false, driver:false, legal:false } },
   sheet: false, detail: null,
-  newCar: { kind:"car", name:"", year:"", plate:"", kw:"", euro:6, color:"#1F2937" },
-  cars: [
+  newCar: { kind:"car", name:"", year:"", plate:"", kw:"", euro:6, color:"#1F2937", bollo:"", insurance:"", revisione:"" },
+  // the real app starts with an empty garage; the two sample vehicles are only for the desktop demo
+  cars: document.documentElement.classList.contains("app") ? [] : [
     { id:1, kind:"car", name:"فیات پاندا", year:2019, plate:"GH 482 KT", fuel:"بنزین", kw:51, euro:6, color:"#E5383B",
       dl:{ bollo:addDays(12), insurance:addDays(41), revisione:addDays(118) } },
     { id:2, kind:"moto", name:"هوندا اس‌اچ ۱۲۵", year:2021, plate:"FX 19 284", fuel:"بنزین", kw:9, euro:5, color:"#1F2937",
@@ -634,6 +635,8 @@ const KIND_SVG = { car:'<svg viewBox="0 0 64 40" fill="currentColor"><path d="M6
   moto:'<svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="28" r="8"/><circle cx="51" cy="28" r="8"/><path d="M13 28 24 17h15l6 11M24 17l-3-5h-5M39 17l4-6h6M45 11l6 17"/></svg>' };
 
 const plate = (p) => `<span class="plate"><span class="eu">I</span><span class="nr">${p}</span><span class="rg"></span></span>`;
+const daysTxt = (n) => n < 0 ? "گذشته" : n === 0 ? "امروز" : `${FA(n)} روز`;
+const toDate = (v) => { if (!v) return null; const d = new Date(v + "T12:00:00"); return isNaN(d) ? null : d; };
 const status = (n) => n < 0 ? "bad" : n <= 14 ? "bad" : n <= 45 ? "warn" : "ok";
 const DL = { bollo:["بولو", "#E5383B", I.euro], insurance:["بیمه", "#0A84FF", I.shield], revisione:["رویزیونه", "#8E5CF7", I.wrench] };
 const nextDeadline = () => {
@@ -782,11 +785,11 @@ function vHome(){
 }
 
 function carCard(v){
-  const chips = Object.entries(v.dl).map(([k,d]) => { const n = daysLeft(d); return `<span class="chip ${status(n)}"><i></i>${DL[k][0]} · ${FA(n)} روز</span>`; }).join("");
+  const chips = Object.entries(v.dl).sort((a,b) => a[1]-b[1]).map(([k,d]) => { const n = daysLeft(d); return `<span class="chip ${status(n)}"><i></i>${DL[k][0]}: ${daysTxt(n)}</span>`; }).join("") || `<span class="chip"><i></i>هنوز تاریخی ثبت نشده</span>`;
   return `<div class="card carcard" data-open="${v.id}">
     <div class="top" style="background:radial-gradient(80% 90% at 50% 100%, ${v.color}22, transparent 70%), linear-gradient(180deg, var(--card2), var(--card))">${ART(v)}</div>
-    <div class="meta"><h4>${v.name} ${plate(v.plate)}</h4>
-      <div class="sub">${FA(v.year)} · ${v.fuel} · ${FA(v.kw)} کیلووات · یورو ${FA(v.euro)}</div>
+    <div class="meta"><h4>${v.name} ${v.plate ? plate(v.plate) : ""}</h4>
+      <div class="sub">${[v.year ? FA(v.year) : "", v.fuel, `${FA(v.kw)} کیلووات`, `یورو ${FA(v.euro)}`].filter(Boolean).join(" · ")}</div>
       <div class="chips">${chips}</div></div></div>`;
 }
 
@@ -795,7 +798,7 @@ function vGarage(){
   <div class="large">گاراژ من</div>
   <div class="subhead">${FA(state.cars.length)} وسیله · ${state.region}</div>
   <div class="section" style="display:flex;flex-direction:column;gap:16px">${state.cars.map(carCard).join("")}
-    <button class="empty-add" data-sheet="1"><b>+ اضافه کردن ماشین یا موتور</b>فقط پلاک و کیلووات رو می‌خوایم</button></div>
+    <button class="empty-add" data-sheet="1"><b>+ اضافه کردن ماشین یا موتور</b>مدل و کیلووات کافیه، تاریخ‌ها هم اگه بدونی</button></div>
   ${tabbar("garage")}`;
 }
 
@@ -806,16 +809,16 @@ function vDetail(){
     const col = s==="ok" ? "var(--green)" : s==="warn" ? "var(--orange)" : "var(--tint)";
     return `<div class="deadline"><div class="ic" style="background:${c}">${ic}</div>
       <div class="tx"><b>${t}</b><span>${fmtDate(d)}</span><div class="bar"><i style="width:${Math.max(6,100-n/3.65)}%;background:${col}"></i></div></div>
-      <div class="left"><b style="color:${col}">${FA(n)}</b><span>روز مونده</span></div></div>`;
+      <div class="left"><b style="color:${col}">${n < 0 ? "گذشته" : FA(n)}</b><span>${n < 0 ? "" : "روز مونده"}</span></div></div>`;
   }).join("");
   return `<div class="navbar solid-on-scroll" data-title="${v.name}"><button class="navbtn" data-back="garage">${I.back}<span>گاراژ</span></button><span class="ttl">${v.name}</span><span class="navbtn end"><button class="navbtn end" style="min-width:0" data-toast="ویرایش تو نسخه‌ی بعدی میاد">ویرایش</button></span></div>
   <div class="detail-hero" style="background:radial-gradient(70% 70% at 50% 85%, ${v.color}33, transparent 70%)">${ART(v)}</div>
-  <div class="detail-head"><h2>${v.name}</h2><div style="margin-top:8px">${plate(v.plate)}</div></div>
+  <div class="detail-head"><h2>${v.name}</h2>${v.plate ? `<div style="margin-top:8px">${plate(v.plate)}</div>` : ""}</div>
   <div class="section"><div class="specs">
     <div class="card spec"><b>${FA(v.kw)}</b><span>کیلووات</span></div>
     <div class="card spec"><b>یورو ${FA(v.euro)}</b><span>آلایندگی</span></div>
-    <div class="card spec"><b>${FA(v.year)}</b><span>سال ساخت</span></div></div></div>
-  <div class="section"><div class="sec-h"><h3>موعدها</h3></div><div class="card">${rows}</div></div>
+    <div class="card spec"><b>${v.year ? FA(v.year) : "—"}</b><span>سال ساخت</span></div></div></div>
+  <div class="section"><div class="sec-h"><h3>موعدها</h3></div><div class="card">${rows || `<div style="padding:16px;color:var(--label2)">هنوز تاریخی ثبت نشده.</div>`}</div></div>
   <div class="section"><div class="group">
     <button class="row" style="width:100%" data-tool="bollo" data-car="${v.id}"><div class="ic" style="background:#E5383B">${I.euro}</div><span class="t">بولوی این ${v.kind==='moto'?'موتور':'ماشین'}</span><span class="v">${EUR(calcBollo(v.kind, v.kw, v.euro, state.region).total)} €</span>${I.chev}</button>
     <button class="row" style="width:100%" data-tool="insurance"><div class="ic" style="background:#0A84FF">${I.shield}</div><span class="t">بیمه رو بفهم</span>${I.chev}</button>
@@ -868,7 +871,13 @@ function sheetHTML(){
       <div class="field"><label>پلاک</label><input class="ltr" data-f="plate" value="${n.plate}" placeholder="AB 123 CD"></div>
       <div class="field"><label>توان موتور</label><input data-f="kw" value="${n.kw}" inputmode="numeric" placeholder="کیلووات — تو لیبرتو، خونه‌ی P.2"></div>
     </div>
-    <div class="foot">کیلووات رو واسه حساب کردن بولو لازم داریم.</div>
+    <div class="foot">مدل و کیلووات لازمه؛ کیلووات رو واسه حساب کردن بولو می‌خوایم.</div>
+    <div class="group">
+      <div class="field"><label>مهلت بولو</label><input type="date" data-f="bollo" value="${n.bollo}"></div>
+      <div class="field"><label>پایان بیمه</label><input type="date" data-f="insurance" value="${n.insurance}"></div>
+      <div class="field"><label>رویزیونه</label><input type="date" data-f="revisione" value="${n.revisione}"></div>
+    </div>
+    <div class="foot">هر کدوم رو که می‌دونی بزن؛ بقیه رو بعداً هم می‌شه اضافه کرد.</div>
     <div class="group"><div style="padding:12px 16px 0;font-size:13px;color:var(--label2)">کلاس یورو</div>
       <div class="euro">${[0,1,2,3,4,5,6].map(e => `<button class="${n.euro===e?'on':''}" data-euro="${e}">${FA(e)}</button>`).join("")}</div></div>
     <div class="group" style="margin-top:18px"><div style="padding:12px 16px 0;font-size:13px;color:var(--label2)">رنگ</div>
@@ -1174,7 +1183,7 @@ let current = "welcome";
 function go(id, anim = "fade"){
   current = id;
   state.step = STEPS.findIndex(s => s.id === id);
-  if (id === "detail" && !state.detail) state.detail = state.cars[0].id;
+  if (id === "detail" && !state.cars.some(c => c.id === state.detail)) { if (!state.cars.length) id = current = "garage"; else state.detail = state.cars[0].id; }
   phone.innerHTML = screenHTML(id, anim);
   pinTabbar(phone);
   const view = phone.querySelector(".view");
@@ -1249,7 +1258,7 @@ document.addEventListener("click", (e) => {
     if (d.cov === "kaskoPart" && state.ins.cov.kaskoPart) state.ins.cov.kaskoFull = false;
     return rerender(); }
   if (d.sheet !== undefined) {
-    if (d.sheet === "1") { state.newCar = { kind:"car", name:"", year:"", plate:"", kw:"", euro:6, color:"#1F2937" }; refreshSheet(); phone.querySelector(".sheet").classList.add("on"); phone.querySelector(".dim").classList.add("on"); state.step = 6; renderSteps(); }
+    if (d.sheet === "1") { state.newCar = { kind:"car", name:"", year:"", plate:"", kw:"", euro:6, color:"#1F2937", bollo:"", insurance:"", revisione:"" }; refreshSheet(); phone.querySelector(".sheet").classList.add("on"); phone.querySelector(".dim").classList.add("on"); state.step = 6; renderSteps(); }
     else { phone.querySelector(".sheet").classList.remove("on"); phone.querySelector(".dim").classList.remove("on"); state.step = STEPS.findIndex(s => s.id === "garage"); renderSteps(); }
     return;
   }
@@ -1258,10 +1267,12 @@ document.addEventListener("click", (e) => {
   if (d.color) { state.newCar.color = d.color; return refreshSheet(); }
   if (d.save) {
     const n = state.newCar;
-    if (!n.name.trim()) { const i = phone.querySelector('[data-f=name]'); i.focus(); i.closest(".field").animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(0)"}],{duration:300}); return; }
-    state.cars.push({ id:Date.now(), kind:n.kind, name:n.name.trim(), year:Number(String(n.year).replace(/[۰-۹]/g,c=>"۰۱۲۳۴۵۶۷۸۹".indexOf(c)))||2020,
-      plate:(n.plate||"AA 000 AA").toUpperCase(), fuel:"بنزین", kw:Number(String(n.kw).replace(/[۰-۹]/g,c=>"۰۱۲۳۴۵۶۷۸۹".indexOf(c)))||55, euro:n.euro, color:n.color,
-      dl:{ bollo:addDays(150), insurance:addDays(200), revisione:addDays(365) } });
+    const num = (v) => Number(String(v).replace(/[۰-۹]/g, c => "۰۱۲۳۴۵۶۷۸۹".indexOf(c)).replace(/[^\d.]/g, ""));
+    const shake = (f) => { const i = phone.querySelector(`[data-f=${f}]`); i.focus(); i.closest(".field").animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(0)"}],{duration:300}); };
+    if (!n.name.trim()) return shake("name");
+    const kw = num(n.kw); if (!kw || kw < 1 || kw > 1000) return shake("kw");
+    const dl = {}; for (const k of ["bollo","insurance","revisione"]) { const d = toDate(n[k]); if (d) dl[k] = d; }
+    state.cars.push({ id:Date.now(), kind:n.kind, name:n.name.trim(), year:num(n.year)||"", plate:(n.plate||"").trim().toUpperCase(), fuel:"", kw, euro:n.euro, color:n.color, dl });
     go("garage"); setTimeout(() => toast("اضافه شد به گاراژ ✓"), 120); return;
   }
   if (d.sw === "notify") { state.notify = !state.notify; el.classList.toggle("on", state.notify); return; }
@@ -1325,7 +1336,7 @@ function persist(){ try { localStorage.setItem("ki_state", JSON.stringify({ seen
   cars:state.cars.map(c => ({ ...c, dl:Object.fromEntries(Object.entries(c.dl).map(([k,d]) => [k, d.toISOString()])) })) })); } catch {} }
 function restore(){ try { const x = JSON.parse(localStorage.getItem("ki_state") || "null"); if (!x) return false;
   Object.assign(state, { region:x.region || state.region, vehicle:x.vehicle || state.vehicle, notify:x.notify ?? state.notify });
-  if (Array.isArray(x.cars) && x.cars.length) state.cars = x.cars.map(c => ({ ...c, dl:Object.fromEntries(Object.entries(c.dl).map(([k,d]) => [k, new Date(d)])) }));
+  if (Array.isArray(x.cars)) state.cars = x.cars.filter(c => c.id > 1000).map(c => ({ ...c, dl:Object.fromEntries(Object.entries(c.dl).map(([k,d]) => [k, new Date(d)])) }));
   return !!x.seen; } catch { return false; } }
 const seen = IS_APP && restore();
 document.addEventListener("click", () => setTimeout(persist, 50), true);

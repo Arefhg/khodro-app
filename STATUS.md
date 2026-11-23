@@ -30,7 +30,6 @@ Last update: 23 Nov 2026
 - The font loads from Google and is never cached, so offline it falls back to the system font.
 - Bollo rates come from the "Bollo Auto" guide and are not yet checked against official sources.
   Euro 0–3 rates are a guess (national rate × region rate ÷ 2.58), not real data.
-- Garage dates are fake demo dates.
 - `user-scalable=no` blocks zoom.
 
 ## Next step
