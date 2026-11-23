@@ -3,6 +3,13 @@
 Newest first. What we did, and what we learned.
 
 ## 23 Nov 2026
+- Bollo: checked all 21 regions/provinces on official sheets (ACI + regions). New data file
+  `data/bollo-2026.js` (first step of splitting index.html), sources in `docs/BOLLO_SOURCES.md`.
+  Calculator rewritten: real Euro 0–6 and motorbike rates per region, Piemonte power bands,
+  Trento and Bolzano separate, kW without decimals, motorbikes over 11 kW = base + rate × all kW,
+  superbollo, honest "not confirmed" badge, source link, 2027 exemption note. 19 test cases pass.
+- Learned: the guide had several wrong regions (Trento/Bolzano, Marche, Molise, Piemonte) and
+  motorbike rates are regional. Big news: bollo 2027 exemption (DL 162/2026, L. 209/2026).
 - Real reminders (store apps only): @capacitor/local-notifications. 14 and 3 days before and on the day,
   at 9:00, for bollo, insurance and revisione. Rescheduled on every change; the Settings switch turns them off.
   Removed Android's exact-alarm permission (day-level reminders don't need it).

@@ -25,6 +25,11 @@ Each decision: the date, what we chose, and why.
 - App ID: `com.arefhg.khodroitaly`. Can still change before the first upload; never after.
 - The web files stay in the repo root (GitHub Pages keeps working); `npm run sync` copies them into the apps.
 
+## 23 Nov 2026 – Bollo data in its own file
+- Chose: `data/bollo-2026.js` holds all rates + source per region; code only calculates.
+- Why: next year we update one data file, not the code. Every number has a source and a status.
+- Where an official sheet couldn't be read, we show "تأیید نشده" in the app instead of hiding it.
+
 ## Open questions (waiting for Aref)
 1. Mac: does Aref have one, or do we use a cloud Mac for iOS builds?
 2. Desktop demo: move it to a separate `demo.html`?

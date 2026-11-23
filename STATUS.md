@@ -28,8 +28,9 @@ Last update: 23 Nov 2026
 - Home news is typed in by hand from the Telegram channel (posts 17, 14, 11). Later it must come from the news bot.
 - Dark mode choice is not saved.
 - The font loads from Google and is never cached, so offline it falls back to the system font.
-- Bollo rates come from the "Bollo Auto" guide and are not yet checked against official sources.
-  Euro 0–3 rates are a guess (national rate × region rate ÷ 2.58), not real data.
+- Bollo rates checked on official 2026 sheets (23 Nov 2026), in `data/bollo-2026.js`.
+  NOT CONFIRMED: Calabria and Molise (official sites unreachable), Liguria Euro 0/1, Trento Euro 6 over 100 kW.
+  Piemonte uses its 2025 sheet. Discounts/exemptions are not calculated.
 - `user-scalable=no` blocks zoom.
 
 ## Next step
