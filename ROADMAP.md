@@ -12,7 +12,11 @@
 8. Re-check every bollo rate on official sources.
 
 ## Phase 2 – The real app (coming months)
-- Choose the technology (SwiftUI vs React Native/Expo vs other).
+- Technology chosen: Capacitor (same web app inside iOS and Android apps). ✅
+- iOS and Android projects added to the repo. ✅ Build guide: `docs/BUILD.md`. ✅
+- Real bollo/insurance reminders with local notifications (needed for Apple review).
+- Sharp 1024 px app icon.
+- First iOS build on a Mac → TestFlight → App Store. Then Android.
 - Decide: accounts or none, backend or none.
 - Real push reminders.
 - News feed from khodro-news-bot.

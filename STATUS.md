@@ -1,12 +1,18 @@
 # Status
 
-Last update: 22 Nov 2026
+Last update: 23 Nov 2026
 
 ## Where we are
 - Version 0.3 is live on GitHub Pages and installed on Aref's iPhone.
 - v0.3: new Home with three sections (reminder, latest news, emergency numbers), in the old colorful style.
 - Phase 1 (redesign) has started. Three design directions are in `design/directions.html`.
   Waiting for Aref to choose one.
+
+## Store apps (iOS and Android)
+- Capacitor projects are in the repo: `ios/` and `android/`. They wrap the same web app.
+- Not built or tested yet: iOS needs a Mac (or a cloud Mac); Android needs Android Studio.
+- Icons are scaled up from 512 px: need a sharp 1024 px icon before publishing.
+- Before App Store review: add real phone features (reminders), see Guideline 4.2 in `docs/BUILD.md`.
 
 ## What works
 - Onboarding, Home, Garage (with add-vehicle sheet and detail page), Tools, Settings.

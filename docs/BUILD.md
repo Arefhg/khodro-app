@@ -1,0 +1,99 @@
+# Build and publish the store apps (iOS first)
+
+The store apps use **Capacitor**. It puts the same web app (`index.html`) inside a real
+iOS app and a real Android app, so they look exactly like the web app.
+
+```
+index.html, icons…  ──(npm run sync)──►  www/  ──►  ios/App/App/public/        (iPhone app)
+                                              └──►  android/app/src/main/assets/public/  (Android app)
+```
+
+You keep editing the web app as always. Before a store build, run `npm run sync`.
+
+Facts checked on 23 Nov 2026:
+- iOS builds need a Mac (macOS) — Capacitor docs.
+- Apple requires Xcode 26 and the iOS 26 SDK for App Store uploads.
+- Apple Developer Program: 99 USD per year (apps leave the store if you stop paying).
+- Google Play: 25 USD one time. Personal accounts must pass a testing period with testers before going public.
+
+---
+
+## Part A – One-time setup
+
+### A1. Accounts
+1. Apple: go to developer.apple.com → Account → enroll in the Apple Developer Program (99 USD/year).
+2. Google (later, for Android): go to play.google.com/console → sign up (25 USD once).
+
+### A2. A Mac
+Option 1 – your own Mac:
+1. Open the App Store on the Mac, install **Xcode** (version 26 or newer).
+2. Open Xcode once and accept the license.
+3. Install **Node.js** (LTS) from nodejs.org.
+4. Install **Git** (Xcode installs it, or from git-scm.com).
+
+Option 2 – no Mac: a cloud build service that rents a Mac (for example Capawesome Cloud,
+Capgo Build, Ionic Appflow, or Codemagic). Their steps are different; we write them when we pick one.
+
+### A3. Get the code on the Mac
+```
+git clone https://github.com/Arefhg/khodro-app.git
+cd khodro-app
+npm install
+```
+
+---
+
+## Part B – Build the iPhone app
+
+1. Get the newest code and copy the web app into the projects:
+   ```
+   git pull
+   npm run sync
+   ```
+2. Open the iOS project in Xcode:
+   ```
+   npm run open:ios
+   ```
+3. In Xcode, left panel → click **App** (blue icon) → **Signing & Capabilities**:
+   - Team: choose your Apple Developer account.
+   - Bundle Identifier: `com.arefhg.khodroitaly` (do not change it after the first upload).
+4. Try it on your iPhone: connect the iPhone with a cable, pick it at the top of Xcode, press ▶.
+   (The first time, the iPhone asks you to trust the developer: Settings → General → VPN & Device Management.)
+5. Set the version: **General** tab → Version (for example 1.0) and Build (1, 2, 3… must go up every upload).
+6. Make the upload file: top menu **Product → Archive**. When it finishes, the Organizer window opens.
+7. In Organizer → **Distribute App** → **App Store Connect** → Upload.
+
+## Part C – Publish on the App Store
+
+1. Go to appstoreconnect.apple.com → **Apps** → **+** → New App.
+   - Platform iOS, name «خودرو ایتالیا», language Persian, bundle ID `com.arefhg.khodroitaly`.
+2. **TestFlight** tab: your uploaded build shows here after Apple processes it. Install the
+   TestFlight app on your iPhone and test the real store build.
+3. **App Store** tab: fill in description, keywords, screenshots, category, age rating, support URL.
+   - Privacy policy link: NOT CONFIRMED whether required for this app — check what App Store Connect asks.
+4. Press **Add for Review** → **Submit**.
+
+⚠️ Review risk – Guideline 4.2 (Minimum Functionality): Apple rejects apps that feel like
+"a repackaged website". Before submitting, the app should have real phone features.
+Planned: real bollo/insurance reminders with local notifications (see ROADMAP.md).
+
+---
+
+## Part D – Android (later)
+
+Works on Windows too.
+1. Install **Android Studio** (it includes the Android SDK and Java).
+2. `git pull`, `npm install`, `npm run sync`, then `npm run open:android`.
+3. Press ▶ to run on a phone or emulator.
+4. For the store: **Build → Generate Signed App Bundle** → make a key (keep it safe forever,
+   you need the same key for every update) → upload the `.aab` file in Play Console.
+
+---
+
+## Changing the icon
+1. Put a sharp 1024×1024 PNG (no transparency) at `assets/icon-1024.png`.
+2. Run `python3 scripts/make-icons.py` (needs Python with Pillow: `pip install pillow`).
+3. Commit the changed files.
+
+Right now the icons are made from `icon-512.png` scaled up, so they are a bit soft.
+Make a real 1024 icon before publishing.

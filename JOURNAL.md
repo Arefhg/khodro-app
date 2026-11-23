@@ -2,6 +2,16 @@
 
 Newest first. What we did, and what we learned.
 
+## 23 Nov 2026
+- Added Capacitor 8: `package.json`, `capacitor.config.json`, `scripts/copy-web.mjs`.
+- Added `ios/` and `android/` projects. iOS uses Swift Package Manager (no CocoaPods needed).
+- `scripts/make-icons.py` makes all icons and splash screens from one picture.
+- `index.html`: inside the store apps, always full-screen and no service worker.
+  Tested by faking Capacitor on an iPad-size screen.
+- Wrote `docs/BUILD.md` (iOS first, step by step).
+- Learned: iOS apps can only be built on macOS; Apple requires Xcode 26 for uploads;
+  Apple Guideline 4.2 rejects apps that feel like a website in a frame.
+
 ## 22 Nov 2026
 - Removed the "خرج سالانه" (yearly cost) card from Tools (Aref's request).
 - Learned: GitHub Pages lets phones keep each file for up to 10 minutes, so new pushes
