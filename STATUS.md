@@ -27,7 +27,6 @@ Last update: 23 Nov 2026
 - Every tap rebuilds the screen: scroll jumps, no swipe-back, browser back leaves the app.
 - Home news is typed in by hand from the Telegram channel (posts 17, 14, 11). Later it must come from the news bot.
 - Dark mode choice is not saved.
-- The font loads from Google and is never cached, so offline it falls back to the system font.
 - Bollo rates checked on official 2026 sheets (23 Nov 2026), in `data/bollo-2026.js`.
   NOT CONFIRMED: Calabria and Molise (official sites unreachable), Liguria Euro 0/1, Trento Euro 6 over 100 kW.
   Piemonte uses its 2025 sheet. Discounts/exemptions are not calculated.
