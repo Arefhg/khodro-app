@@ -1,0 +1,7 @@
+{
+  "appId": "com.arefhg.khodroitaly",
+  "appName": "خودرو ایتالیا",
+  "webDir": "www",
+  "ios": { "contentInset": "never" },
+  "android": { "backgroundColor": "#F2F2F7" }
+}
