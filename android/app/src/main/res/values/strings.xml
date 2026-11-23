@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">خودرو ایتالیا</string>
+    <string name="title_activity_main">خودرو ایتالیا</string>
+    <string name="package_name">com.arefhg.khodroitaly</string>
+    <string name="custom_url_scheme">com.arefhg.khodroitaly</string>
+</resources>
