@@ -74,8 +74,17 @@ npm install
 4. Press **Add for Review** → **Submit**.
 
 ⚠️ Review risk – Guideline 4.2 (Minimum Functionality): Apple rejects apps that feel like
-"a repackaged website". Before submitting, the app should have real phone features.
-Planned: real bollo/insurance reminders with local notifications (see ROADMAP.md).
+"a repackaged website". Our main phone feature: real bollo/insurance/revisione reminders
+(local notifications, scheduled on the phone).
+
+### First-build checklist (test these on the real phone)
+1. The app opens full screen, Persian, right to left.
+2. Add a vehicle with a date about 4 days from now → you are asked for notification permission.
+3. Settings → reminders switch off/on works.
+4. Tip to test fast: set a date 3 days from today; the "3 days" reminder comes tomorrow… or today if it's
+   before 9:00. (The code reads the plugin from `window.Capacitor.Plugins.LocalNotifications`;
+   if reminders never come, check the Xcode console for "reminders:" errors.)
+5. Tap-to-call numbers and Telegram links open the phone app / Telegram.
 
 ---
 

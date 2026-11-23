@@ -3,6 +3,11 @@
 Newest first. What we did, and what we learned.
 
 ## 23 Nov 2026
+- Real reminders (store apps only): @capacitor/local-notifications. 14 and 3 days before and on the day,
+  at 9:00, for bollo, insurance and revisione. Rescheduled on every change; the Settings switch turns them off.
+  Removed Android's exact-alarm permission (day-level reminders don't need it).
+  Tested with a fake plugin in the browser; not yet tested on a real phone.
+- Learned: a web app on the iPhone home screen can't schedule notifications without a server.
 - No more fake data: the real app starts with an empty Garage (demo vehicles only in the desktop demo);
   old demo vehicles saved on phones are removed; add-vehicle sheet has real dates (bollo, insurance,
   revisione, all optional); model and kW are required; no invented plate, fuel or kW.

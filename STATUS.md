@@ -12,7 +12,7 @@ Last update: 23 Nov 2026
 - Capacitor projects are in the repo: `ios/` and `android/`. They wrap the same web app.
 - Not built or tested yet: iOS needs a Mac (or a cloud Mac); Android needs Android Studio.
 - Icons are scaled up from 512 px: need a sharp 1024 px icon before publishing.
-- Before App Store review: add real phone features (reminders), see Guideline 4.2 in `docs/BUILD.md`.
+- Real reminders added (local notifications). Only in the store apps; not yet tested on a real phone.
 
 ## What works
 - Onboarding, Home, Garage (with add-vehicle sheet and detail page), Tools, Settings.

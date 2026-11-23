@@ -646,6 +646,48 @@ const nextDeadline = () => {
 };
 
 /* =========================================================
+   Reminders (only in the iOS/Android store apps)
+   The phone schedules them itself, no server. The web app can't do this.
+   ========================================================= */
+const NATIVE = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+const LN = () => (NATIVE && window.Capacitor.Plugins && window.Capacitor.Plugins.LocalNotifications) || null;
+const REMIND_BEFORE = [14, 3, 0];   // days before the deadline
+const REMIND_HOUR = 9;              // 9:00 in the morning
+function reminderList(){
+  const now = new Date(), list = [];
+  for (const c of state.cars) for (const [k, d] of Object.entries(c.dl)) REMIND_BEFORE.forEach((before, i) => {
+    const at = new Date(d); at.setDate(at.getDate() - before); at.setHours(REMIND_HOUR, 0, 0, 0);
+    if (at <= now) return;
+    const what = `${DL[k][0]} ${c.name}`;
+    list.push({
+      id: (c.id % 1000000) * 100 + Object.keys(DL).indexOf(k) * 10 + i,   // must be a 32-bit number (Android)
+      title: before === 0 ? `امروز آخرین مهلت ${what}` : `${what}: ${FA(before)} روز مونده`,
+      body: `تاریخ: ${fmtDate(d)}`,
+      schedule: { at },
+    });
+  });
+  return list.sort((a, b) => a.schedule.at - b.schedule.at).slice(0, 60);
+}
+let remindTimer = null;
+function syncReminders(){
+  clearTimeout(remindTimer);
+  remindTimer = setTimeout(async () => {
+    const ln = LN(); if (!ln) return;
+    try {
+      const pending = await ln.getPending();
+      if (pending.notifications.length) await ln.cancel({ notifications: pending.notifications.map(n => ({ id: n.id })) });
+      if (!state.notify) return;
+      const list = reminderList(); if (!list.length) return;
+      let perm = await ln.checkPermissions();
+      if (perm.display !== "granted") perm = await ln.requestPermissions();
+      if (perm.display !== "granted") return;
+      await ln.schedule({ notifications: list });
+    } catch (e) { console.warn("reminders:", e); }
+  }, 400);
+}
+const REMIND_TEXT = "۱۴ روز و ۳ روز قبل، و همون روز، ساعت ۹ صبح";
+
+/* =========================================================
    Screens
    ========================================================= */
 const STEPS = [
@@ -723,7 +765,7 @@ function vNotify(){
   return `<div class="ob"><div class="welcome-bg"></div><div class="grow">
     <div class="fi" style="width:84px;height:84px;border-radius:24px;background:linear-gradient(145deg,#F59E0B,#E5383B);display:grid;place-items:center;color:#fff">${I.bell.replace('<svg','<svg width="44" height="44"')}</div>
     <h2>یادت می‌ندازیم 🔔</h2>
-    <p>دو هفته قبل از اینکه بیمه، بولو یا رویزیونه‌ات تموم بشه، یه پیام کوتاه برات می‌فرستیم.</p>
+    <p>۱۴ روز و ۳ روز قبل از اینکه بیمه، بولو یا رویزیونه‌ات تموم بشه، و همون روز، یه پیام کوتاه برات می‌فرستیم.</p>
     <div class="notif-demo">
       <div class="nbanner"><div class="ni">${CAR("#E5383B").replace('class="car"','style="width:30px;height:14px"')}</div><div><b>بیمه‌ی موتورت ۶ روز دیگه تموم می‌شه</b><p>هوندا اس‌اچ ۱۲۵ · بزن تا تمدیدش کنی</p></div><small>الان</small></div>
       <div class="nbanner"><div class="ni">${CAR("#E5383B").replace('class="car"','style="width:30px;height:14px"')}</div><div><b>بولوی فیات پاندا</b><p>۱۲ روز دیگه باید بدی</p></div><small>۲ ساعت</small></div>
@@ -822,7 +864,7 @@ function vDetail(){
   <div class="section"><div class="group">
     <button class="row" style="width:100%" data-tool="bollo" data-car="${v.id}"><div class="ic" style="background:#E5383B">${I.euro}</div><span class="t">بولوی این ${v.kind==='moto'?'موتور':'ماشین'}</span><span class="v">${EUR(calcBollo(v.kind, v.kw, v.euro, state.region).total)} €</span>${I.chev}</button>
     <button class="row" style="width:100%" data-tool="insurance"><div class="ic" style="background:#0A84FF">${I.shield}</div><span class="t">بیمه رو بفهم</span>${I.chev}</button>
-    <div class="row"><div class="ic" style="background:#F59E0B">${I.bell}</div><span class="t">یادآوری‌ها</span><span class="v">۱۴ روز قبل</span>${I.chev}</div>
+    <div class="row"><div class="ic" style="background:#F59E0B">${I.bell}</div><span class="t">یادآوری‌ها</span><span class="v">${!state.notify ? "خاموش" : NATIVE ? "۱۴ و ۳ روز قبل" : "فقط تو اپ"}</span>${I.chev}</div>
   </div></div>
   ${tabbar("garage")}`;
 }
@@ -848,7 +890,7 @@ function vProfile(){
     <div class="row"><div class="ic" style="background:#F59E0B">${I.bell}</div><span class="t">یادآوری‌ها</span><button class="sw ${state.notify?'on':''}" data-sw="notify"></button></div>
     <div class="row"><div class="ic" style="background:#5856D6">${I.moon}</div><span class="t">حالت تاریک</span><button class="sw ${dark?'on':''}" data-sw="dark"></button></div>
     <div class="row"><div class="ic" style="background:#0A84FF">${I.globe}</div><span class="t">زبان</span><span class="v">فارسی</span>${I.chev}</div>
-  </div></div>
+  </div><div class="foot">${NATIVE ? `یادآوری‌ها: ${REMIND_TEXT}.` : "یادآوری با اعلان فقط تو اپ آیفون و اندروید (از اپ‌استور و گوگل‌پلی) کار می‌کنه. اینجا تاریخ‌ها فقط تو صفحه‌ی خانه نشون داده می‌شن."}</div></div>
   <div class="section"><div class="group">
     <div class="row"><div class="ic" style="background:#229ED9">${I.news}</div><span class="t">کانال تلگرام</span><span class="v" style="direction:ltr">@khodro_italy</span>${I.chev}</div>
     <div class="row"><div class="ic" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">${I.me}</div><span class="t">اینستاگرام</span><span class="v" style="direction:ltr">@khodro_italy</span>${I.chev}</div>
@@ -1214,7 +1256,7 @@ document.addEventListener("click", (e) => {
   const el = e.target.closest("button,[data-open],[data-tab],[data-go],[data-sheet],a,.dim"); if (!el) return;
   const d = el.dataset;
   if (d.step) return go(d.step);
-  if (d.go) { if (d.notify !== undefined) state.notify = d.notify === "1"; return go(d.go, d.go === "home" ? "fade" : "fade"); }
+  if (d.go) { if (d.notify !== undefined) { state.notify = d.notify === "1"; if (state.notify && LN()) LN().requestPermissions().catch(() => {}); } return go(d.go, d.go === "home" ? "fade" : "fade"); }
   if (d.tab) { state.detail = null; return go(d.tab); }
   if (d.open) { state.detail = Number(d.open); return go("detail", "enter"); }
   if (d.back) return go(d.back, "fade");
@@ -1275,7 +1317,7 @@ document.addEventListener("click", (e) => {
     state.cars.push({ id:Date.now(), kind:n.kind, name:n.name.trim(), year:num(n.year)||"", plate:(n.plate||"").trim().toUpperCase(), fuel:"", kw, euro:n.euro, color:n.color, dl });
     go("garage"); setTimeout(() => toast("اضافه شد به گاراژ ✓"), 120); return;
   }
-  if (d.sw === "notify") { state.notify = !state.notify; el.classList.toggle("on", state.notify); return; }
+  if (d.sw === "notify") { state.notify = !state.notify; el.classList.toggle("on", state.notify); persist(); return; }
   if (d.sw === "dark") { setTheme(document.documentElement.dataset.theme !== "dark"); el.classList.toggle("on"); return; }
 });
 document.addEventListener("input", (e) => {
@@ -1332,7 +1374,7 @@ document.addEventListener("keydown", (e) => { if (e.key === "Escape") document.b
 
 if (matchMedia("(prefers-color-scheme: dark)").matches) setTheme(true);
 const IS_APP = document.documentElement.classList.contains("app");
-function persist(){ try { localStorage.setItem("ki_state", JSON.stringify({ seen:true, region:state.region, vehicle:state.vehicle, notify:state.notify,
+function persist(){ syncReminders(); try { localStorage.setItem("ki_state", JSON.stringify({ seen:true, region:state.region, vehicle:state.vehicle, notify:state.notify,
   cars:state.cars.map(c => ({ ...c, dl:Object.fromEntries(Object.entries(c.dl).map(([k,d]) => [k, d.toISOString()])) })) })); } catch {} }
 function restore(){ try { const x = JSON.parse(localStorage.getItem("ki_state") || "null"); if (!x) return false;
   Object.assign(state, { region:x.region || state.region, vehicle:x.vehicle || state.vehicle, notify:x.notify ?? state.notify });
@@ -1343,6 +1385,7 @@ document.addEventListener("click", () => setTimeout(persist, 50), true);
 document.addEventListener("change", () => setTimeout(persist, 50), true);
 if (IS_APP && !window.Capacitor && "serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
 go(seen ? "home" : "welcome");
+syncReminders();
 </script>
 </body>
 </html>
