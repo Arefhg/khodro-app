@@ -3,6 +3,9 @@
 Newest first. What we did, and what we learned.
 
 ## 23 Nov 2026
+- Font inside the app: `fonts/Vazirmatn-Variable.woff2` (v33.0.3, one 111 KB file for all weights,
+  OFL license in `fonts/OFL.txt`). Removed Google Fonts. Tested with internet blocked: font loads,
+  and the app makes no outside requests.
 - Bollo: checked all 21 regions/provinces on official sheets (ACI + regions). New data file
   `data/bollo-2026.js` (first step of splitting index.html), sources in `docs/BOLLO_SOURCES.md`.
   Calculator rewritten: real Euro 0–6 and motorbike rates per region, Piemonte power bands,
