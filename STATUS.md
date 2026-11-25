@@ -14,6 +14,10 @@ Last update: 23 Nov 2026
 - Icons are scaled up from 512 px: need a sharp 1024 px icon before publishing.
 - Real reminders added (local notifications). Only in the store apps; not yet tested on a real phone.
 
+## Quality (25 Nov 2026)
+- 26 automatic tests (`npm test`), run by GitHub on every push.
+- Back navigation, "I paid it", urgency colors, accessible contrast, news from `data/news.json`.
+
 ## Languages (25 Nov 2026)
 - The app speaks Persian (RTL), Italian and English (LTR). 496 texts, all translated (`i18n/`).
 - Language: first screen + Settings; default = phone language, else Persian.

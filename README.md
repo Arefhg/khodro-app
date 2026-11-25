@@ -8,6 +8,7 @@ Files: `index.html` (the whole app), `manifest.webmanifest` + icons (install), `
 Store apps: `ios/` and `android/` (Capacitor) wrap the same web app. How to build and publish: `docs/BUILD.md`.
 Project docs: `STATUS.md`, `ROADMAP.md`, `DECISIONS.md`, `JOURNAL.md`.
 Languages: Persian, Italian, English — texts in `i18n/` (see `i18n/i18n.js` for how it works).
+Tests: `npm test` (bollo math, translations, every screen in 3 languages, main flows). GitHub runs them on every push (Actions tab).
 Store text and screenshots: `store/`. Bollo rates and sources: `data/`, `docs/BOLLO_SOURCES.md`.
 
 

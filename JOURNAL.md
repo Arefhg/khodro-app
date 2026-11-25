@@ -2,6 +2,17 @@
 
 Newest first. What we did, and what we learned.
 
+## 25 Nov 2026 (night) – review and fixes
+- A: back navigation (history: Android back, swipe-back, form closes first), news from data/news.json
+  (in-app copy + fresh copy from GitHub), user text escaped, zoom allowed, fake profile removed.
+- B: "I paid it" moves bollo/insurance +1 year, revisione +2 years (MIT rule).
+- C: red only for urgent/main action; Home card red/orange/green by urgency; ring and bars = time left;
+  WCAG 4.5:1 text colors; icons instead of emoji; small text raised.
+- D: tests in the repo (26: bollo math, translations, all screens × 3 languages, add/edit/paid/delete,
+  back button) + GitHub Actions on every push.
+- Learned: a script that removes "unused" translations missed labels kept in a list → screen tests
+  now catch any untranslated text.
+
 ## 25 Nov 2026 (evening)
 - Three languages: `i18n/i18n.js` (tr(), direction, numbers, dates), `it.js`, `en.js`.
   Persian text in the code is the key ("gettext" style). A parser script wrapped 470 texts in tr();

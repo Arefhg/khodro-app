@@ -7,7 +7,8 @@
     "copy-web": "node scripts/copy-web.mjs",
     "sync": "npm run copy-web && npx cap sync",
     "open:ios": "npx cap open ios",
-    "open:android": "npx cap open android"
+    "open:android": "npx cap open android",
+    "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.6.2",
@@ -16,6 +17,7 @@
     "@capacitor/local-notifications": "^8.3.1"
   },
   "devDependencies": {
-    "@capacitor/cli": "^8.6.2"
+    "@capacitor/cli": "^8.6.2",
+    "playwright": "^1.65.1"
   }
 }
