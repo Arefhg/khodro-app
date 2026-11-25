@@ -7,6 +7,8 @@ Files: `index.html` (the whole app), `manifest.webmanifest` + icons (install), `
 
 Store apps: `ios/` and `android/` (Capacitor) wrap the same web app. How to build and publish: `docs/BUILD.md`.
 Project docs: `STATUS.md`, `ROADMAP.md`, `DECISIONS.md`, `JOURNAL.md`.
+Languages: Persian, Italian, English — texts in `i18n/` (see `i18n/i18n.js` for how it works).
+Store text and screenshots: `store/`. Bollo rates and sources: `data/`, `docs/BOLLO_SOURCES.md`.
 
 
 Emergency numbers (`SOS` list in index.html) were checked against official sources on 22 Nov 2026. Language notes say "not confirmed" where no official source said which languages are spoken.

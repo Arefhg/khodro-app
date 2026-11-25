@@ -2,6 +2,18 @@
 
 Newest first. What we did, and what we learned.
 
+## 25 Nov 2026 (evening)
+- Three languages: `i18n/i18n.js` (tr(), direction, numbers, dates), `it.js`, `en.js`.
+  Persian text in the code is the key ("gettext" style). A parser script wrapped 470 texts in tr();
+  the function is `tr` because `t` was already a local name in 15 places.
+- Fixed for LTR: right/left → start/end, arrows, switch, slider, hero title, button rows.
+- Placeholders for sentences with a number in the middle: tr("کلاست بعد از {n} سال", {n}).
+- «یورو» means both euro money and Euro class → separate text "یورو {n}" for the class.
+- Vehicles: edit + delete. Tools: removed "coming soon" cards (Apple 2.1); news card opens Telegram.
+- Android app name per language; iOS needs an InfoPlist.strings step in Xcode (in BUILD.md).
+- Store: Italian + English listings, screenshots in fa/it/en, privacy page in 3 languages.
+- Tested all 13 screens in 3 languages: no errors, no missing texts.
+
 ## 25 Nov 2026
 - Store prep: 5 screenshots at 1320 × 2868 (`scripts/store-screenshots.py`), `store/LISTING.md`,
   `privacy.html` (Persian + Italian), privacy link in Settings.

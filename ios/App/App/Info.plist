@@ -9,6 +9,8 @@
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>fa</string>
+		<string>it</string>
+		<string>en</string>
 	</array>
 	<key>CFBundleDisplayName</key>
         <string>خودرو ایتالیا</string>

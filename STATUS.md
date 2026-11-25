@@ -14,9 +14,15 @@ Last update: 23 Nov 2026
 - Icons are scaled up from 512 px: need a sharp 1024 px icon before publishing.
 - Real reminders added (local notifications). Only in the store apps; not yet tested on a real phone.
 
+## Languages (25 Nov 2026)
+- The app speaks Persian (RTL), Italian and English (LTR). 496 texts, all translated (`i18n/`).
+- Language: first screen + Settings; default = phone language, else Persian.
+- Check missing translations any time: `node scripts/i18n-keys.mjs`.
+
 ## Store page (prepared 25 Nov 2026)
 - Screenshots (5), listing text, privacy policy page and in-app link are ready (`store/`, `privacy.html`).
-- Persian is not an App Store language: plan is an Italian store page with Persian text (NOT CONFIRMED).
+- Store pages: Italian (primary) + English, each with a Persian paragraph (NOT CONFIRMED that Apple accepts it).
+- Vehicles can be edited and deleted. No "coming soon" placeholders left (Apple rule 2.1).
 - Still needed from Aref: sharp 1024 icon, full name for copyright, Apple Developer account, a Mac.
 
 ## What works

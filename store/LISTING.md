@@ -1,81 +1,118 @@
-# App Store listing – خودرو ایتالیا
+# App Store listing – Khodro Italia / خودرو ایتالیا
 
 Ready to copy into App Store Connect. Limits checked on 25 Nov 2026 (Apple docs).
+The app itself speaks **Persian, Italian and English** (chosen on the first screen and in Settings).
 
-## ⚠️ Language of the store page
-Persian is **not** one of the 50 App Store languages (Italian and English are).
-So the store page has to be in a listed language. Plan:
-- **Primary language: Italian** (the app is for people living in Italy).
-- Write the Persian text below inside the Italian page, with one short Italian paragraph at the end.
-- NOT CONFIRMED: whether App Review accepts mostly-Persian text in the Italian page.
-  If they ask, the fallback is the Italian text at the end as the full description.
+## Store page languages
+Persian is **not** one of the 50 App Store languages. So:
+- **Italian page (primary language)**: Italian text + a short Persian paragraph at the end.
+- **English page**: English text + the same Persian paragraph.
+- NOT CONFIRMED: whether App Review is fine with a Persian paragraph inside these pages.
+  If they object, remove the Persian paragraph; the app itself still has full Persian.
 
-## Name (max 30 characters) — 13
-خودرو ایتالیا
+Screenshots: `store/screenshots/iphone-6.9/it/` for the Italian page, `en/` for the English page
+(`fa/` is for Instagram/Telegram posts). 1320 × 2868 px, 5 each, already in order.
 
-## Subtitle (max 30 characters) — 26
-بولو، بیمه و یادآوری ماشین
+---
 
-## Keywords (max 100 **bytes**, commas, no spaces) — 88 bytes
-bollo,assicurazione,revisione,auto,moto,scadenze,بولو,بیمه,ماشین,موتور
-(Persian letters take 2 bytes each, so Persian keywords fill the field fast.
-Don't repeat words already in the name or subtitle.)
+## 🇮🇹 Italian page (primary)
 
-## Promotional text (max 170 characters, can change any time) — 127
-۲۰۲۷ برای خیلی‌ها سال بدون بولوئه! با حساب بولو ببین امسال چقدر می‌دی و کی باید بدی. نرخ‌ها با جدول رسمی همه‌ی منطقه‌ها چک شده.
+**Name** (max 30) — 27: `Khodro Italia: bollo e auto`
 
-## Description (max 4,000 characters)
-همه‌چیز درباره‌ی ماشین و موتورت در ایتالیا، به فارسی.
+**Subtitle** (max 30) — 30: `Bollo, assicurazione, scadenze`
 
-خودرو ایتالیا برای فارسی‌زبان‌هاییه که تو ایتالیا ماشین یا موتور دارن. تاریخ‌های مهم رو یادت نگه می‌داره، بولو رو برات حساب می‌کنه و شماره‌های ضروری رو همیشه دم دستت می‌ذاره.
+**Keywords** (max 100 bytes) — 85: `promemoria,revisione,calcolo,moto,emergenza,persiano,farsi,iraniani,بولو,بیمه`
 
-یادآوری بولو، بیمه و رویزیونه
-تاریخ‌ها رو یه بار وارد کن؛ ۱۴ روز و ۳ روز قبل، و همون روز، بهت خبر می‌دیم. دیگه جریمه‌ی دیرکرد نده.
+**Promotional text** (max 170) — 116:
+Nel 2027 molti non pagano il bollo! Scopri quanto paghi e quando, con le tariffe ufficiali 2026 di tutte le regioni.
 
-حساب بولو برای همه‌ی منطقه‌ها
-ماشین یا موتور، یورو ۰ تا ۶، همه‌ی منطقه‌ها و استان‌های ترنتو و بولزانو. نرخ‌ها با جدول رسمی ۲۰۲۶ چک شده و منبع هر عدد تو اپ هست. سوپربولو هم حساب می‌شه.
+**Description:**
+Tutto sulla tua auto e moto in Italia, in persiano, italiano e inglese.
 
-گاراژ من
-همه‌ی ماشین‌ها و موتورهات با پلاک و تاریخ‌هاشون، یه‌جا.
+Khodro Italia è pensata per chi vive in Italia e vuole tenere sotto controllo bollo, assicurazione e revisione senza stress.
 
-شماره‌های ضروری
-۱۱۲، پلیس، آمبولانس، آتش‌نشانی، امداد خودرو ACI و بقیه، با توضیح فارسی. با یه دست زدن تماس بگیر.
+PROMEMORIA SCADENZE
+Inserisci le date una volta: ti avvisiamo 14 e 3 giorni prima e il giorno stesso. Niente più more per i ritardi.
 
-بیمه رو بفهم
-کلاس بونوس‌مالوس، انواع پوشش و اینکه قیمت بیمه از کجا میاد، ساده و فارسی.
+CALCOLO BOLLO
+Auto e moto, classi Euro da 0 a 6, tutte le regioni e le province di Trento e Bolzano. Tariffe ufficiali 2026, con la fonte di ogni numero. Superbollo incluso.
 
-خبرهای رسمی
-آخرین خبرهای کانال تلگرام خودرو ایتالیا.
+IL MIO GARAGE
+Tutti i tuoi veicoli con targa e scadenze, in un posto solo. Modifica o elimina quando vuoi.
 
-حریم خصوصی
-حساب کاربری لازم نیست. همه‌ی اطلاعاتت فقط روی گوشی خودت می‌مونه.
+NUMERI DI EMERGENZA
+112, polizia, ambulanza, vigili del fuoco, soccorso stradale ACI e altri, con spiegazioni. Un tocco per chiamare.
 
-عددهای اپ برای راهنمایی‌ان؛ مبلغ دقیق رو همیشه با سایت رسمی منطقه یا ACI چک کن.
+CAPIRE L'ASSICURAZIONE
+Classe di merito, coperture e da dove viene il prezzo, spiegati in modo semplice.
+
+PRIVACY
+Nessun account. I tuoi dati restano solo sul telefono.
+
+Gli importi sono indicativi: controlla sempre l'importo esatto sul sito della tua regione o dell'ACI.
 
 —
-Khodro Italia: bollo, assicurazione e scadenze per chi parla persiano in Italia. Promemoria per bollo, assicurazione e revisione; calcolo del bollo con le tariffe ufficiali 2026 di tutte le regioni; numeri di emergenza con spiegazioni in persiano. Nessun account: i dati restano sul telefono.
+خودرو ایتالیا: همه‌چیز درباره‌ی ماشین و موتورت در ایتالیا، به فارسی. یادآوری بولو، بیمه و رویزیونه، حساب بولو با نرخ رسمی همه‌ی منطقه‌ها، و شماره‌های ضروری با توضیح فارسی.
 
-## Other fields
+---
+
+## 🇬🇧 English page
+
+**Name** (max 30) — 26: `Khodro Italia: car & bollo`
+
+**Subtitle** (max 30) — 27: `Bollo, insurance, reminders`
+
+**Keywords** (max 100 bytes) — 89: `italy,car tax,revisione,motorbike,emergency,persian,farsi,iranian,expat,بولو,بیمه`
+
+**Promotional text** (max 170) — 119:
+In 2027 many people pay no bollo! See how much you pay and when, with the official 2026 rates for every Italian region.
+
+**Description:**
+Everything about your car and motorbike in Italy, in Persian, Italian and English.
+
+Khodro Italia is made for people living in Italy who want to keep bollo (car tax), insurance and revisione (MOT) under control, without stress.
+
+DEADLINE REMINDERS
+Enter your dates once: we remind you 14 and 3 days before, and on the day itself. No more late fees.
+
+BOLLO CALCULATOR
+Cars and motorbikes, Euro 0 to 6, every Italian region plus the provinces of Trento and Bolzano. Official 2026 rates, with the source of every number. Superbollo included.
+
+MY GARAGE
+All your vehicles with plates and dates, in one place. Edit or delete any time.
+
+EMERGENCY NUMBERS
+112, police, ambulance, fire brigade, ACI breakdown service and more, explained. One tap to call.
+
+UNDERSTAND INSURANCE
+Insurance class, covers and where the price comes from, explained simply.
+
+PRIVACY
+No account. Your data stays on your phone.
+
+Amounts are a guide: always check the exact amount on your region's or ACI's website.
+
+—
+خودرو ایتالیا: همه‌چیز درباره‌ی ماشین و موتورت در ایتالیا، به فارسی. یادآوری بولو، بیمه و رویزیونه، حساب بولو با نرخ رسمی همه‌ی منطقه‌ها، و شماره‌های ضروری با توضیح فارسی.
+
+---
+
+## Both pages
 - **Category:** Utilities (secondary: Reference)
-- **Age rating:** 4+ (no objectionable content) — answer "None" to every question
+- **Age rating:** 4+ — answer "None" to every question
 - **Price:** free
-- **Privacy Policy URL (required):** https://arefhg.github.io/khodro-app/privacy.html
+- **Privacy Policy URL (required):** https://arefhg.github.io/khodro-app/privacy.html (Persian, Italian, English)
 - **Support URL (required):** https://arefhg.github.io/khodro-app/privacy.html (has contact links)
-  — NOT CONFIRMED that Apple accepts a page that is mainly a privacy page; a small support page may be needed.
+  — NOT CONFIRMED that Apple accepts this page as a support page; a small support page may be needed.
 - **App Privacy ("nutrition label"):** Data Not Collected (no account, no server, no analytics, no ads)
 - **Copyright:** 2026 [your full name]
 - **Version:** 1.0
 
-## Screenshots (iPhone 6.9", 1320 × 2868 px)
-In `store/screenshots/iphone-6.9/`, in this order:
-1. Home (reminder, news, emergency numbers)
-2. Garage
-3. Bollo calculator
-4. Vehicle detail (all deadlines)
-5. Emergency numbers
-They use sample vehicles (Fiat Panda, Honda SH 125). Retake them after design changes:
-see the script in `docs/BUILD.md` → "Store screenshots".
+## Persian text for Instagram / Telegram (not for the App Store)
+**خودرو ایتالیا** — بولو، بیمه و یادآوری ماشین
+۲۰۲۷ برای خیلی‌ها سال بدون بولوئه! با حساب بولو ببین امسال چقدر می‌دی و کی باید بدی. نرخ‌ها با جدول رسمی همه‌ی منطقه‌ها چک شده.
+اپ به سه زبان: فارسی، ایتالیایی و انگلیسی. حساب کاربری لازم نیست و همه‌ی اطلاعاتت فقط روی گوشی خودت می‌مونه.
 
 ## Google Play (later)
-Title max 50, short description max 80, full description max 4,000. Persian is supported on Google Play
-(NOT CONFIRMED — check when we get there).
+Title max 50, short description max 80, full description max 4,000. Google Play does support Persian
+listings (NOT CONFIRMED — check when we get there), so there we can add a full Persian page.

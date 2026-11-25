@@ -15,6 +15,8 @@
 - Technology chosen: Capacitor (same web app inside iOS and Android apps). ✅
 - iOS and Android projects added to the repo. ✅ Build guide: `docs/BUILD.md`. ✅
 - Real bollo/insurance reminders with local notifications (needed for Apple review). ✅ (test on a real phone)
+- Three languages (fa, it, en). ✅
+- Edit/delete vehicles; no placeholders. ✅
 - Sharp 1024 px app icon.
 - First iOS build on a Mac → TestFlight → App Store. Then Android.
 - Decide: accounts or none, backend or none.

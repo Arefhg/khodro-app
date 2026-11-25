@@ -85,6 +85,22 @@ npm install
    before 9:00. (The code reads the plugin from `window.Capacitor.Plugins.LocalNotifications`;
    if reminders never come, check the Xcode console for "reminders:" errors.)
 5. Tap-to-call numbers and Telegram links open the phone app / Telegram.
+6. Languages: first screen and Settings → Persian (right to left), Italiano, English (left to right).
+   Change the iPhone language to Italian: on a fresh install the app should start in Italian.
+7. Garage → a vehicle → Modifica/ویرایش: change a date, save; then delete it.
+
+### App name per language on iPhone (do once, in Xcode)
+Android already shows «خودرو ایتالیا» in Persian and «Khodro Italia» in Italian/English.
+On iPhone the name under the icon is «خودرو ایتالیا» for everyone until you do this:
+1. Xcode → File → New → File… → **Strings File**, name it `InfoPlist.strings`, add it to the App target.
+2. Select it → right panel → **Localize…** → tick Persian, Italian, English.
+3. In the Persian file write `"CFBundleDisplayName" = "خودرو ایتالیا";`,
+   in Italian and English write `"CFBundleDisplayName" = "Khodro Italia";`.
+(Editing Xcode's project file by hand can break it, so this step is done in Xcode.)
+
+### Before the first upload
+- Settings shows «نسخه‌ی ۰٫۳»: change it to 1.0 (search `نسخه‌ی ۰٫۳` in index.html and the 3 language files)
+  and set Version 1.0 in Xcode.
 
 ---
 
@@ -100,8 +116,8 @@ Works on Windows too.
 ---
 
 ## Store screenshots and text
-- Text for App Store Connect: `store/LISTING.md` (name, subtitle, keywords, description, privacy answers).
-- Screenshots: `store/screenshots/iphone-6.9/` (1320 × 2868). To retake them after design changes:
+- Text for App Store Connect: `store/LISTING.md` (Italian and English pages, privacy answers).
+- Screenshots: `store/screenshots/iphone-6.9/fa|it|en/` (1320 × 2868, 5 per language). To retake them:
   `python3 -m http.server 8771 &` then `python3 scripts/store-screenshots.py`.
 - Privacy policy page (required by Apple): `privacy.html` → https://arefhg.github.io/khodro-app/privacy.html
 

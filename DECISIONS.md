@@ -34,6 +34,14 @@ Each decision: the date, what we chose, and why.
 - Persian isn't an App Store language. Plan: primary language Italian, Persian text inside, short Italian
   paragraph at the end. Aref to confirm. Not confirmed that App Review accepts this.
 
+## 25 Nov 2026 – Three languages, Persian text as the key
+- Chose (Aref): the app in Persian, Italian and English.
+- How: gettext style — `tr("Persian text")`, translations in `i18n/it.js` and `i18n/en.js`.
+  Why: turning 500 sentences into named keys by hand was slow and risky; this way a missing
+  translation shows the Persian text instead of breaking.
+- Default language = the phone's language if it's fa/it/en, otherwise Persian.
+- Store pages: Italian (primary) and English, because Persian isn't an App Store language.
+
 ## Open questions (waiting for Aref)
 1. Mac: does Aref have one, or do we use a cloud Mac for iOS builds?
 2. Desktop demo: move it to a separate `demo.html`?
