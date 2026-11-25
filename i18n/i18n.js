@@ -1,7 +1,7 @@
 // Languages: Persian (fa, right to left), Italian (it) and English (en), left to right.
 //
 // How it works (the "gettext" way): the Persian sentence in the code is the key.
-//   t("خانه")  → "خانه" in Persian, "Home" in English, "Home" in Italian
+//   tr("خانه")  → "خانه" in Persian, "Home" in English and Italian
 // Translations live in i18n/it.js and i18n/en.js as { "Persian text": "translation" }.
 // A missing translation shows the Persian text (and is listed by I18N.missing() in the console).
 //
@@ -47,5 +47,5 @@
     // Intl locales for numbers and dates (Gregorian calendar in every language)
     locale: { fa: "fa-IR-u-ca-gregory-nu-arabext", it: "it-IT", en: "en-GB" }[lang],
   };
-  window.t = t;
+  window.tr = t;           // the app calls tr("…") (t is used as a local name in places)
 })();
