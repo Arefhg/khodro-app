@@ -1,6 +1,6 @@
 {
   "name": "khodro-italy",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "private": true,
   "description": "خودرو ایتالیا – web app + iOS and Android apps (Capacitor)",
   "scripts": {

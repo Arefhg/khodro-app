@@ -200,7 +200,7 @@ I18N.add("en", {
   "اینستاگرام": "Instagram",
   "حریم خصوصی": "Privacy",
   "درباره‌ی اپ": "About",
-  "نسخه‌ی ۰٫۳": "Version 0.3",
+  "نسخه‌ی ۱٫۰": "Version 1.0",
   "همه‌ی اطلاعاتت فقط روی همین گوشی می‌مونه و جایی فرستاده نمی‌شه.": "All your data stays on this phone and is never sent anywhere.",
   "انصراف": "Cancel",
   "ویرایش وسیله": "Edit vehicle",

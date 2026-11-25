@@ -98,9 +98,9 @@ On iPhone the name under the icon is «خودرو ایتالیا» for everyone 
    in Italian and English write `"CFBundleDisplayName" = "Khodro Italia";`.
 (Editing Xcode's project file by hand can break it, so this step is done in Xcode.)
 
-### Before the first upload
-- Settings shows «نسخه‌ی ۰٫۳»: change it to 1.0 (search `نسخه‌ی ۰٫۳` in index.html and the 3 language files)
-  and set Version 1.0 in Xcode.
+### Version numbers (already set for the first upload)
+- App: 1.0 (Settings), Xcode: Version 1.0 / Build 1, Android: versionName 1.0 / versionCode 1.
+- Every new upload: raise Build (Xcode) and versionCode (Android) by 1.
 
 ---
 

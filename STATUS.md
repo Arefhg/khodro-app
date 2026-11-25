@@ -23,7 +23,8 @@ Last update: 23 Nov 2026
 - Screenshots (5), listing text, privacy policy page and in-app link are ready (`store/`, `privacy.html`).
 - Store pages: Italian (primary) + English, each with a Persian paragraph (NOT CONFIRMED that Apple accepts it).
 - Vehicles can be edited and deleted. No "coming soon" placeholders left (Apple rule 2.1).
-- Still needed from Aref: sharp 1024 icon, full name for copyright, Apple Developer account, a Mac.
+- Code is ready for version 1.0. Last part: the 1024 icon (see `docs/BUILD.md` → Changing the icon).
+- Then from Aref: full name for copyright, Apple Developer account, a Mac for the build.
 
 ## What works
 - Onboarding, Home, Garage (with add-vehicle sheet and detail page), Tools, Settings.
