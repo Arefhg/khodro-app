@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" data-theme="light">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -665,6 +665,39 @@ const nextDeadline = () => {
 };
 
 /* =========================================================
+   News: data/news.json — the copy inside the app first (works offline),
+   then the fresh copy from GitHub Pages (the news bot can update it, no app update needed)
+   ========================================================= */
+const NEWS_URLS = ["data/news.json", "https://arefhg.github.io/khodro-app/data/news.json"];
+const NEWS_STYLE = { news: ["#F59E0B", "news", ""], pdf: ["#8E5CF7", "list", "PDF"], guide: ["#0A84FF", "shield", ""] };
+let NEWS_DATA = null;
+try { NEWS_DATA = JSON.parse(localStorage.getItem("ki_news")); } catch (e) {}
+function newsHTML(){
+  const items = (NEWS_DATA && NEWS_DATA.items) || [];
+  if (!items.length) return `<div style="padding:16px;color:var(--label2)">${tr("خبرها در حال بارگذاری…")}</div>`;
+  const L = I18N.lang, url = (NEWS_DATA.channel || "https://t.me/khodro_italy").replace(/\/$/, "");
+  return items.slice(0, 3).map((n) => {
+    const [c, ic, tag] = NEWS_STYLE[n.kind] || NEWS_STYLE.news;
+    const title = esc((n.title && (n.title[L] || n.title.fa)) || ""), tags = esc((n.tags && (n.tags[L] || n.tags.fa)) || "");
+    return `<a class="n" href="${url}/${Number(n.id)}" target="_blank" rel="noopener">
+      <div class="thumb" style="background:${c}">${I[ic].replace('<svg','<svg width="28" height="28"')}</div>
+      <div><div class="src"><i></i>${tr("کانال خودرو ایتالیا")}${tag ? ` <span class="badge soon">${tag}</span>` : ""}</div><b>${title}</b><div class="tags">${tags}</div></div></a>`;
+  }).join("");
+}
+async function loadNews(){
+  for (const u of NEWS_URLS) {
+    try {
+      const r = await fetch(u, { cache: "no-cache" }); if (!r.ok) continue;
+      const d = await r.json(); if (!d || !Array.isArray(d.items)) continue;
+      if (!NEWS_DATA || (d.updated || "") >= (NEWS_DATA.updated || "")) {
+        NEWS_DATA = d; try { localStorage.setItem("ki_news", JSON.stringify(d)); } catch (e) {}
+        const box = document.getElementById("newsbox"); if (box) box.innerHTML = newsHTML();
+      }
+    } catch (e) { /* offline: keep what we have */ }
+  }
+}
+
+/* =========================================================
    Reminders (only in the iOS/Android store apps)
    The phone schedules them itself, no server. The web app can't do this.
    ========================================================= */
@@ -677,7 +710,7 @@ function reminderList(){
   for (const c of state.cars) for (const [k, d] of Object.entries(c.dl)) REMIND_BEFORE.forEach((before, i) => {
     const at = new Date(d); at.setDate(at.getDate() - before); at.setHours(REMIND_HOUR, 0, 0, 0);
     if (at <= now) return;
-    const what = `${DL[k][0]} ${c.name}`;
+    const what = `${DL[k][0]} ${esc(c.name)}`;
     list.push({
       id: (c.id % 1000000) * 100 + Object.keys(DL).indexOf(k) * 10 + i,   // must be a 32-bit number (Android)
       title: before === 0 ? `${tr("امروز آخرین مهلت")} ${what}` : `${what}: ${FA(before)} ${tr("روز مونده")}`,
@@ -812,19 +845,14 @@ function vHome(){
         <circle cx="42" cy="42" r="36" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct)}" transform="rotate(-90 42 42)"/></svg>
       <div class="ring"><b>${FA(Math.max(0, left))}<small>${tr("روز")}</small></b></div>
       <div class="k">${tr("نزدیک‌ترین تاریخ")}</div>
-      <h2>${DL[first.k][0]} ${first.c.name}</h2>
+      <h2>${DL[first.k][0]} ${esc(first.c.name)}</h2>
       <p>${fmtDate(first.d)}</p>
       <div class="acts"><button class="w" data-open="${first.c.id}">${tr("جزئیات")}</button><button data-tab="garage">${tr("گاراژ")}</button></div>
     </div>
-    ${others.length ? `<div class="group" style="margin-top:12px">${others.map((o) => `<button class="row" style="width:100%" data-open="${o.c.id}"><div class="ic" style="background:${DL[o.k][1]}">${DL[o.k][2]}</div><span class="t">${DL[o.k][0]} ${o.c.name}</span><span class="chip ${status(daysLeft(o.d))}"><i></i>${days(daysLeft(o.d))}</span></button>`).join("")}</div>` : ""}`;
+    ${others.length ? `<div class="group" style="margin-top:12px">${others.map((o) => `<button class="row" style="width:100%" data-open="${o.c.id}"><div class="ic" style="background:${DL[o.k][1]}">${DL[o.k][2]}</div><span class="t">${DL[o.k][0]} ${esc(o.c.name)}</span><span class="chip ${status(daysLeft(o.d))}"><i></i>${days(daysLeft(o.d))}</span></button>`).join("")}</div>` : ""}`;
   }
 
   // 2) latest news: real posts from the Telegram channel (by hand for now; later from the news bot)
-  const NEWS = [
-    [17, "#F59E0B", I.news, "", tr("مهلت ممنوعیت تردد دیزل‌های یورو ۵ در شمال ایتالیا تمدید شد"), tr("#دیزل #شمال_ایتالیا")],
-    [14, "#8E5CF7", I.list, "PDF", tr("ساختار محاسبه‌ی بیمه‌ی خودرو در ایتالیا"), tr("#بیمه #راهنما")],
-    [11, "#0A84FF", I.shield, "", tr("راهنمای ساختار محاسبه‌ی بیمه‌ی خودرو در ایتالیا"), tr("#بیمه #بیمه_خودرو")],
-  ];
 
   // 3) emergency numbers (from the checked SOS list)
   const SOS_HOME = [
@@ -835,12 +863,10 @@ function vHome(){
   ];
 
   return `<div class="navbar" data-title="${tr("خانه")}"><span class="ttl">${tr("خانه")}</span></div>
-  <div class="hello"><div><div class="d">${fmtDay(today)}</div><h1>${tr("سلام 👋")}</h1></div><div class="avatar">${tr("خ")}</div></div>
+  <div class="hello"><div><div class="d">${fmtDay(today)}</div><h1>${tr("سلام 👋")}</h1></div></div>
   <div class="section"><div class="sec-h"><h3>${tr("⏰ یادآوری")}</h3><a data-tab="garage">${tr("گاراژ")}</a></div>${reminder}</div>
   <div class="section"><div class="sec-h"><h3>${tr("📰 آخرین خبرها")}</h3><a href="https://t.me/khodro_italy" target="_blank" rel="noopener">${tr("کانال تلگرام")}</a></div>
-    <div class="card news">${NEWS.map(([id, c, ic, tag, t, tags]) => `<a class="n" href="https://t.me/khodro_italy/${id}" target="_blank" rel="noopener">
-      <div class="thumb" style="background:${c}">${ic.replace('<svg','<svg width="28" height="28"')}</div>
-      <div><div class="src"><i></i>${tr("کانال خودرو ایتالیا")}${tag ? ` <span class="badge soon">${tag}</span>` : ""}</div><b>${t}</b><div class="tags">${tags}</div></div></a>`).join("")}</div></div>
+    <div class="card news" id="newsbox">${newsHTML()}</div></div>
   <div class="section"><div class="sec-h"><h3>${tr("🚨 شماره‌های ضروری")}</h3><a data-tool="sos">${tr("همه")}</a></div>
     <div class="sosgrid">${SOS_HOME.map(([n, t, c, ic]) => `<a class="card" href="tel:${n.replace(/[^+\d]/g, "")}"><div class="ti" style="background:${c}">${ic}</div><b>${FA(n)}</b><span>${t}</span></a>`).join("")}</div></div>
   ${tabbar("home")}`;
@@ -850,7 +876,7 @@ function carCard(v){
   const chips = Object.entries(v.dl).sort((a,b) => a[1]-b[1]).map(([k,d]) => { const n = daysLeft(d); return `<span class="chip ${status(n)}"><i></i>${DL[k][0]}: ${daysTxt(n)}</span>`; }).join("") || `<span class="chip"><i></i>${tr("هنوز تاریخی ثبت نشده")}</span>`;
   return `<div class="card carcard" data-open="${v.id}">
     <div class="top" style="background:radial-gradient(80% 90% at 50% 100%, ${v.color}22, transparent 70%), linear-gradient(180deg, var(--card2), var(--card))">${ART(v)}</div>
-    <div class="meta"><h4>${v.name} ${v.plate ? plate(v.plate) : ""}</h4>
+    <div class="meta"><h4>${esc(v.name)} ${v.plate ? plate(v.plate) : ""}</h4>
       <div class="sub">${[v.year ? FA(v.year) : "", v.fuel, `${FA(v.kw)} ${tr("کیلووات")}`, tr("یورو {n}", {n:FA(v.euro)})].filter(Boolean).join(" · ")}</div>
       <div class="chips">${chips}</div></div></div>`;
 }
@@ -873,9 +899,9 @@ function vDetail(){
       <div class="tx"><b>${t}</b><span>${fmtDate(d)}</span><div class="bar"><i style="width:${Math.max(6,100-n/3.65)}%;background:${col}"></i></div></div>
       <div class="left"><b style="color:${col}">${n < 0 ? tr("گذشته") : FA(n)}</b><span>${n < 0 ? "" : tr("روز مونده")}</span></div></div>`;
   }).join("");
-  return `<div class="navbar solid-on-scroll" data-title="${v.name}"><button class="navbtn" data-back="garage">${I.back}<span>${tr("گاراژ")}</span></button><span class="ttl">${v.name}</span><span class="navbtn end"><button class="navbtn end" style="min-width:0" data-edit="${v.id}">${tr("ویرایش")}</button></span></div>
+  return `<div class="navbar solid-on-scroll" data-title="${esc(v.name)}"><button class="navbtn" data-back="garage">${I.back}<span>${tr("گاراژ")}</span></button><span class="ttl">${esc(v.name)}</span><span class="navbtn end"><button class="navbtn end" style="min-width:0" data-edit="${v.id}">${tr("ویرایش")}</button></span></div>
   <div class="detail-hero" style="background:radial-gradient(70% 70% at 50% 85%, ${v.color}33, transparent 70%)">${ART(v)}</div>
-  <div class="detail-head"><h2>${v.name}</h2>${v.plate ? `<div style="margin-top:8px">${plate(v.plate)}</div>` : ""}</div>
+  <div class="detail-head"><h2>${esc(v.name)}</h2>${v.plate ? `<div style="margin-top:8px">${plate(v.plate)}</div>` : ""}</div>
   <div class="section"><div class="specs">
     <div class="card spec"><b>${FA(v.kw)}</b><span>${tr("کیلووات")}</span></div>
     <div class="card spec"><b>${tr("یورو {n}", {n:FA(v.euro)})}</b><span>${tr("آلایندگی")}</span></div>
@@ -907,8 +933,8 @@ function vProfile(){
   const dark = document.documentElement.dataset.theme === "dark";
   return `<div class="navbar" data-title="${tr("تنظیمات")}"><span class="ttl">${tr("تنظیمات")}</span></div>
   <div class="large">${tr("تنظیمات")}</div>
-  <div class="section"><div class="card" style="display:flex;gap:14px;align-items:center;padding:16px"><div class="avatar" style="width:58px;height:58px;font-size:22px">${tr("خ")}</div>
-    <div style="flex:1"><b style="font-size:18px">${tr("حساب من")}</b><div class="sub" style="color:var(--label2);font-size:13.5px">${FA(state.cars.length)} ${tr("وسیله ·")} ${tr(state.region)}</div></div>${I.chev}</div></div>
+  <div class="section"><div class="card" style="display:flex;gap:14px;align-items:center;padding:16px"><div style="width:58px;height:58px;flex:none">${LOGO}</div>
+    <div style="flex:1"><b style="font-size:18px">${tr("خودرو ایتالیا")}</b><div class="sub" style="color:var(--label2);font-size:13.5px">${FA(state.cars.length)} ${tr("وسیله ·")} ${tr(state.region)}</div></div></div></div>
   <div class="section"><div class="group">
     <button class="row" style="width:100%" data-go="setup"><div class="ic" style="background:#30A46C">${I.pin}</div><span class="t">${tr("منطقه")}</span><span class="v">${tr(state.region)}</span>${I.chev}</button>
     <div class="row"><div class="ic" style="background:#F59E0B">${I.bell}</div><span class="t">${tr("یادآوری‌ها")}</span><button class="sw ${state.notify?'on':''}" data-sw="notify"></button></div>
@@ -1108,7 +1134,7 @@ function realHTML(){
   const rows = all.map((p) => { const E = insEstimate(p.kind, p.prov, p.age, p.cu, p.lic), m = E.est, diff = Math.round((p.paid - m) / m * 100);
     const ok80 = p.paid >= E.lo80 && p.paid <= E.hi80; if (ok80) inside++;
     return `<div class="rp"><div><b>${FA(p.paid)} €</b> <span class="badge ${p.seed?'gold':''}">${p.seed==='pub'?tr('منتشرشده'):p.seed?tr('قرارداد واقعی'):tr('ثبت تو')}</span>
-      <div class="foot" style="padding:2px 0 0">${p.kind==='moto'?tr('موتور'):tr('ماشین')} · ${p.prov==='—'?tr('کل ایتالیا'):p.prov} ${tr("· کلاس")} ${FA(p.cu)} · ${IPER.ages[p.kind][p.age]} ${tr("سال · پاتنته")} ${LIC_LABELS[p.lic]}${p.note?` · ${p.note}`:''}</div></div>
+      <div class="foot" style="padding:2px 0 0">${p.kind==='moto'?tr('موتور'):tr('ماشین')} · ${p.prov==='—'?tr('کل ایتالیا'):p.prov} ${tr("· کلاس")} ${FA(p.cu)} · ${IPER.ages[p.kind][p.age]} ${tr("سال · پاتنته")} ${LIC_LABELS[p.lic]}${p.note?` · ${esc(p.note)}`:''}</div></div>
       <div class="rd ${ok80?'ok':'bad'}">${ok80?tr('✓ تو بازه'):tr('✗ بیرون بازه')}<br>${FA(Math.round(E.lo80/5)*5)}–${FA(Math.round(E.hi80/5)*5)} €</div></div>`; }).join("");
   const f = state.rf;
   const form = f ? `<div class="group" style="margin-top:12px;background:var(--card2)">
@@ -1251,7 +1277,10 @@ function screenHTML(id, anim){
 }
 
 let current = "welcome";
-function go(id, anim = "fade"){
+// Back navigation: child screens are added to the browser history, so the Android back button,
+// iPhone swipe-back (installed web app) and the browser back button all go back one screen.
+const TABS = ["home", "garage", "tools", "profile"];
+function go(id, anim = "fade", fromHistory = false){
   current = id;
   state.step = STEPS.findIndex(s => s.id === id);
   if (id === "detail" && !state.cars.some(c => c.id === state.detail)) { if (!state.cars.length) id = current = "garage"; else state.detail = state.cars[0].id; }
@@ -1262,7 +1291,21 @@ function go(id, anim = "fade"){
   if (nav && view) view.addEventListener("scroll", () => nav.classList.toggle("solid", view.scrollTop > 30));
   if (id === "detail" && nav) nav.classList.add("solid");
   renderSteps();
+  if (IS_APP && !fromHistory) {
+    const entry = { id, detail: state.detail };
+    if (TABS.includes(id) || id === "add") history.replaceState(entry, ""); else history.pushState(entry, "");
+  }
 }
+window.addEventListener("popstate", (e) => {
+  if (!IS_APP) return;
+  if (phone.querySelector(".sheet.on")) {            // a sheet is open: back closes it first
+    phone.querySelector(".sheet").classList.remove("on"); phone.querySelector(".dim").classList.remove("on");
+    state.editId = null; history.pushState({ id: current, detail: state.detail }, ""); return;
+  }
+  const st = e.state;
+  if (st && st.id) { if (st.detail) state.detail = st.detail; go(st.id, "fade", true); }
+  else if (current !== "home") go("home", "fade", true);
+});
 
 // the tab bar is written inside the scrolling view; move it to the screen so it stays at the bottom
 function pinTabbar(root){ root.querySelectorAll(".screen").forEach(sc => { const t = sc.querySelector(".view .tabbar"); if (t) sc.appendChild(t); }); }
@@ -1435,7 +1478,9 @@ document.addEventListener("click", () => setTimeout(persist, 50), true);
 document.addEventListener("change", () => setTimeout(persist, 50), true);
 if (IS_APP && !window.Capacitor && "serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
 document.title = tr("خودرو ایتالیا");
+loadNews();
 go(seen ? "home" : "welcome");
+if (IS_APP) history.replaceState({ id: current, detail: state.detail }, "");
 syncReminders();
 </script>
 </body>

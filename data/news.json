@@ -1,0 +1,18 @@
+{
+  "updated": "2026-11-22",
+  "channel": "https://t.me/khodro_italy",
+  "items": [
+    { "id": 17, "kind": "news", "tags": { "fa": "#دیزل #شمال_ایتالیا", "it": "#diesel #nord_italia", "en": "#diesel #northern_italy" },
+      "title": { "fa": "مهلت ممنوعیت تردد دیزل‌های یورو ۵ در شمال ایتالیا تمدید شد",
+                 "it": "Prorogato il divieto di circolazione per i diesel Euro 5 nel Nord Italia",
+                 "en": "Euro 5 diesel driving ban in Northern Italy postponed" } },
+    { "id": 14, "kind": "pdf", "tags": { "fa": "#بیمه #راهنما", "it": "#assicurazione #guida", "en": "#insurance #guide" },
+      "title": { "fa": "ساختار محاسبه‌ی بیمه‌ی خودرو در ایتالیا",
+                 "it": "Come si calcola l'assicurazione auto in Italia",
+                 "en": "How car insurance is calculated in Italy" } },
+    { "id": 11, "kind": "guide", "tags": { "fa": "#بیمه #بیمه_خودرو", "it": "#assicurazione #rc_auto", "en": "#insurance #car_insurance" },
+      "title": { "fa": "راهنمای ساختار محاسبه‌ی بیمه‌ی خودرو در ایتالیا",
+                 "it": "Guida: come si calcola l'assicurazione auto in Italia",
+                 "en": "Guide: how car insurance is calculated in Italy" } }
+  ]
+}
