@@ -25,12 +25,15 @@
   const dict = {};          // filled by it.js and en.js
   const missing = new Set();
 
-  function t(s) {
-    if (lang === "fa" || s == null) return s;
-    const d = dict[lang] || {};
-    if (Object.prototype.hasOwnProperty.call(d, s)) return d[s];
-    missing.add(s);
-    return s;
+  // vars: fill {name} places, e.g. tr("کلاست بعد از {n} سال", { n: 3 })
+  function t(s, vars) {
+    if (s == null) return s;
+    let out = s;
+    if (lang !== "fa") {
+      const d = dict[lang] || {};
+      if (Object.prototype.hasOwnProperty.call(d, s)) out = d[s]; else missing.add(s);
+    }
+    return vars ? out.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : out;
   }
 
   function setLang(l) {

@@ -167,7 +167,8 @@ input,select{font:inherit;color:inherit}
 .hero{padding:20px;position:relative;overflow:hidden;color:#fff;background:linear-gradient(140deg,#E5383B 0%,#B5172F 55%,#6D0F24 100%)}
 .hero::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.08);top:-120px;left:-80px}
 .hero .k{font-size:13px;font-weight:700;opacity:.85}
-.hero h2{font-size:24px;font-weight:900;margin:6px 0 2px}
+.hero h2{font-size:24px;font-weight:900;margin:6px 0 2px;padding-inline-end:96px}
+.hero .k, .hero p{padding-inline-end:96px}
 .hero p{opacity:.85;font-size:14px}
 .hero .ring{position:absolute;inset-inline-end:20px;top:22px;width:84px;height:84px}
 .hero .ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;font-weight:900;line-height:1}
@@ -385,6 +386,7 @@ body.show-gallery .gallery{display:block}
 .langbar{display:flex;gap:6px;justify-content:center;background:var(--fill);border-radius:10px;padding:3px;margin:0 auto;max-width:320px;width:100%;position:relative;z-index:2}
 .langbar button{flex:1;padding:7px 4px;border-radius:8px;font-size:14px;font-weight:600;color:var(--label)}
 .langbar button.on{background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+button.row{text-align:start}
 [dir=ltr] .chev{transform:none}
 [dir=ltr] .navbtn svg, [dir=ltr] .back-ic{transform:scaleX(-1)}
 [dir=ltr] .slider{transform:none}
@@ -450,6 +452,7 @@ const daysLeft = (d) => Math.round((d - today) / 86400000);
 
 // bollo rates live in data/bollo-2026.js (checked on official sources) — see docs/BOLLO_SOURCES.md
 const REGIONS = Object.keys(BOLLO.regions);
+const EUR0 = (n) => EUR(n).replace(/(٫۰۰|[.,]00)$/, "");   // whole euros, no ",00"
 const EUR = (n) => I18N.rtl ? FA(n.toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 })).replace(/\./g, "٫").replace(/,/g, "٬")
   : n.toLocaleString(I18N.lang === "it" ? "it-IT" : "en-GB", { minimumFractionDigits:2, maximumFractionDigits:2 });
 
@@ -753,7 +756,7 @@ function vFeatures(){
     <div class="feature-list">
       <div class="feat"><div class="fi" style="background:#E5383B">${I.euro}</div><div><b>${tr("بولوت رو بدون دردسر حساب کن")}</b><span>${tr("بگو ماشینت چند کیلوواته و کجا زندگی می‌کنی، بقیه‌ش با ما.")}</span></div></div>
       <div class="feat"><div class="fi" style="background:#0A84FF">${I.shield}</div><div><b>${tr("بیمه رو بفهم، گول نخور")}</b><span>${tr("کلاس بیمه، کاسکو، فرانشیز… همه رو ساده توضیح دادیم.")}</span></div></div>
-      <div class="feat"><div class="fi" style="background:#30A46C">${I.list}</div><div><b>${tr("دست‌دوم بخر، ضرر نکن")}</b><span>${tr("یه چک‌لیست قدم‌به‌قدم قبل از اینکه پول بدی.")}</span></div></div>
+      <div class="feat"><div class="fi" style="background:#DC2626">${I.phone}</div><div><b>${tr("شماره‌های ضروری، همیشه دم دست")}</b><span>${tr("۱۱۲، پلیس، امداد خودرو… با توضیح و یه دست زدن.")}</span></div></div>
       <div class="feat"><div class="fi" style="background:#F59E0B">${I.bell}</div><div><b>${tr("دیگه هیچ تاریخی یادت نمی‌ره")}</b><span>${tr("بیمه، بولو و رویزیونه رو قبل از اینکه دیر بشه بهت می‌گیم.")}</span></div></div>
     </div></div>
     <div class="dots"><i></i><i class="on"></i><i></i><i></i></div>
@@ -848,7 +851,7 @@ function carCard(v){
   return `<div class="card carcard" data-open="${v.id}">
     <div class="top" style="background:radial-gradient(80% 90% at 50% 100%, ${v.color}22, transparent 70%), linear-gradient(180deg, var(--card2), var(--card))">${ART(v)}</div>
     <div class="meta"><h4>${v.name} ${v.plate ? plate(v.plate) : ""}</h4>
-      <div class="sub">${[v.year ? FA(v.year) : "", v.fuel, `${FA(v.kw)} ${tr("کیلووات")}`, `${tr("یورو")} ${FA(v.euro)}`].filter(Boolean).join(" · ")}</div>
+      <div class="sub">${[v.year ? FA(v.year) : "", v.fuel, `${FA(v.kw)} ${tr("کیلووات")}`, tr("یورو {n}", {n:FA(v.euro)})].filter(Boolean).join(" · ")}</div>
       <div class="chips">${chips}</div></div></div>`;
 }
 
@@ -875,11 +878,11 @@ function vDetail(){
   <div class="detail-head"><h2>${v.name}</h2>${v.plate ? `<div style="margin-top:8px">${plate(v.plate)}</div>` : ""}</div>
   <div class="section"><div class="specs">
     <div class="card spec"><b>${FA(v.kw)}</b><span>${tr("کیلووات")}</span></div>
-    <div class="card spec"><b>${tr("یورو")} ${FA(v.euro)}</b><span>${tr("آلایندگی")}</span></div>
+    <div class="card spec"><b>${tr("یورو {n}", {n:FA(v.euro)})}</b><span>${tr("آلایندگی")}</span></div>
     <div class="card spec"><b>${v.year ? FA(v.year) : "—"}</b><span>${tr("سال ساخت")}</span></div></div></div>
   <div class="section"><div class="sec-h"><h3>${tr("موعدها")}</h3></div><div class="card">${rows || `<div style="padding:16px;color:var(--label2)">${tr("هنوز تاریخی ثبت نشده.")}</div>`}</div></div>
   <div class="section"><div class="group">
-    <button class="row" style="width:100%" data-tool="bollo" data-car="${v.id}"><div class="ic" style="background:#E5383B">${I.euro}</div><span class="t">${tr("بولوی این")} ${v.kind==='moto'?tr('موتور'):tr('ماشین')}</span><span class="v">${EUR(calcBollo(v.kind, v.kw, v.euro, state.region).total)} €</span>${I.chev}</button>
+    <button class="row" style="width:100%" data-tool="bollo" data-car="${v.id}"><div class="ic" style="background:#E5383B">${I.euro}</div><span class="t">${tr("بولوی این وسیله")}</span><span class="v">${EUR(calcBollo(v.kind, v.kw, v.euro, state.region).total)} €</span>${I.chev}</button>
     <button class="row" style="width:100%" data-tool="insurance"><div class="ic" style="background:#0A84FF">${I.shield}</div><span class="t">${tr("بیمه رو بفهم")}</span>${I.chev}</button>
     <div class="row"><div class="ic" style="background:#F59E0B">${I.bell}</div><span class="t">${tr("یادآوری‌ها")}</span><span class="v">${!state.notify ? tr("خاموش") : NATIVE ? tr("۱۴ و ۳ روز قبل") : tr("فقط تو اپ")}</span>${I.chev}</div>
   </div></div>
@@ -932,7 +935,7 @@ function sheetHTML(){
     <div style="display:flex;justify-content:center;margin:-6px 0 6px">${(n.kind==="moto"?MOTO:CAR)(n.color).replace('class="car"','style="width:220px;height:88px;filter:drop-shadow(0 12px 12px rgba(0,0,0,.2))"')}</div>
     <div class="group">
       <div class="field"><label>${tr("مدل")}</label><input data-f="name" value="${esc(n.name)}" placeholder="${n.kind==='moto'?tr('مثلاً یاماها تی‌مکس'):tr('مثلاً فیات ۵۰۰')}"></div>
-      <div class="field"><label>${tr("سال ساخت")}</label><input data-f="year" value="${esc(n.year)}" inputmode="numeric" placeholder="۲۰۲۰"></div>
+      <div class="field"><label>${tr("سال ساخت")}</label><input data-f="year" value="${esc(n.year)}" inputmode="numeric" placeholder="${FA(2020)}"></div>
       <div class="field"><label>${tr("پلاک")}</label><input class="ltr" data-f="plate" value="${esc(n.plate)}" placeholder="AB 123 CD"></div>
       <div class="field"><label>${tr("توان موتور")}</label><input data-f="kw" value="${n.kw}" inputmode="numeric" placeholder="${tr("کیلووات — تو لیبرتو، خونه‌ی P.2")}"></div>
     </div>
@@ -988,8 +991,8 @@ function bolloResult(){
     ${r.ok ? "" : `<span class="badge" style="background:rgba(245,158,11,.15);color:#B45309">${tr("تأیید نشده — جدول رسمی این منطقه در دسترس نبود")}</span>`}
     <div class="lines">${r.lines.map(([t,v]) => `<div><span>${t}</span><b>${EUR(v)} €</b></div>`).join("")}</div>
     ${cmp}${r.note ? `<div class="foot" style="padding:8px 0 0">${tr(r.note)}</div>` : ""}
-    <div class="foot" style="padding:8px 0 0">${tr("نرخ‌های")} ${FA(BOLLO.year)}${tr("، چک‌شده با جدول رسمی.")} <a href="${r.src}" target="_blank" rel="noopener" style="color:var(--tint)">${tr("منبع")}</a></div>
-    <div class="foot" style="padding:8px 0 0"><b>۲۰۲۷:</b> ${tr("برای هر نفر یه وسیله بولو نمی‌ده: ماشین بنزینی، دیزلی، دوگانه‌سوز یا هیبریدی تا ۸۰ کیلووات (اگه چند تا داری، کم‌توان‌ترین)؛ اگه چنین ماشینی نداری، موتور. فقط اشخاص (نه شرکت‌ها)، با بیمه‌ی معتبر.")}</div>
+    <div class="foot" style="padding:8px 0 0">${tr("نرخ‌های {y}، چک‌شده با جدول رسمی.", {y:FA(BOLLO.year)})} <a href="${r.src}" target="_blank" rel="noopener" style="color:var(--tint)">${tr("منبع")}</a></div>
+    <div class="foot" style="padding:8px 0 0"><b>${FA(2027)}:</b> ${tr("برای هر نفر یه وسیله بولو نمی‌ده: ماشین بنزینی، دیزلی، دوگانه‌سوز یا هیبریدی تا ۸۰ کیلووات (اگه چند تا داری، کم‌توان‌ترین)؛ اگه چنین ماشینی نداری، موتور. فقط اشخاص (نه شرکت‌ها)، با بیمه‌ی معتبر.")}</div>
   </div>`;
 }
 
@@ -1040,8 +1043,8 @@ function vInsurance(){
       <span class="foot" style="padding:0">${s.start===14?tr("پاتنته‌ی تازه"):""}</span></div></div>
     <div class="years">${s.years.map((acc,i) => `<div class="yr"><span class="yn">${tr("سال")} ${FA(i+1)}</span><span class="yc">${FA(path[i])}</span>
       <div class="seg mini"><button class="${!acc?'on':''}" data-yr="${i}" data-acc="0">${tr("بی‌تصادف")}</button><button class="${acc?'on bad':''}" data-yr="${i}" data-acc="1">${tr("تصادف، مقصر")}</button></div>
-      <span class="ya ${acc?'up':'down'}">${acc?'+۲':'−۱'}</span></div>`).join("")}
-      <div class="yr end"><span class="yn">${tr("سال")} ${FA(s.years.length+1)}</span><span class="yc big">${FA(last)}</span><span style="flex:1;font-size:13px;color:var(--label2)">${tr("کلاست بعد از")} ${FA(s.years.length)} ${tr("سال")}</span></div></div>
+      <span class="ya ${acc?'up':'down'}">${acc?FA('+2'):FA('−1')}</span></div>`).join("")}
+      <div class="yr end"><span class="yn">${tr("سال")} ${FA(s.years.length+1)}</span><span class="yc big">${FA(last)}</span><span style="flex:1;font-size:13px;color:var(--label2)">${tr("کلاست بعد از {n} سال", {n:FA(s.years.length)})}</span></div></div>
     <div class="foot" style="padding:10px 0 0">${tr("کلاس مال خودته، نه ماشین؛ شرکت بیمه رو هم عوض کنی باهات میاد. با «RC فامیلیاره» می‌تونی کلاس خوب یکی از خانواده رو واسه ماشین یا موتور خودت هم بگیری.")}</div>
   </div></div>
 
@@ -1053,7 +1056,7 @@ function vInsurance(){
     ${C.map(([k,t,d,lock]) => `<div class="row"><div style="flex:1"><b style="font-size:15.5px">${t}</b>${lock?` <span class="badge">${tr("اجباری")}</span>`:''}<div style="font-size:13px;color:var(--label2);margin-top:2px">${d}</div></div><button class="sw ${s.cov[k]?'on':''} ${lock?'lock':''}" data-cov="${k}"></button></div>`).join("")}
   </div>
   <div class="card" style="padding:16px;margin-top:12px">
-    <div style="display:flex;justify-content:space-between;font-weight:700"><span>${tr("ماشینت چقدر می‌ارزه؟")}</span><span id="valv">${EUR(s.value).replace("٫۰۰","")} €</span></div>
+    <div style="display:flex;justify-content:space-between;font-weight:700"><span>${tr("ماشینت چقدر می‌ارزه؟")}</span><span id="valv">${EUR0(s.value)} €</span></div>
     <input type="range" class="slider" id="valr" min="1000" max="40000" step="500" value="${s.value}">
     <div id="advice">${insAdvice()}</div>
   </div></div>
@@ -1084,7 +1087,7 @@ function insQuoteHTML(){
       <div><span>${tr("استان")} ${q.prov} ${tr("(میانگین")} ${FA(r.provMean)} €)</span><b>× ${FA(r.pIdx.toFixed(2)).replace(".","٫")}</b></div>
       ${r.g ? `<div><span>${tr("کلاس")} ${FA(q.cu)} ${tr("داخل گروهش")}</span><b>× ${FA(r.adj.toFixed(2)).replace(".","٫")}</b></div>` : ""}
       ${r.lf !== 1 ? `<div><span>${tr("پاتنته‌ی تازه (")}${LIC_LABELS[q.lic]})</span><b>× ${FA(r.lf.toFixed(2)).replace(".","٫")}</b></div>` : ""}
-      ${q.monthly ? `<div><span>${tr("قسطی ماهانه (+۲۰٪)")}</span><b>× ۱٫۲۰</b></div>` : ""}
+      ${q.monthly ? `<div><span>${tr("قسطی ماهانه (+۲۰٪)")}</span><b>× ${EUR(1.2)}</b></div>` : ""}
       <div><span>${tr("میانگین آدم‌هایی مثل تو")}</span><b>${R(r.est)} €</b></div>
       <div><span>${tr("ازش مالیات و SSN (حدود ۲۱٪)")}</span><b>${R(r.est*0.265/1.265)} €</b></div>
       ${q.monthly ? `<div><span>${tr("هر ماه حدوداً")}</span><b>${R(r.est/12)} €</b></div>` : ""}
@@ -1124,7 +1127,7 @@ function updQuote(){ const r = phone.querySelector("#qres"); if (r) r.innerHTML 
 
 function insAdvice(){
   const s = state.ins, kasko = s.cov.kaskoFull || s.cov.kaskoPart;
-  if (kasko && s.value < 8000) return `<div class="advice warn">${tr("⚠ ماشین")} ${EUR(s.value).replace("٫۰۰","")} ${tr("یورویی؟ کاسکو معمولاً نمی‌صرفه؛ چند سال پولشو بدی، از خود ماشین بیشتر می‌شه.")}</div>`;
+  if (kasko && s.value < 8000) return `<div class="advice warn">${tr("⚠ ماشین")} ${EUR0(s.value)} ${tr("یورویی؟ کاسکو معمولاً نمی‌صرفه؛ چند سال پولشو بدی، از خود ماشین بیشتر می‌شه.")}</div>`;
   if (!kasko && s.value >= 15000) return `<div class="advice info">${tr("ماشینت گرونه؛ کاسکو (کامل یا جزئی) می‌تونه منطقی باشه.")}</div>`;
   if (s.value < 8000) return `<div class="advice ok">${tr("✓ خوبه: واسه ماشین ارزون، بیمه‌ی ساده با فرانشیز بالاتر معمولاً به‌صرفه‌تره.")}</div>`;
   return `<div class="advice ok">${tr("✓ پوشش‌هات با قیمت ماشینت جوره.")}</div>`;
@@ -1137,11 +1140,11 @@ function vQuote(){
   const num = (key, label, ph, ltr) => `<div class="field"><label>${label}</label><input data-qf="${key}" value="${q[key]??''}" placeholder="${ph}" ${ltr?'class="ltr"':''} inputmode="${ltr?'text':'numeric'}"></div>`;
   let body = "";
   if (q.step === 0) body = `<div class="seg" style="margin-bottom:6px"><button class="${q.kind==='car'?'on':''}" data-qkind2="car">${tr("ماشین")}</button><button class="${q.kind==='moto'?'on':''}" data-qkind2="moto">${tr("موتور")}</button></div>
-    <div class="group" style="margin-top:10px">${num("brand",tr("برند"), q.kind==='moto'?tr('مثلاً سیم (SYM)'):tr('مثلاً فیات'), true)}${num("model",tr("مدل"), q.kind==='moto'?tr('مثلاً Symphony 125'):tr('مثلاً Panda'), true)}${num("year",tr("سال اولین پلاک"),"۲۰۲۲")}</div>
+    <div class="group" style="margin-top:10px">${num("brand",tr("برند"), q.kind==='moto'?tr('مثلاً سیم (SYM)'):tr('مثلاً فیات'), true)}${num("model",tr("مدل"), q.kind==='moto'?tr('مثلاً Symphony 125'):tr('مثلاً Panda'), true)}${num("year",tr("سال اولین پلاک"),FA(2022))}</div>
     ${lab(q.kind==='moto'?tr("حجم موتور"):tr("قدرت موتور (لیبرتو، خونه‌ی P.2)"))}${chips("power", QF.power[q.kind])}
     ${lab(tr("سوخت"))}${chips("fuel", [[tr("بنزینی")],[tr("دیزلی")],[tr("هیبرید")],[tr("برقی")]])}`;
   if (q.step === 1) body = `<div class="group"><div class="field"><label>${tr("استان")}</label><select id="qprov2">${Object.keys(IPER.prov[q.kind]).sort().map(p => `<option ${p===q.prov?'selected':''}>${p}</option>`).join("")}</select></div>
-    ${num("age",tr("سنت"),"۳۰")}${num("licYears",tr("چند ساله پاتنته داری؟"),tr("۰ یعنی امسال گرفتم"))}${num("job",tr("شغل"),tr("مثلاً دانشجو"), true)}</div>
+    ${num("age",tr("سنت"),FA(30))}${num("licYears",tr("چند ساله پاتنته داری؟"),tr("۰ یعنی امسال گرفتم"))}${num("job",tr("شغل"),tr("مثلاً دانشجو"), true)}</div>
     <div class="foot">${tr("جنسیت رو نمی‌پرسیم: تو اروپا قیمت بیمه نباید به جنسیت ربط داشته باشه.")}</div>`;
   if (q.step === 2) body = `${lab(tr("سالی چند کیلومتر می‌ری؟"))}${chips("km", QF.km)}${lab(tr("شب کجا پارکش می‌کنی؟"))}${chips("park", QF.park)}${lab(tr("واسه چی استفاده می‌کنی؟"))}${chips("use", QF.use)}${lab(tr("کی می‌رونه؟"))}${chips("guide", QF.guide)}`;
   if (q.step === 3) body = `<div class="group"><div class="field"><label>${tr("کلاس بیمه (CU)")}</label><div class="kwrow" style="margin:0;gap:10px;flex:1;justify-content:flex-end">
@@ -1369,7 +1372,7 @@ document.addEventListener("click", (e) => {
 document.addEventListener("input", (e) => {
   if (e.target.dataset.f) state.newCar[e.target.dataset.f] = e.target.value;
   if (e.target.id === "kwr") setKw(Number(e.target.value));
-  if (e.target.id === "valr") { state.ins.value = Number(e.target.value); phone.querySelector("#valv").textContent = EUR(state.ins.value).replace("٫۰۰","") + " €"; phone.querySelector("#advice").innerHTML = insAdvice(); }
+  if (e.target.id === "valr") { state.ins.value = Number(e.target.value); phone.querySelector("#valv").textContent = EUR0(state.ins.value) + " €"; phone.querySelector("#advice").innerHTML = insAdvice(); }
 });
 document.addEventListener("change", (e) => { if (e.target.id === "breg") { state.bollo.region = e.target.value; updBollo(); }
   if (e.target.id === "qprov") { state.insq.prov = e.target.value; updQuote(); }
