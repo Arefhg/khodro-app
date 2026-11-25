@@ -387,6 +387,11 @@ body.show-gallery .gallery{display:block}
 .langbar button{flex:1;padding:7px 4px;border-radius:8px;font-size:14px;font-weight:600;color:var(--label)}
 .langbar button.on{background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.12)}
 button.row{text-align:start}
+.deadline{flex-wrap:wrap}
+.donebtn{display:inline-flex;align-items:center;gap:6px;margin:8px 0 2px;margin-inline-start:56px;padding:7px 12px;border-radius:10px;
+  background:rgba(48,164,108,.14);color:var(--green-text,#1F7A4D);font-size:14px;font-weight:700}
+.donebtn svg{width:14px;height:14px}
+.donebtn .check{opacity:1;color:inherit}
 [dir=ltr] .chev{transform:none}
 [dir=ltr] .navbtn svg, [dir=ltr] .back-ic{transform:scaleX(-1)}
 [dir=ltr] .slider{transform:none}
@@ -654,6 +659,10 @@ const KIND_SVG = { car:'<svg viewBox="0 0 64 40" fill="currentColor"><path d="M6
 const plate = (p) => `<span class="plate"><span class="eu">I</span><span class="nr">${p}</span><span class="rg"></span></span>`;
 const esc = (v) => String(v ?? "").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
 const isoDay = (d) => { if (!d) return ""; const x = new Date(d); return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,"0")}-${String(x.getDate()).padStart(2,"0")}`; };
+// "I paid it / done": bollo and insurance +1 year, revisione +2 years (MIT: every 2 years, same month)
+const RENEW = { bollo: [12, "پرداخت کردم"], insurance: [12, "تمدید کردم"], revisione: [24, "انجام دادم"] };
+const addMonths = (d, m) => { const x = new Date(d); x.setMonth(x.getMonth() + m); return x; };
+const SHOW_DONE_DAYS = 60;   // the button shows from 60 days before the date (and when it's late)
 const daysTxt = (n) => n < 0 ? tr("گذشته") : n === 0 ? tr("امروز") : `${FA(n)} ${tr("روز")}`;
 const toDate = (v) => { if (!v) return null; const d = new Date(v + "T12:00:00"); return isNaN(d) ? null : d; };
 const status = (n) => n < 0 ? "bad" : n <= 14 ? "bad" : n <= 45 ? "warn" : "ok";
@@ -847,7 +856,7 @@ function vHome(){
       <div class="k">${tr("نزدیک‌ترین تاریخ")}</div>
       <h2>${DL[first.k][0]} ${esc(first.c.name)}</h2>
       <p>${fmtDate(first.d)}</p>
-      <div class="acts"><button class="w" data-open="${first.c.id}">${tr("جزئیات")}</button><button data-tab="garage">${tr("گاراژ")}</button></div>
+      <div class="acts">${left <= SHOW_DONE_DAYS ? `<button class="w" data-done="${first.c.id}:${first.k}">${tr(RENEW[first.k][1])}</button><button data-open="${first.c.id}">${tr("جزئیات")}</button>` : `<button class="w" data-open="${first.c.id}">${tr("جزئیات")}</button><button data-tab="garage">${tr("گاراژ")}</button>`}</div>
     </div>
     ${others.length ? `<div class="group" style="margin-top:12px">${others.map((o) => `<button class="row" style="width:100%" data-open="${o.c.id}"><div class="ic" style="background:${DL[o.k][1]}">${DL[o.k][2]}</div><span class="t">${DL[o.k][0]} ${esc(o.c.name)}</span><span class="chip ${status(daysLeft(o.d))}"><i></i>${days(daysLeft(o.d))}</span></button>`).join("")}</div>` : ""}`;
   }
@@ -897,7 +906,8 @@ function vDetail(){
     const col = s==="ok" ? "var(--green)" : s==="warn" ? "var(--orange)" : "var(--tint)";
     return `<div class="deadline"><div class="ic" style="background:${c}">${ic}</div>
       <div class="tx"><b>${t}</b><span>${fmtDate(d)}</span><div class="bar"><i style="width:${Math.max(6,100-n/3.65)}%;background:${col}"></i></div></div>
-      <div class="left"><b style="color:${col}">${n < 0 ? tr("گذشته") : FA(n)}</b><span>${n < 0 ? "" : tr("روز مونده")}</span></div></div>`;
+      <div class="left"><b style="color:${col}">${n < 0 ? tr("گذشته") : FA(n)}</b><span>${n < 0 ? "" : tr("روز مونده")}</span></div>
+      ${n <= SHOW_DONE_DAYS ? `<button class="donebtn" data-done="${v.id}:${k}">${I.check} ${tr(RENEW[k][1])}</button>` : ""}</div>`;
   }).join("");
   return `<div class="navbar solid-on-scroll" data-title="${esc(v.name)}"><button class="navbtn" data-back="garage">${I.back}<span>${tr("گاراژ")}</span></button><span class="ttl">${esc(v.name)}</span><span class="navbtn end"><button class="navbtn end" style="min-width:0" data-edit="${v.id}">${tr("ویرایش")}</button></span></div>
   <div class="detail-hero" style="background:radial-gradient(70% 70% at 50% 85%, ${v.color}33, transparent 70%)">${ART(v)}</div>
@@ -1376,6 +1386,12 @@ document.addEventListener("click", (e) => {
     if (d.sheet === "1") { state.editId = null; state.newCar = { kind:"car", name:"", year:"", plate:"", kw:"", euro:6, color:"#1F2937", bollo:"", insurance:"", revisione:"" }; refreshSheet(); phone.querySelector(".sheet").classList.add("on"); phone.querySelector(".dim").classList.add("on"); state.step = 6; renderSteps(); }
     else { phone.querySelector(".sheet").classList.remove("on"); phone.querySelector(".dim").classList.remove("on"); state.step = STEPS.findIndex(s => s.id === "garage"); renderSteps(); }
     return;
+  }
+  if (d.done) {
+    const [cid, k] = d.done.split(":"), v = state.cars.find(c => c.id === Number(cid)); if (!v || !v.dl[k]) return;
+    const next = addMonths(v.dl[k], RENEW[k][0]);
+    if (!confirm(tr("{what} رو انجام دادی؟ تاریخ بعدی می‌شه {date}.", { what: `${DL[k][0]} ${v.name}`, date: fmtDate(next) }))) return;
+    v.dl[k] = next; persist(); go(current, "", true); setTimeout(() => toast(tr("تاریخ بعدی: {date}", { date: fmtDate(next) })), 120); return;
   }
   if (d.edit) {
     const v = state.cars.find(c => c.id === Number(d.edit)); if (!v) return;

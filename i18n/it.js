@@ -457,6 +457,8 @@ I18N.add("it", {
   "یه عدد درست بنویس (یورو در سال)": "Inserisci un numero valido (euro all'anno)",
   "ثبت شد، مرسی ✓": "Salvato, grazie ✓",
   "بیمه‌ی شخص ثالث اجباریه، نمی‌شه خاموشش کرد": "La RC è obbligatoria, non si può disattivare",
+  "{what} رو انجام دادی؟ تاریخ بعدی می‌شه {date}.": "{what}: fatto? La prossima scadenza sarà il {date}.",
+  "تاریخ بعدی: {date}": "Prossima scadenza: {date}",
   "این وسیله و همه‌ی تاریخ‌هاش پاک بشه؟": "Eliminare questo veicolo e tutte le sue scadenze?",
   "پاک شد": "Eliminato",
   "ذخیره شد ✓": "Salvato ✓",
