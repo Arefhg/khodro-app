@@ -14,6 +14,11 @@ Last update: 23 Nov 2026
 - Icons are scaled up from 512 px: need a sharp 1024 px icon before publishing.
 - Real reminders added (local notifications). Only in the store apps; not yet tested on a real phone.
 
+## Store page (prepared 25 Nov 2026)
+- Screenshots (5), listing text, privacy policy page and in-app link are ready (`store/`, `privacy.html`).
+- Persian is not an App Store language: plan is an Italian store page with Persian text (NOT CONFIRMED).
+- Still needed from Aref: sharp 1024 icon, full name for copyright, Apple Developer account, a Mac.
+
 ## What works
 - Onboarding, Home, Garage (with add-vehicle sheet and detail page), Tools, Settings.
 - Bollo calculator (car and moto, 20 regions).

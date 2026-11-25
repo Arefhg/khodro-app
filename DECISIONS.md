@@ -30,6 +30,10 @@ Each decision: the date, what we chose, and why.
 - Why: next year we update one data file, not the code. Every number has a source and a status.
 - Where an official sheet couldn't be read, we show "تأیید نشده" in the app instead of hiding it.
 
+## 25 Nov 2026 – Store page language
+- Persian isn't an App Store language. Plan: primary language Italian, Persian text inside, short Italian
+  paragraph at the end. Aref to confirm. Not confirmed that App Review accepts this.
+
 ## Open questions (waiting for Aref)
 1. Mac: does Aref have one, or do we use a cloud Mac for iOS builds?
 2. Desktop demo: move it to a separate `demo.html`?

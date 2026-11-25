@@ -99,6 +99,12 @@ Works on Windows too.
 
 ---
 
+## Store screenshots and text
+- Text for App Store Connect: `store/LISTING.md` (name, subtitle, keywords, description, privacy answers).
+- Screenshots: `store/screenshots/iphone-6.9/` (1320 × 2868). To retake them after design changes:
+  `python3 -m http.server 8771 &` then `python3 scripts/store-screenshots.py`.
+- Privacy policy page (required by Apple): `privacy.html` → https://arefhg.github.io/khodro-app/privacy.html
+
 ## Changing the icon
 1. Put a sharp 1024×1024 PNG (no transparency) at `assets/icon-1024.png`.
 2. Run `python3 scripts/make-icons.py` (needs Python with Pillow: `pip install pillow`).

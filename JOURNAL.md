@@ -2,6 +2,15 @@
 
 Newest first. What we did, and what we learned.
 
+## 25 Nov 2026
+- Store prep: 5 screenshots at 1320 × 2868 (`scripts/store-screenshots.py`), `store/LISTING.md`,
+  `privacy.html` (Persian + Italian), privacy link in Settings.
+- Settings: Telegram and Instagram rows are now real links; removed the old "this is only a design
+  sample, data is fake" note; version 0.3.
+- Left the insurance price estimate out of the screenshots (model on hold, not checked).
+- Learned: Persian is not one of the 50 App Store languages; keywords are 100 **bytes** (Persian = 2 bytes
+  per letter); a privacy policy URL is required for every app and must also be linked inside the app.
+
 ## 23 Nov 2026
 - Font inside the app: `fonts/Vazirmatn-Variable.woff2` (v33.0.3, one 111 KB file for all weights,
   OFL license in `fonts/OFL.txt`). Removed Google Fonts. Tested with internet blocked: font loads,
