@@ -10,4 +10,5 @@ mkdirSync("www");
 for (const f of FILES) copyFileSync(f, `www/${f}`);
 cpSync("data", "www/data", { recursive: true });   // bollo rates and other data files
 cpSync("fonts", "www/fonts", { recursive: true }); // Vazirmatn font (works offline)
-console.log(`Copied ${FILES.length} files, data/ and fonts/ into www/`);
+cpSync("i18n", "www/i18n", { recursive: true });   // languages: fa, it, en
+console.log(`Copied ${FILES.length} files, data/, fonts/ and i18n/ into www/`);

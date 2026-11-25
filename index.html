@@ -47,7 +47,7 @@ input,select{font:inherit;color:inherit}
 .side h1 span{background:linear-gradient(90deg,#1F9D55,#9CA3AF 50%,#E5383B);-webkit-background-clip:text;background-clip:text;color:transparent}
 .side p.lead{color:var(--label2);margin:10px 0 24px;font-size:15px;line-height:1.8}
 .steps{display:flex;flex-direction:column;gap:4px}
-.steps button{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;text-align:right;font-size:14.5px;color:var(--label2);transition:.2s}
+.steps button{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;text-align:start;font-size:14.5px;color:var(--label2);transition:.2s}
 .steps button b{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:var(--fill);color:var(--label2);flex:none}
 .steps button.on{background:var(--card);color:var(--label);box-shadow:var(--shadow)}
 .steps button.on b{background:var(--tint);color:#fff}
@@ -127,7 +127,7 @@ input,select{font:inherit;color:inherit}
 .welcome-bg{position:absolute;inset:0;z-index:-1;background:
   radial-gradient(60% 40% at 20% 10%,rgba(31,157,85,.18),transparent 70%),
   radial-gradient(60% 40% at 85% 25%,rgba(229,56,59,.2),transparent 70%),var(--bg)}
-.feature-list{display:flex;flex-direction:column;gap:22px;margin-top:34px;text-align:right;width:100%}
+.feature-list{display:flex;flex-direction:column;gap:22px;margin-top:34px;text-align:start;width:100%}
 .feat{display:flex;gap:16px;align-items:flex-start}
 .feat .fi{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#fff;flex:none}
 .feat .fi svg{width:24px;height:24px}
@@ -146,12 +146,12 @@ input,select{font:inherit;color:inherit}
 .choice button svg{width:64px;height:40px;color:var(--label2)}
 .choice button.on{border-color:var(--tint);color:var(--tint)}
 .choice button.on svg{color:var(--tint)}
-.regions{width:100%;margin-top:18px;text-align:right}
+.regions{width:100%;margin-top:18px;text-align:start}
 .regions .group{max-height:270px;overflow-y:auto;scrollbar-width:none}
 .check{width:22px;height:22px;color:var(--tint);opacity:0}
 .row.sel .check{opacity:1}
 .notif-demo{width:100%;margin-top:30px;display:flex;flex-direction:column;gap:10px}
-.nbanner{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:20px;text-align:right;
+.nbanner{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:20px;text-align:start;
   background:var(--card);box-shadow:0 10px 30px rgba(0,0,0,.1);animation:drop .6s cubic-bezier(.2,.8,.2,1) both}
 .nbanner:nth-child(2){animation-delay:.25s;opacity:.85;transform:scale(.97)}
 @keyframes drop{from{opacity:0;transform:translateY(-14px)}}
@@ -169,20 +169,20 @@ input,select{font:inherit;color:inherit}
 .hero .k{font-size:13px;font-weight:700;opacity:.85}
 .hero h2{font-size:24px;font-weight:900;margin:6px 0 2px}
 .hero p{opacity:.85;font-size:14px}
-.hero .ring{position:absolute;left:20px;top:22px;width:84px;height:84px}
+.hero .ring{position:absolute;inset-inline-end:20px;top:22px;width:84px;height:84px}
 .hero .ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;font-weight:900;line-height:1}
 .hero .ring small{display:block;font-size:10px;font-weight:600;opacity:.85;margin-top:2px}
 .hero .acts{display:flex;gap:8px;margin-top:18px}
 .hero .acts button{background:rgba(255,255,255,.2);backdrop-filter:blur(10px);padding:9px 14px;border-radius:12px;font-size:14px;font-weight:700}
 .hero .acts button.w{background:#fff;color:#B5172F}
 .tools{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.tool{padding:16px;display:flex;flex-direction:column;gap:12px;text-align:right;min-height:132px;position:relative;transition:transform .15s}
+.tool{padding:16px;display:flex;flex-direction:column;gap:12px;text-align:start;min-height:132px;position:relative;transition:transform .15s}
 .tool:active{transform:scale(.97)}
 .tool .ti{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#fff}
 .tool .ti svg{width:23px;height:23px}
 .tool b{font-size:15.5px}
 .tool span{font-size:12.5px;color:var(--label2);line-height:1.6}
-.tool .badge{position:absolute;top:14px;left:14px}
+.tool .badge{position:absolute;top:14px;inset-inline-end:14px}
 .news{display:flex;flex-direction:column}
 .news .n{display:flex;gap:12px;padding:14px 16px;align-items:flex-start}
 .news .n+.n{border-top:.5px solid var(--sep)}
@@ -253,10 +253,10 @@ input,select{font:inherit;color:inherit}
 .field label{width:96px;font-size:16px;flex:none}
 .field input,.field select{flex:1;border:0;background:none;outline:0;font-size:16px;color:var(--label);padding:12px 0;min-width:0}
 .field input::placeholder{color:var(--label3)}
-.field input.ltr{direction:ltr;text-align:right}
+.field input.ltr{direction:ltr;text-align:start}
 .sos{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;position:relative}
 .sos + .sos{border-top:.5px solid var(--sep, rgba(127,127,127,.25))}
-.sos .num{font-size:22px;font-weight:800;unicode-bidi:plaintext;text-align:right;letter-spacing:.5px}
+.sos .num{font-size:22px;font-weight:800;unicode-bidi:plaintext;text-align:start;letter-spacing:.5px}
 .sos .d{font-size:14.5px;line-height:1.75;margin-top:4px}
 .sos .lang{font-size:13px;color:var(--label2);margin-top:6px;line-height:1.6}
 .sos .tx{flex:1;min-width:0}
@@ -288,7 +288,7 @@ input,select{font:inherit;color:inherit}
 .slider::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25),0 0 0 .5px rgba(0,0,0,.08)}
 .quick{display:flex;gap:6px;margin-top:10px}
 .quick button{flex:1;height:32px;border-radius:9px;background:var(--fill);font-size:13px;font-weight:700}
-.field select{appearance:none;-webkit-appearance:none;text-align:left;color:var(--tint);font-weight:600;cursor:pointer}
+.field select{appearance:none;-webkit-appearance:none;text-align:end;color:var(--tint);font-weight:600;cursor:pointer}
 .result{padding:20px 18px}
 .result .rk{font-size:13px;font-weight:700;color:var(--label2)}
 .result .rv{display:flex;align-items:baseline;gap:8px;margin:4px 0 10px}
@@ -333,7 +333,7 @@ input,select{font:inherit;color:inherit}
 .qbar em::before{content:"";position:absolute;top:-12px;left:50%;width:2px;height:10px;background:var(--label3)}
 .rp{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:.5px solid var(--sep);align-items:center}
 .rp b{font-size:17px}
-.rd{text-align:left;font-size:12px;font-weight:700;line-height:1.6;white-space:nowrap}
+.rd{text-align:end;font-size:12px;font-weight:700;line-height:1.6;white-space:nowrap}
 .rd.ok{color:var(--green)} .rd.bad{color:var(--tint)}
 .ctaq{display:flex;align-items:center;gap:12px;padding:14px 16px;width:100%}
 .ctaq .ti{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#fff;flex:none}
@@ -345,9 +345,9 @@ input,select{font:inherit;color:inherit}
 .qprog i{display:block;height:100%;background:var(--tint);margin-right:0;transition:width .35s}
 /* toggles */
 .sw{width:51px;height:31px;border-radius:16px;background:var(--fill);position:relative;transition:.25s;flex:none}
-.sw::after{content:"";position:absolute;top:2px;right:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.15);transition:.25s}
+.sw::after{content:"";position:absolute;top:2px;inset-inline-start:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.15);transition:.25s}
 .sw.on{background:#34C759}
-.sw.on::after{right:22px}
+.sw.on::after{inset-inline-start:22px}
 
 /* toast */
 .toast{position:absolute;top:62px;left:50%;transform:translate(-50%,-30px);opacity:0;z-index:100;background:var(--card);
@@ -382,6 +382,12 @@ body.show-gallery .gallery{display:block}
 .sosgrid b{font-size:22px;font-weight:900;line-height:1.2}
 .sosgrid span{color:var(--label2);font-size:13px}
 .row .chip{font-size:12.5px}
+.langbar{display:flex;gap:6px;justify-content:center;background:var(--fill);border-radius:10px;padding:3px;margin:0 auto;max-width:320px;width:100%;position:relative;z-index:2}
+.langbar button{flex:1;padding:7px 4px;border-radius:8px;font-size:14px;font-weight:600;color:var(--label)}
+.langbar button.on{background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+[dir=ltr] .chev{transform:none}
+[dir=ltr] .navbtn svg, [dir=ltr] .back-ic{transform:scaleX(-1)}
+[dir=ltr] .slider{transform:none}
 html.app, html.app body{height:100%;overflow:hidden;background:var(--bg);overscroll-behavior:none}
 html.app .stage{display:block;padding:0;max-width:none;min-height:0;height:100%}
 html.app .side, html.app .gallery{display:none}
@@ -427,21 +433,25 @@ html.app input, html.app select{font-size:16px}
   <div class="ggrid" id="ggrid"></div>
 </div>
 
+<script src="i18n/i18n.js"></script>
+<script src="i18n/it.js"></script>
+<script src="i18n/en.js"></script>
 <script src="data/bollo-2026.js"></script>
 <script>
 /* =========================================================
    Data (sample only — no real account, numbers are examples)
    ========================================================= */
-const FA = (s) => String(s).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
+const FA = (s) => I18N.rtl ? String(s).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]) : String(s);   // Persian digits only in Persian
 const today = new Date(); today.setHours(12,0,0,0);
 const addDays = (n) => { const d = new Date(today); d.setDate(d.getDate()+n); return d; };
-const fmtDate = (d) => new Intl.DateTimeFormat("fa-IR-u-ca-gregory-nu-arabext", {day:"numeric", month:"long", year:"numeric"}).format(d);
-const fmtDay = (d) => new Intl.DateTimeFormat("fa-IR-u-ca-gregory-nu-arabext", {weekday:"long", day:"numeric", month:"long"}).format(d);
+const fmtDate = (d) => new Intl.DateTimeFormat(I18N.locale, {day:"numeric", month:"long", year:"numeric"}).format(d);
+const fmtDay = (d) => new Intl.DateTimeFormat(I18N.locale, {weekday:"long", day:"numeric", month:"long"}).format(d);
 const daysLeft = (d) => Math.round((d - today) / 86400000);
 
 // bollo rates live in data/bollo-2026.js (checked on official sources) — see docs/BOLLO_SOURCES.md
 const REGIONS = Object.keys(BOLLO.regions);
-const EUR = (n) => FA(n.toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 })).replace(/\./g, "٫").replace(/,/g, "٬");
+const EUR = (n) => I18N.rtl ? FA(n.toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 })).replace(/\./g, "٫").replace(/,/g, "٬")
+  : n.toLocaleString(I18N.lang === "it" ? "it-IT" : "en-GB", { minimumFractionDigits:2, maximumFractionDigits:2 });
 
 /* ===== Insurance price model — built only from official IVASS data =====
    Source: IVASS, IPER survey, II quarter 2026 (prices really paid on new RC contracts, taxes included).
@@ -725,12 +735,13 @@ const LOGO = `<div class="logo">${CAR("#E5383B").replace('class="car"','style="w
 
 function vWelcome(){
   return `<div class="ob"><div class="welcome-bg"></div>
+    <div class="langbar">${I18N.LANGS.map(l => `<button class="${l===I18N.lang?'on':''}" data-lang="${l}">${I18N.NAMES[l]}</button>`).join("")}</div>
     <div class="grow">${LOGO}
       <h2>خودرو ایتالیا</h2>
       <p>هر چی درباره‌ی ماشین و موتور تو ایتالیا<br>لازم داری، ساده و فارسی.</p>
     </div>
     <button class="btn fill" data-go="features">شروع کنیم</button>
-    <button class="btn plain" data-go="home">قبلاً ثبت‌نام کردم</button>
+    <button class="btn plain" data-go="home">فعلاً رد شو</button>
   </div>`;
 }
 
@@ -893,7 +904,8 @@ function vProfile(){
     <button class="row" style="width:100%" data-go="setup"><div class="ic" style="background:#30A46C">${I.pin}</div><span class="t">منطقه</span><span class="v">${state.region}</span>${I.chev}</button>
     <div class="row"><div class="ic" style="background:#F59E0B">${I.bell}</div><span class="t">یادآوری‌ها</span><button class="sw ${state.notify?'on':''}" data-sw="notify"></button></div>
     <div class="row"><div class="ic" style="background:#5856D6">${I.moon}</div><span class="t">حالت تاریک</span><button class="sw ${dark?'on':''}" data-sw="dark"></button></div>
-    <div class="row"><div class="ic" style="background:#0A84FF">${I.globe}</div><span class="t">زبان</span><span class="v">فارسی</span>${I.chev}</div>
+    <div class="row"><div class="ic" style="background:#0A84FF">${I.globe}</div><span class="t">زبان</span></div>
+    <div style="padding:0 16px 12px"><div class="langbar">${I18N.LANGS.map(l => `<button class="${l===I18N.lang?'on':''}" data-lang="${l}">${I18N.NAMES[l]}</button>`).join("")}</div></div>
   </div><div class="foot">${NATIVE ? `یادآوری‌ها: ${REMIND_TEXT}.` : "یادآوری با اعلان فقط تو اپ آیفون و اندروید (از اپ‌استور و گوگل‌پلی) کار می‌کنه. اینجا تاریخ‌ها فقط تو صفحه‌ی خانه نشون داده می‌شن."}</div></div>
   <div class="section"><div class="group">
     <a class="row" href="https://t.me/khodro_italy" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><div class="ic" style="background:#229ED9">${I.news}</div><span class="t">کانال تلگرام</span><span class="v" style="direction:ltr">@khodro_italy</span>${I.chev}</a>
@@ -960,8 +972,8 @@ function bolloResult(){
   if (b.kind === "car") {
     const all = REGIONS.map(x => calcBollo("car", b.kw, b.euro, x).total), cheap = Math.min(...all), dear = Math.max(...all);
     const span = Math.max(1, dear - cheap), pos = ((r.total - cheap) / span) * 100;
-    cmp = `<div class="cmp"><div class="cmpbar"><i style="right:${Math.min(100,Math.max(0,pos))}%"></i></div>
-      <div class="cmpl"><span>ارزون‌ترین منطقه<br><b>${EUR(cheap)} €</b></span><span style="text-align:left">گران‌ترین منطقه<br><b>${EUR(dear)} €</b></span></div></div>`;
+    cmp = `<div class="cmp"><div class="cmpbar"><i style="inset-inline-start:${Math.min(100,Math.max(0,pos))}%"></i></div>
+      <div class="cmpl"><span>ارزون‌ترین منطقه<br><b>${EUR(cheap)} €</b></span><span style="text-align:end">گران‌ترین منطقه<br><b>${EUR(dear)} €</b></span></div></div>`;
   }
   return `<div class="card result">
     <div class="rk">بولوی سالانه‌ات</div>
@@ -993,7 +1005,7 @@ function vInsurance(){
   <div class="large" style="padding-top:8px">بیمه رو بفهم</div>
   <div class="subhead">قیمت بیمه تو ایتالیا از کجا میاد؟ قدم‌به‌قدم.</div>
 
-  <div class="section"><button class="card ctaq" data-tool="quote"><div class="ti" style="background:#0A84FF">${I.shield}</div><div style="flex:1;text-align:right"><b>قیمت بیمه‌ات رو کامل حساب کن</b><span>۵ مرحله، مثل سایت‌های بیمه</span></div>${I.chev}</button></div>
+  <div class="section"><button class="card ctaq" data-tool="quote"><div class="ti" style="background:#0A84FF">${I.shield}</div><div style="flex:1;text-align:start"><b>قیمت بیمه‌ات رو کامل حساب کن</b><span>۵ مرحله، مثل سایت‌های بیمه</span></div>${I.chev}</button></div>
   <div class="section"><div class="sec-h"><h3>بیمه‌ات حدوداً چنده؟</h3></div><div class="card" style="padding:16px">
     <div class="seg" style="margin-bottom:12px"><button class="${state.insq.kind==='car'?'on':''}" data-qkind="car">ماشین</button><button class="${state.insq.kind==='moto'?'on':''}" data-qkind="moto">موتور</button></div>
     <div class="group" style="background:var(--card2)">
@@ -1014,7 +1026,7 @@ function vInsurance(){
 
   <div class="section"><div class="sec-h"><h3>کلاس بیمه‌ات</h3></div><div class="card" style="padding:16px">
     <p style="font-size:14px;color:var(--label2);line-height:1.8;margin-bottom:12px">مهم‌ترین چیزیه که قیمت بیمه رو تعیین می‌کنه (تقریباً نصفش). از ۱ (ارزون‌ترین) تا ۱۸ (گرون‌ترین). هر سال بی‌تصادف <b style="color:var(--green)">یه کلاس می‌ری پایین</b>، هر تصادفی که مقصر باشی <b style="color:var(--tint)">دو کلاس می‌ری بالا</b>.</p>
-    <div class="scale"><div class="sbar"></div><i class="mk" style="right:${(last-1)/17*100}%"><b>${FA(last)}</b></i></div>
+    <div class="scale"><div class="sbar"></div><i class="mk" style="inset-inline-start:${(last-1)/17*100}%"><b>${FA(last)}</b></i></div>
     <div class="cmpl" style="margin:4px 0 12px"><span>۱ · ارزون‌ترین</span><span>۱۸ · گرون‌ترین</span></div>
     <div class="field" style="padding:0;min-height:44px"><label>از کلاس</label><div class="kwrow" style="margin:0;gap:10px;justify-content:flex-start">
       <button class="stepb sm" data-cls="-1">−</button><b style="font-size:20px;min-width:30px;text-align:center">${FA(s.start)}</b><button class="stepb sm" data-cls="1">+</button>
@@ -1058,7 +1070,7 @@ function insQuoteHTML(){
     <div class="rk">۸ نفر از هر ۱۰ نفری که مثل تو هستن، در سال می‌دن:</div>
     <div class="rv"><b style="font-size:36px">${R(r.lo80)} تا ${R(r.hi80)}</b><span>یورو</span></div>
     <div style="font-size:14px;margin:-4px 0 4px">معمولاً حدود <b>${R(r.typ)} €</b> · نصف آدم‌ها بین <b>${R(r.low)}</b> و <b>${R(r.high)} €</b></div>
-    <div class="qbar"><span class="q80" style="right:${pos(r.lo80)}%;width:${pos(r.hi80)-pos(r.lo80)}%"></span><span class="qrange" style="right:${pos(r.low)}%;width:${pos(r.high)-pos(r.low)}%"></span><i style="right:${pos(r.typ)}%"></i><em style="right:${pos(nat)}%">میانگین ایتالیا</em></div>
+    <div class="qbar"><span class="q80" style="inset-inline-start:${pos(r.lo80)}%;width:${pos(r.hi80)-pos(r.lo80)}%"></span><span class="qrange" style="inset-inline-start:${pos(r.low)}%;width:${pos(r.high)-pos(r.low)}%"></span><i style="inset-inline-start:${pos(r.typ)}%"></i><em style="inset-inline-start:${pos(nat)}%">میانگین ایتالیا</em></div>
     <div class="foot" style="padding:24px 0 0">چرا این‌قدر بازه پهنه؟ چون شرکت‌ها برای یه آدم قیمت‌های خیلی فرق‌دار می‌دن. اگه قیمتی که بهت دادن نزدیک بالای بازه‌ست، حتماً چند جای دیگه هم بپرس.</div>
     <div class="lines" style="margin-top:28px">
       <div><span>میانگین سن و کلاس تو (کل ایتالیا)</span><b>${FA(Math.round(r.base))} €</b></div>
@@ -1138,7 +1150,7 @@ function vQuote(){
       <div class="rv"><b>${R(r.total)}</b><span>یورو در سال</span></div>
       ${q.pay ? `<div style="font-size:14px;margin:-6px 0 6px">ماهی حدود <b>${R(r.monthly)} €</b> · یه‌جا بدی حدود <b>${R(r.total/1.2)} €</b> می‌شه</div>` : ""}
       <div style="font-size:14px">۸ نفر از ۱۰ نفری که مثل تو هستن: <b>${R(r.lo80)} تا ${R(r.hi80)} €</b></div>
-      <div class="qbar"><span class="q80" style="right:${pos(r.lo80)}%;width:${pos(r.hi80)-pos(r.lo80)}%"></span><i style="right:${pos(r.total)}%"></i></div>
+      <div class="qbar"><span class="q80" style="inset-inline-start:${pos(r.lo80)}%;width:${pos(r.hi80)-pos(r.lo80)}%"></span><i style="inset-inline-start:${pos(r.total)}%"></i></div>
       <h4 style="margin:26px 0 6px;font-size:16px">از کجا اومد؟</h4>
       <div class="lines">${r.f.map(([t,v,tag,base]) => `<div><span>${t} <span class="badge ${tag==='o'?'new':'soon'}" style="font-size:10px">${tag==='o'?'رسمی':'تخمینی'}</span></span><b>${base ? R(v)+" €" : "× "+FA(v.toFixed(2)).replace(".","٫")}</b></div>`).join("")}</div>
       <h4 style="margin:22px 0 6px;font-size:16px">این پول کجا می‌ره؟</h4>
@@ -1268,6 +1280,7 @@ document.addEventListener("click", (e) => {
   if (d.open) { state.detail = Number(d.open); return go("detail", "enter"); }
   if (d.back) return go(d.back, "fade");
   if (d.veh) { state.vehicle = d.veh; const y = phone.querySelector(".view").scrollTop; go("setup", ""); return; }
+  if (d.lang) { I18N.setLang(d.lang); return; }
   if (d.region) { state.region = d.region; phone.querySelectorAll("[data-region]").forEach(b => b.classList.toggle("sel", b === el)); return; }
   if (d.toast) return toast(d.toast);
   if (d.tool) {
@@ -1392,6 +1405,7 @@ const seen = IS_APP && restore();
 document.addEventListener("click", () => setTimeout(persist, 50), true);
 document.addEventListener("change", () => setTimeout(persist, 50), true);
 if (IS_APP && !window.Capacitor && "serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+document.title = t("خودرو ایتالیا");
 go(seen ? "home" : "welcome");
 syncReminders();
 </script>
