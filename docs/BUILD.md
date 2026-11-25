@@ -1,6 +1,6 @@
 # Build and publish the store apps (iOS first)
 
-The store apps use **Capacitor**. It puts the same web app (`index.html`) inside a real
+The store apps use **Capacitor**. It puts the same web app (`index.html` + `css/`, `js/`) inside a real
 iOS app and a real Android app, so they look exactly like the web app.
 
 ```

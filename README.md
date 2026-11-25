@@ -3,7 +3,7 @@
 Persian (RTL) web app for Iranians in Italy: bollo calculator, insurance guide and estimate, garage with deadlines, road emergency numbers (tap to call).
 Install on iPhone: open the site in Safari → Share → Add to Home Screen.
 
-Files: `index.html` (the whole app), `manifest.webmanifest` + icons (install), `sw.js` (offline).
+Files: `index.html` (the page), `css/` (styles), `js/` (app code), `i18n/` (languages), `data/` (bollo rates, news), `manifest.webmanifest` + icons (install), `sw.js` (offline). Map: `docs/CODE_MAP.md`.
 
 Store apps: `ios/` and `android/` (Capacitor) wrap the same web app. How to build and publish: `docs/BUILD.md`.
 Project docs: `STATUS.md`, `ROADMAP.md`, `DECISIONS.md`, `JOURNAL.md`.
@@ -12,4 +12,4 @@ Tests: `npm test` (bollo math, translations, every screen in 3 languages, main f
 Store text and screenshots: `store/`. Bollo rates and sources: `data/`, `docs/BOLLO_SOURCES.md`.
 
 
-Emergency numbers (`SOS` list in index.html) were checked against official sources on 22 Nov 2026. Language notes say "not confirmed" where no official source said which languages are spoken.
+Emergency numbers (`SOS` list in js/screens.js) were checked against official sources on 22 Nov 2026. Language notes say "not confirmed" where no official source said which languages are spoken.

@@ -1,7 +1,8 @@
 // Lists every text the app translates, and which ones are missing in it.js / en.js.
 //   node scripts/i18n-keys.mjs
-import { readFileSync } from "node:fs";
-const html = readFileSync("index.html", "utf8");
+import { readFileSync, readdirSync } from "node:fs";
+// the app code: index.html + every file in js/
+const html = ["index.html", ...readdirSync("js").filter((f) => f.endsWith(".js")).map((f) => "js/" + f)].map((f) => readFileSync(f, "utf8")).join("\n");
 const keys = new Set();
 for (const m of html.matchAll(/\btr\((["'])((?:\\.|(?!\1).)*)\1[,)]/g)) keys.add(JSON.parse('"' + m[2].replace(/\\'/g, "'").replace(/"/g, '\\"') + '"'));
 // data shown through tr(): bollo region names and notes

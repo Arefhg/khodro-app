@@ -22,12 +22,12 @@ export function startServer(root = ".") {
   });
 }
 
-// Takes calcBollo() out of index.html so its math can be tested without a browser.
+// Loads calcBollo() from js/bollo.js so its math can be tested without a browser.
 export async function loadCalcBollo() {
   globalThis.window = {};
   await import("../data/bollo-2026.js?" + Date.now());
   const BOLLO = window.BOLLO;
-  const html = readFileSync("index.html", "utf8");
+  const html = readFileSync("js/bollo.js", "utf8") + "\n";
   const start = html.indexOf("function calcBollo(");
   const end = html.indexOf("\n}\n", start) + 2;
   const FA = (s) => String(s), EUR = (n) => n.toFixed(2), tr = (s) => s;

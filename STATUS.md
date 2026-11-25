@@ -38,7 +38,7 @@ Last update: 23 Nov 2026
 - Works offline (network first), light and dark mode.
 
 ## Known problems
-- The whole app is one file (`index.html`, about 1,300 lines).
+- Code is split into `css/app.css` and 8 files in `js/` (map: `docs/CODE_MAP.md`).
 - The desktop demo (phone frame, step list, gallery) is mixed into the app code.
 - Every tap rebuilds the screen: scroll jumps, no swipe-back, browser back leaves the app.
 - Home news is typed in by hand from the Telegram channel (posts 17, 14, 11). Later it must come from the news bot.

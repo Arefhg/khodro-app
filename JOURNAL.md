@@ -2,6 +2,12 @@
 
 Newest first. What we did, and what we learned.
 
+## 25 Nov 2026 (night) – split the big file
+- index.html (1,510 lines) → index.html (64) + css/app.css + 8 files in js/. No code inside changed.
+- Checked: 26 tests pass, and 20 screens are pixel-identical before/after.
+- Learned: inside one file JS lets you call a function before it's written (hoisting);
+  across files it doesn't. state.js called loadReal() from screens.js → moved it up.
+
 ## 25 Nov 2026 (night) – review and fixes
 - A: back navigation (history: Android back, swipe-back, form closes first), news from data/news.json
   (in-app copy + fresh copy from GitHub), user text escaped, zoom allowed, fake profile removed.

@@ -11,4 +11,6 @@ for (const f of FILES) copyFileSync(f, `www/${f}`);
 cpSync("data", "www/data", { recursive: true });   // bollo rates and other data files
 cpSync("fonts", "www/fonts", { recursive: true }); // Vazirmatn font (works offline)
 cpSync("i18n", "www/i18n", { recursive: true });   // languages: fa, it, en
-console.log(`Copied ${FILES.length} files, data/, fonts/ and i18n/ into www/`);
+cpSync("css", "www/css", { recursive: true });     // styles
+cpSync("js", "www/js", { recursive: true });       // app code
+console.log(`Copied ${FILES.length} files, data/, fonts/, i18n/, css/ and js/ into www/`);

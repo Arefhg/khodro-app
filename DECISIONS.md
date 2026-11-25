@@ -46,3 +46,9 @@ Each decision: the date, what we chose, and why.
 1. Mac: does Aref have one, or do we use a cloud Mac for iOS builds?
 2. Desktop demo: move it to a separate `demo.html`?
 3. Code structure: plain files with no build step, or a small build tool (Vite)?
+
+## 25 Nov 2026 – Split index.html into css/ and js/ (plain scripts, no build tool)
+- Why: one 1,500-line file was hard to read and risky to change.
+- How: cut at the existing section titles; plain `<script>` files in a fixed order.
+- Not chosen: ES modules / a bundler (Vite). It would need import/export in every file and a
+  build step before every test; not worth it at this size. Can be done later if the app grows.
